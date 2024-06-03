@@ -55,7 +55,7 @@ You can find the detailed information on the diagram below:
 ### Data Ingestion
 - Connected the on-premise SQL Server with Azure using Microsoft Integration Runtime.
 
-![image](https://github.com/Hamagistral/Azure-AW/assets/66017329/b57debac-28c2-4928-8640-676643e0177c)
+![image](https://github.com/ShreevaniRao/Azure/assets/66017329/b57debac-28c2-4928-8640-676643e0177c)
 
 - Setup the **Resource group** with needed services (Key Vault, Storage Account, Data Factory, Databricks, Synapse Analytics)
 
