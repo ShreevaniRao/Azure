@@ -55,11 +55,12 @@ You can find the detailed information on the diagram below:
 ### Data Ingestion
 - Connected the on-premise SQL Server with Azure using Microsoft Integration Runtime.
 
-![image](https://github.com/ShreevaniRao/Azure/assets/66017329/b57debac-28c2-4928-8640-676643e0177c)
+![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SHIRSetupResize.png)
+![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SHIRSetup2.png)
 
 - Setup the **Resource group** with needed services (Key Vault, Storage Account, Data Factory, Databricks, Synapse Analytics)
 
-![ressource-group](https://github.com/Hamagistral/Azure-AW/assets/66017329/62990af9-db6e-4712-81bf-61420835bb99)
+![ressource-group](https://github.com/)
 
 - Migrated the tables from on-premise SQL Server to Azure Data Lake Storage Gen2.
 
@@ -67,7 +68,7 @@ You can find the detailed information on the diagram below:
 ![df-pipeline](https://github.com/Hamagistral/Azure-AW/assets/66017329/21ed74aa-8bf4-46c5-952c-4dc9f14dc9fb)
 
 <a name="data-transformation"></a>
-### ⚙️ Data Transformation
+### Data Transformation
 - Mounted Azure Blob Storage to Databricks to retrieve raw data from the Data Lake.
 - Used Spark Cluster in Azure Databricks to clean and refine the raw data.
 - Saved the cleaned data in a Delta format; optimized for further analysis.
