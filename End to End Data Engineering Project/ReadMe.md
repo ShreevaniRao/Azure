@@ -10,7 +10,7 @@
 </div>
 <br>
 
-## 📝 Table of Contents
+##  Table of Contents
 1. [Project Overview](#introduction)
 2. [Key Insights](#key-insights)
 3. [Project Architecture](#project-architecture)  
@@ -45,7 +45,7 @@ This an end-to-end data engineering project using Azure cloud computing platform
 - Implement Azure Active Directory (AAD) and Azure Key Vault for monitoring and governance.
 
 <a name="project-architecture"></a>
-## 📝 Project Architecture
+## Project Architecture
 
 You can find the detailed information on the diagram below:
 
