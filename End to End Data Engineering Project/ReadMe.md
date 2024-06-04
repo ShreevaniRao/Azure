@@ -5,8 +5,8 @@
     </ul>
   </div>
   
-  <p>To Analyze insights of AdventureWorks dataset using ETL with Visualization </p>
-<p> Extract On-prem DB Sql Sever Data to Azure Cloud Pipeline with Data Factory, Azure Data Lake Storage, Spark, Azure Databricks, Azure Synapse Analytics & PowerBI </p>
+  <p>To Analyze insights of AdventureWorks dataset by creating an Azure End to End Data Pipeline that Extracts, Loads and Transforms data to showcase with a Dashboard visualization </p>
+<p> Extract On-prem DB Sql Sever Data to Azure Data Lake Storage using Azure Data Factory, Transform the ingested data using Azure Databricks with Spark cluster, Loading transformed data using Azure Synapse Analytics to Visualize in PowerBI </p>
 </div>
 <br>
 
@@ -73,28 +73,28 @@ Below diagram displays the design and details of the resource architecture :
 <a name="data-transformation"></a>
 ### Data Transformation
 - Mounted Azure Blob Storage to Databricks to retrieve raw data from the Data Lake 'bronze' container.
-- Used Spark Cluster in Azure Databricks to clean and refine the raw data.
-- Saved the cleaned data in a Delta format for data analysis to 'silver' storage container.
+- Used Spark Cluster in Azure Databricks to transform using Pyspark & Python with a Azure Databricks notebook.
+- Saved the transformed data in a Delta format for data analysis to 'silver' storage container.
 
 ![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/StorageMount.png)
 ![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformCodeBronzetoSilver.png)
-
+![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformedDataInSilverContainer.png)
 
 <a name="data-loading"></a>
 ### Data Loading
-- Used Azure Synapse Analytics to load the refined data efficiently.
-- Created SQL database and connected it to the data lake.
+- Created Azure Synapse Analytics pipeline to orchestrate activities to execute a stored procedure to dynamically create views for each table in a Serverless SQL database(gold_db) using table names from the 'gold' data lake storage container.
+- Created Linked Service to connect to the Azure Sql database to connect to the Stored procedure.
 
-![synapse-pipeline](https://github.com/Hamagistral/Azure-AW/assets/66017329/99a8c7cd-1a6f-4ec9-b35d-2e171d3be87b)
-![db-synapse](https://github.com/Hamagistral/Azure-AW/assets/66017329/b601eb00-efe1-44d9-8de6-8f001176d549)
+![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SynapsePipelineForGoldContainer.png)
+![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SynapsePipelineCreatedViews.png)
 
 <a name="data-reporting"></a>
-### 📊 Data Reporting
+### Data Reporting
 - Connected Microsoft Power BI to Azure Synapse, and used the Views of the DB to create interactive and insightful data visualizations.
 
 ![PowerBI-dashboard](https://github.com/Hamagistral/Azure-AW/assets/66017329/30bb3c61-1503-42a3-8b03-cd7c3da7bb82)
 
-### 🛠️ Technologies Used
+###  Technologies Used
 
 - **Data Source**: SQL Server
 - **Orchestration**: Azure Data Factory
@@ -104,7 +104,7 @@ Below diagram displays the design and details of the resource architecture :
 - **Data Visualization**: PowerBI
 
 <a name="credits"></a>
-## 📋 Credits
+## Credits
 
 - This Project is inspired by the video of the [YouTube Channel "Mr. K Talks Tech"](https://www.youtube.com/watch?v=iQ41WqhHglk)  
 
