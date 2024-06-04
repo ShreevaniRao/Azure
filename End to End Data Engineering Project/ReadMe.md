@@ -61,23 +61,24 @@ Below diagram displays the design and details of the resource architecture :
 ![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/EnvironmentSetupResize.png)
 <a name="data-ingestion"></a>
 ### Data Ingestion
-- Connected the on-premise SQL Server with Azure using Microsoft Integration Runtime.
+- Connected the on-premise SQL Server database with Azure using Microsoft Self Hosting Integration Runtime.
 
 ![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SHIRSetupResize.png)
 ![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SHIRSetup2Resize.png)
 
-- Migrated the tables from on-premise SQL Server to Azure Data Lake Storage Gen2.
-
+- Ingested the extracted data from on-premise SQL Server tables to Azure Data Lake Storage Gen2.
+![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/CopyingDataUsingPipelineActivitiesResize.png)
 ![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/DataIngestionFoldersWithParquetFilesResize.png)
-![df-pipeline](https://github.com/Hamagistral/Azure-AW/assets/66017329/21ed74aa-8bf4-46c5-952c-4dc9f14dc9fb)
 
 <a name="data-transformation"></a>
 ### Data Transformation
-- Mounted Azure Blob Storage to Databricks to retrieve raw data from the Data Lake.
+- Mounted Azure Blob Storage to Databricks to retrieve raw data from the Data Lake 'bronze' container.
 - Used Spark Cluster in Azure Databricks to clean and refine the raw data.
-- Saved the cleaned data in a Delta format; optimized for further analysis.
+- Saved the cleaned data in a Delta format for data analysis to 'silver' storage container.
 
-![image](https://github.com/Hamagistral/Azure-AW/assets/66017329/11b7fb4e-0013-4a9f-a791-ab2a2789f774)
+![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/StorageMount.png)
+![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformCodeBronzetoSilver.png)
+
 
 <a name="data-loading"></a>
 ### Data Loading
