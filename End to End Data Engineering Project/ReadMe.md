@@ -62,6 +62,7 @@ Below diagram displays the design and details of the resource architecture :
 <a name="data-ingestion"></a>
 ### Data Ingestion
 - Connected the on-premise SQL Server database with Azure using Microsoft Self Hosting Integration Runtime.
+- Created ADF pipeline to orchestrate acitivites that lookup tablenames and creates data lake container hierarchy that includes the schema name of the tables.
 
 ![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SHIRSetupResize.png)
 ![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SHIRSetup2Resize.png)
@@ -72,9 +73,9 @@ Below diagram displays the design and details of the resource architecture :
 
 <a name="data-transformation"></a>
 ### Data Transformation
-- Mounted Azure Blob Storage to Databricks to retrieve raw data from the Data Lake 'bronze' container.
-- Used Spark Cluster in Azure Databricks to transform using Pyspark & Python with a Azure Databricks notebook.
-- Saved the transformed data in a Delta format for data analysis to 'silver' storage container.
+- Mounted Azure Blob Storage to Databricks to read raw data from the Data Lake 'bronze' container.
+- Used Spark Cluster in Azure Databricks to transform using Pyspark & Python with multiple Azure Databricks notebooks.
+- Created pipeline activities in ADF to save the transformed data in Delta file format into 'silver' & 'gold' storage containers.
 
 ![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/StorageMount.png)
 ![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformCodeBronzetoSilver.png)
