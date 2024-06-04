@@ -94,8 +94,9 @@ Below diagram displays the design and details of the resource architecture :
 
 ### Data Reporting
 - Connected Microsoft Power BI desktop to Azure Synapse with Sql Serverless endpoint, to import the data from the Serverless database(gold_db) views to create interactive and insightful data visualization.
-
-![PowerBI-dashboard](https://github.com/Hamagistral/Azure-AW/assets/66017329/30bb3c61-1503-42a3-8b03-cd7c3da7bb82)
+- Updated the data modeling to establish the relationship between the tables
+![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/PBDataModeling.png)
+![PowerBI-dashboard](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Power%20BI/Power%20BI%20Viz.png)
 
 ###  Technologies Used
 
