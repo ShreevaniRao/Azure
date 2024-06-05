@@ -4,8 +4,11 @@
       <summary><h1 style="display: inline-block;"> Azure End to End Data Engineering Project </h1></summary>
     </ul>
   </div>
-  
-### To Analyze insights and create a Power BI Visualization using sample AdventureWorks dataset with Azure End to End Data engineering Pipeline that ingests data from On-Premise Sql Server database by orchestrating Extract, Load and Transform data activities. 
+</div>
+
+<div align="left">
+
+### To analyze insights and create a Power BI visualization using sample AdventureWorks dataset with Azure end to end data engineering pipeline that ingests data from On-Premise Sql Server database by orchestrating Extract, Load and Transform data activities. 
 
 ### Azure Data Factory pipeline orchestrates activities to ingest On-premise Sql Sever Data to Azure Data Lake Storage, transform the ingested data using Azure Databricks notebooks that code the logic using Pyspark & Python with Spark cluster. Loading transformed data from Data lake containers using Azure Synapse Analytics pipeline that orchestrates activities to dynamically create Serveless SQL database views using a stored procedure to load data and finally import that data into Power BI.
 </div>
@@ -39,6 +42,7 @@ For this project I used the **Lightweight (LT) data**: a lightweight and pared d
 
 ### Project Goals
 
+Demonstrate using multiple Azure resources to
 - Connect on-premise SQL Server database to Azure cloud using SHIR - **Self Hosting Integration Runtime**.
 - Ingest data as **Parquet files** into Azure Data Lake storage container using Azure Data Factory(ADF).
 - Apply data cleaning and transformation logic using Pyspark & Python in Azure Databricks notebook.
@@ -56,7 +60,7 @@ Below diagram displays the design and details of the resource architecture :
 ### Setup Environment
 - Create the Resource group.
 - Create all the resources - ADF, Azure Databricks, Azure Key Vault, Data Lake Storage container & Azure Synapse Analytics in the resource group.
-- Create the Data lake storage containers structure - brone, silver & gold to support the ETL data.
+- Create the Data lake storage containers structure - brone, silver & gold to contain the ETL data.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/EnvironmentSetupResize.png" width="850" height="500"> >
 
