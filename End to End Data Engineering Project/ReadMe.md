@@ -22,7 +22,7 @@
 
 ## Project Overview 
 
-This an end-to-end data engineering project using Azure cloud computing platform, which attempts the use case to build an end to end solution by ingesting the tables from on-premise SQL Server database using Azure Data Factory pipeline to store the data in Azure Data Lake using Self hosting integration runtime and transform the raw data using multiple Azure databricks notebooks using Pyspark & Python. Azure Synapse Analytics uses pipeline to orchestrate activities that load the transformed data to a Sql Serverless database to create dynamic database views which can always get updated for any changes in the schema and data in data lake. Finally using Microsoft Power BI to integrate with Azure synapse analytics to import the data from the views to build an interactive dashboard to derive & display the business insights. Also, I have used Azure Active Directory (AAD) and Azure Key Vault for the monitoring and governance purpose.
+This an end-to-end data engineering project using **Azure cloud computing platform**, which attempts the use case to build an end to end solution by ingesting the tables from on-premise SQL Server database using **Azure Data Factory** pipeline to store the data in **Azure Data Lake** using Self hosting integration runtime and transform the raw data using multiple **Azure Databricks** notebooks using Pyspark & Python. **Azure Synapse Analytics** uses pipeline to orchestrate activities that load the transformed data to a Sql Serverless database to create dynamic database views which can always get updated for any changes in the schema and data in data lake. Finally using **Microsoft Power BI** to integrate with Azure synapse analytics to import the data from the views to build an interactive dashboard to derive & display the business insights. Also, I have used **Azure Active Directory** (AAD) and **Azure Key Vault** for the monitoring and governance purpose.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/ProjectOverviewResize.png" width="850" height="500"> 
 
@@ -37,10 +37,10 @@ For this project I used the **Lightweight (LT) data**: a lightweight and pared d
 
 ### Project Goals
 
-- Connect on-premise SQL Server database to Azure cloud using SHIR - Self Hosting Integration Runtime.
-- Ingest data as Parquet files into Azure Data Lake storage container using Azure Data Factory(ADF).
+- Connect on-premise SQL Server database to Azure cloud using SHIR - **Self Hosting Integration Runtime**.
+- Ingest data as **Parquet files** into Azure Data Lake storage container using Azure Data Factory(ADF).
 - Apply data cleaning and transformation logic using Pyspark & Python in Azure Databricks notebook.
-- Utilize Azure Synapse Analytics to load transformed data into Delta files in Data Lake Storage container.
+- Utilize Azure Synapse Analytics to load transformed data into **Delta files** in Data Lake Storage container.
 - Analyze and create interactive data visualizations and reports with Microsoft Power BI Desktop connecting to Azure Synapse Analytics serverless database.
 - Implement Azure Active Directory (AAD) and Azure Key Vault for monitoring and governance.
 
@@ -59,7 +59,7 @@ Below diagram displays the design and details of the resource architecture :
 
 ### Data Ingestion
 - Connected the on-premise SQL Server database with Azure using Microsoft Self Hosting Integration Runtime.
-- Created ADF pipeline to orchestrate acitivites that lookup tablenames and creates data lake container hierarchy that includes the schema name of the tables.
+- Created ADF pipeline to orchestrate acitivites that lookup tablenames and creates data lake container hierarchy using the schema and table names.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SHIRSetupResize.png" width="850" height="550">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SHIRSetup2Resize.png" width="850" height="550">
@@ -78,7 +78,6 @@ Below diagram displays the design and details of the resource architecture :
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformCodeBronzetoSilver.png" width="800" height="550">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformedDataInSilverContainer.png" width="800" height="550">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/CompletePipeline-ADF.png" width="800" height="400">
-
 
 ### Data Loading
 - Created Azure Synapse Analytics pipeline to orchestrate activities to execute a stored procedure to dynamically create views for each table in a Serverless SQL database(gold_db) using table names from the 'gold' data lake storage container.
@@ -100,7 +99,7 @@ Below diagram displays the design and details of the resource architecture :
 - **Ingestion**: Azure Data Lake Gen2
 - **Storage**: Azure Synapse Analytics
 - **Authentication and Secrets Management**: Azure Active Directory and Azure Key Vault
-- **Data Visualization**: PowerBI
+- **Data Visualization**: Power BI Desktop
 
 
 ## Credits
