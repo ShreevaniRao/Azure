@@ -21,9 +21,8 @@
   2.2. [Data Transformation](#data-transformation)  
   2.3. [Data Loading](#data-loading)  
   2.4. [Data Reporting](#data-reporting)
-  2.5  [End to End Pipeline Testing](#pipeline-trigger)
+  2.5. [End to End Pipeline Testing](#pipeline-trigger)
 3. [Credits](#credits)
-
    
 <a name="introduction"></a>
 ## Project Overview 
