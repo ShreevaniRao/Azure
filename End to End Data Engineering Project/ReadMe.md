@@ -100,7 +100,7 @@ Below diagram displays the design and details of the resource architecture :
 ###  Technologies Used
 
 - **Data Source**: SQL Server
-- **Orchestration**: Azure Data Factory
+- **Orchestration**: Azure Data Factory & Azure Databricks
 - **Ingestion**: Azure Data Lake Gen2
 - **Storage**: Azure Synapse Analytics
 - **Authentication and Secrets Management**: Azure Active Directory and Azure Key Vault
