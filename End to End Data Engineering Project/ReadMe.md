@@ -5,8 +5,9 @@
     </ul>
   </div>
   
-  <p>To Analyze insights of AdventureWorks dataset by creating an Azure End to End Data Pipeline that Extracts, Loads and Transforms data to showcase with a Dashboard visualization </p>
-<p> Extract On-prem DB Sql Sever Data to Azure Data Lake Storage using Azure Data Factory, Transform the ingested data using Azure Databricks with Spark cluster, Loading transformed data using Azure Synapse Analytics to Visualize in PowerBI </p>
+### To Analyze insights and create a Power BI Visualization using sample AdventureWorks dataset with Azure End to End Data engineering Pipeline that ingests data from On-Premise Sql Server database by orchestrating Extract, Load and Transform data activities. 
+
+### Azure Data Factory pipeline orchestrates activities to ingest On-premise Sql Sever Data to Azure Data Lake Storage, transform the ingested data using Azure Databricks notebooks that code the logic using Pyspark & Python with Spark cluster. Loading transformed data from Data lake containers using Azure Synapse Analytics pipeline that orchestrates activities to dynamically create Serveless SQL database views using a stored procedure to load data and finally import that data into Power BI.
 </div>
 <br>
 
