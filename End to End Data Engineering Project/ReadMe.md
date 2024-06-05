@@ -58,18 +58,18 @@ Below diagram displays the design and details of the resource architecture :
 - Create all the resources - ADF, Azure Databricks, Azure Key Vault, Data Lake Storage container & Azure Synapse Analytics in the resource group.
 - Create the Data lake storage containers structure - brone, silver & gold to support the ETL data.
 
-![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/EnvironmentSetupResize.png)
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/EnvironmentSetupResize.png">
 <a name="data-ingestion"></a>
 ### Data Ingestion
 - Connected the on-premise SQL Server database with Azure using Microsoft Self Hosting Integration Runtime.
 - Created ADF pipeline to orchestrate acitivites that lookup tablenames and creates data lake container hierarchy that includes the schema name of the tables.
 
-![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SHIRSetupResize.png)
-![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SHIRSetup2Resize.png)
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SHIRSetupResize.png" width="800" height="550">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SHIRSetup2Resize.png" width="800" height="550">
 
 - Ingested the extracted data from on-premise SQL Server tables to Azure Data Lake Storage Gen2.
-![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/CopyingDataUsingPipelineActivitiesResize.png)
-![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/DataIngestionFoldersWithParquetFilesResize.png)
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/CopyingDataUsingPipelineActivitiesResize.png" width="800" height="550">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/DataIngestionFoldersWithParquetFilesResize.png" width="800" height="550">
 
 <a name="data-transformation"></a>
 ### Data Transformation
@@ -77,26 +77,27 @@ Below diagram displays the design and details of the resource architecture :
 - Used Spark Cluster in Azure Databricks to transform using Pyspark & Python with multiple Azure Databricks notebooks.
 - Created pipeline activities in ADF to save the transformed data in Delta file format into 'silver' & 'gold' storage containers.
 
-![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/StorageMount.png)
-![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformCodeBronzetoSilver.png)
-![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformedDataInSilverContainer.png)
-![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/CompletePipeline-ADF.png)
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/StorageMount.png" width="800" height="550">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformCodeBronzetoSilver.png" width="800" height="550">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformedDataInSilverContainer.png" width="800" height="550">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/CompletePipeline-ADF.png" width="800" height="400">
 
 <a name="data-loading"></a>
 ### Data Loading
 - Created Azure Synapse Analytics pipeline to orchestrate activities to execute a stored procedure to dynamically create views for each table in a Serverless SQL database(gold_db) using table names from the 'gold' data lake storage container.
 - Created Linked Service for Azure Sql database to connect to the Stored procedure.
 
-![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SynapsePipelineForGoldContainer.png)
-![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SynapsePipelineCreatedViews.png)
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SynapsePipelineForGoldContainer.png" width="800" height="400">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SynapsePipelineCreatedViews.png" width="800" height="400">
 
 <a name="data-reporting"></a>
 
 ### Data Reporting
 - Connected Microsoft Power BI desktop to Azure Synapse with Sql Serverless endpoint, to import the data from the Serverless database(gold_db) views to create interactive and insightful data visualization.
 - Updated the data modeling to establish the relationship between the tables
-![image](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/PBDataModeling.png)
-![PowerBI-dashboard](https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Power%20BI/Power%20BI%20Viz.png)
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/PBDataModeling.png" width="800" height="400">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Power%20BI/Power%20BI%20Viz.png" width="800" height="400">
 
 ###  Technologies Used
 
