@@ -21,7 +21,7 @@
   2.2. [Data Transformation](#data-transformation)  
   2.3. [Data Loading](#data-loading)  
   2.4. [Data Reporting](#data-reporting)
-  2.5  [End to End Pipeline](#pipeline-trigger)
+  2.5  [End to End Pipeline Testing](#pipeline-trigger)
 4. [Credits](#credits)
 
    
@@ -104,13 +104,18 @@ Below diagram displays the design and details of the resource architecture :
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Power%20BI/Power%20BI%20Viz.png" width="800" height="400">
 
 <a name="pipeline-trigger"></a>
-### End to End Pipeline
-- Created a scheduled trigger in Azure Data Factory that runs the pipeline to copy the new data inserted in the On-Premise database tables. The Power BI visualization dynamically updates the latest data connected to the Serverless Sql database in Azure Synapse Analytics.
+### End to End Pipeline Testing
+- Created a scheduled trigger in Azure Data Factory that runs the pipeline to copy the new data inserted in the On-Premise database tables.
+- The Power BI visualization dynamically updates the latest data connected to the Serverless Sql database in Azure Synapse Analytics.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/ScheduleTriggerCompletePipeline.png" width="800" height="400">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/CompletePipelineRunSuceeded.png" width="800" height="400">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Power%20BI/PowerBIVizAfterPipelineRun.png" width="800" height="400">
 
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 ###  Technologies Used
 
 - **Data Source**: SQL Server
