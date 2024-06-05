@@ -16,13 +16,13 @@
 
 ##  Table of Contents
 1. [Project Overview](#introduction)
-2. [Project Architecture](#project-architecture)  
-  2.1. [Data Ingestion](#data-ingestion)  
-  2.2. [Data Transformation](#data-transformation)  
-  2.3. [Data Loading](#data-loading)  
-  2.4. [Data Reporting](#data-reporting)
-  2.5. [End to End Pipeline Testing](#pipeline-trigger)
-4. [Credits](#credits)
+2. [Project Architecture](#project-architecture)
+  * 2.1. [Data Ingestion](#data-ingestion)  
+  * 2.2. [Data Transformation](#data-transformation)  
+  * 2.3. [Data Loading](#data-loading)
+  * 2.4. [Data Visualization](#data-reporting)
+  * 2.5. [End to End Pipeline Testing](#pipeline-trigger)
+3. [Credits](#credits)
    
 <a name="introduction"></a>
 ## Project Overview 
@@ -96,7 +96,7 @@ Below diagram displays the design and details of the resource architecture :
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/SynapsePipelineCreatedViews.png" width="800" height="400">
 
 <a name="data-reporting"></a>
-### Data Reporting
+### Data Visualization
 - Connected Microsoft Power BI desktop to Azure Synapse with Sql Serverless endpoint, to import the data from the Serverless database(gold_db) views to create interactive and insightful data visualization.
 - Updated the data modeling to establish the relationship between the tables
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/PBDataModeling.png" width="800" height="400">
