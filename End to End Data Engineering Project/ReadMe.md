@@ -8,7 +8,7 @@
 
 <div align="left">
 
-### To analyze insights and create a Power BI visualization using sample AdventureWorks dataset with Azure end to end data engineering pipeline that ingests data from On-Premise Sql Server database by orchestrating Extract, Load and Transform data activities. 
+### To analyze insights and create a Power BI visualization using sample AdventureWorks dataset with Azure End to End Data Engineering pipeline that ingests data from On-Premise Sql Server database by orchestrating Ingestion, Transform and Load activities. 
 
 ### Azure Data Factory pipeline orchestrates activities to ingest On-premise Sql Sever Data to Azure Data Lake Storage, transforms the ingested data using Azure Databricks notebooks that code the logic using Pyspark & Python with Spark cluster. Azure Synapse Analytics pipeline loads the transformed data from Data lake containers into Serveless SQL database views created dynamically using a stored procedure, which finally Power BI desktop imports by connecting to the Serverless SQL Endpoint of Azure Synapse database. 
 </div>
