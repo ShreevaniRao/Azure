@@ -10,7 +10,7 @@
 
 ### To analyze insights and create a Power BI visualization using sample AdventureWorks dataset with Azure end to end data engineering pipeline that ingests data from On-Premise Sql Server database by orchestrating Extract, Load and Transform data activities. 
 
-### Azure Data Factory pipeline orchestrates activities to ingest On-premise Sql Sever Data to Azure Data Lake Storage, transforms the ingested data using Azure Databricks notebooks that code the logic using Pyspark & Python with Spark cluster. Azure Synapse Analytics pipeline loads the transformed data from Data lake containers into Serveless SQL database views created dynamically using a stored procedure which finally Power BI imports connecting to the Synapse database. 
+### Azure Data Factory pipeline orchestrates activities to ingest On-premise Sql Sever Data to Azure Data Lake Storage, transforms the ingested data using Azure Databricks notebooks that code the logic using Pyspark & Python with Spark cluster. Azure Synapse Analytics pipeline loads the transformed data from Data lake containers into Serveless SQL database views created dynamically using a stored procedure, which finally Power BI desktop imports by connecting to the Serverless SQL Endpoint of Azure Synapse database. 
 </div>
 <br>
 
@@ -104,12 +104,15 @@ Below diagram displays the design and details of the resource architecture :
 
 <a name="pipeline-trigger"></a>
 ### End to End Pipeline Testing
-- Created a scheduled trigger in Azure Data Factory that runs the pipeline to copy the new data inserted in the On-Premise database tables.
+- Created a scheduled trigger in Azure Data Factory that runs the pipeline to copy the new data inserted (new customers) in the On-Premise database tables.
 - The Power BI visualization dynamically updates the latest data connected to the Serverless Sql database in Azure Synapse Analytics.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/ScheduleTriggerCompletePipeline.png" width="800" height="400">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/CompletePipelineRunSuceeded.png" width="800" height="400">
+</br>
+<p>
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Power%20BI/PowerBIVizAfterPipelineRun.png" width="800" height="400">
+</p>
 
 
 
