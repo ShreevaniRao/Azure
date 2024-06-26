@@ -20,10 +20,10 @@
 <a name="introduction"></a>
 ## Project Overview 
 This project attempts the use case to 
-1. Build a Serverless/Logical Data Warehouse using **Azure Synapse Analytics** that allows creation of relational database objects like tables and views over collections of data files that represent logical entities to store the data in **Azure Data Lake**. This Azure Synapse workspace created includes an on-demand SQL endpoint. The endpoint lets SQL Server administrators and developers use familiar environments to work with LDWs that Azure Synapse serverless SQL pools define.
-
-2. Data warehouse serving layer for BI - using serveless SQL endpoint connect to Power BI to showcase the analytical queries
-3. Ad-hoc exploration of raw data in a data lake using LDW tables and views.
+1. Build a Serverless/Logical Data Warehouse using **Azure Synapse Analytics** that allows creation of relational database objects like tables and views over collections of data files that represent logical entities to store the data in **Azure Data Lake** that can be used to read data from Delimited text files(CSV). Then using **CETAS (Create External Table as Select)** write back to the data lakehouse to save the CSV data with a **Parquet file** This Azure Synapse workspace created includes an on-demand SQL endpoint. The endpoint lets SQL Server administrators and developers use familiar environments to work with LDWs that Azure Synapse serverless SQL pools define.
+2. Showcase Incremental Fact Loading and Slowly Changing Dimensions.
+3. Data warehouse serving layer for BI - using serveless SQL endpoint connect to Power BI to showcase the analytical queries
+4. Ad-hoc exploration of raw data in a data lake using LDW tables and views.
    
 
 
