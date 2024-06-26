@@ -17,7 +17,8 @@
 1. [Project Overview](#introduction)
 2. [Project Architecture](#project-architecture)
 3. [Resources](#Resources)
-
+4. [LDW Details](#Details)
+5. 
 <a name="introduction"></a>
 ## Project Overview 
 This project attempts the use case to 
@@ -36,4 +37,9 @@ Below diagram displays the design and details of the logical data warehouse arch
 
 <a name="Resources"></a>
 ## Resources
-Using a set of tables from the **WideWorldImporters** example database which have been exported to CSV format. The main tables are Sales Order and Sales Order Lines with related tables including Items, Customers and Suppliers.
+Using a set of tables from the **WideWorldImporters** example database which has been exported to CSV format. The main tables are Sales Order and Sales Order Lines with related tables including Items, Customers and Suppliers. The link to the dataset can be downloaded from [this link](https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Data/Source%20Data.zip)
+
+Attempted to apply the [best practices](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql/best-practices-serverless-sql-pool) recommended by Microsoft for Serverless SQL Pools.
+
+<a name="Details"></a>
+## LDW Details
