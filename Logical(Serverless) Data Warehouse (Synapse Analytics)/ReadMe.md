@@ -22,7 +22,7 @@
 <a name="introduction"></a>
 ## Project Overview 
 This project attempts the use case to 
-1. Build a Serverless/Logical Data Warehouse using **Azure Synapse Analytics** that allows creation of relational database objects like tables and views over collections of data files that represent logical entities to store the data in **Azure Data Lake** that can be used to read data from Delimited text files(CSV). Then using **CETAS (Create External Table as Select)** write back to the data lakehouse to save the CSV data with a **Parquet file** This Azure Synapse workspace created includes an on-demand SQL endpoint. The endpoint lets SQL Server administrators and developers use familiar environments to work with LDWs that Azure Synapse serverless SQL pools define.
+1. Build a Serverless/Logical Data Warehouse using **Azure Synapse Analytics** that allows creation of relational database objects like tables and views over collections of data files that represent logical entities to store the data in **Azure Data Lake** that can be used to read data from Delimited text files(CSV). Then using **CETAS (Create External Table as Select)** write back to the data lakehouse to save the CSV data with a **Parquet file** 
 2. Showcase Incremental Fact Loading and Slowly Changing Dimensions.
 3. Serve Data layer for BI - using serveless SQL endpoint connect to Power BI to showcase the analytical queries
 4. Ad-hoc exploration of raw data in a data lake using LDW tables and views.
@@ -41,5 +41,12 @@ Using a set of tables from the **WideWorldImporters** example database which has
 
 Attempted to apply the [best practices](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql/best-practices-serverless-sql-pool) recommended by Microsoft for Serverless SQL Pools.
 
+[Study Azure Synapse Serverless SQL pool](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql/on-demand-workspace-overview)
+
+
 <a name="Details"></a>
 ## LDW Details
+
+1.  Azure Synapse Analytics Workspace setup - create the resource group, storage container and Synapse Analytics studio
+<img src="" width="850" height="500"> 
+   
