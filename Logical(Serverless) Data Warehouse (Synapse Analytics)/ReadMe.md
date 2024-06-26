@@ -48,5 +48,7 @@ Attempted to apply the [best practices](https://learn.microsoft.com/en-us/azure/
 ## LDW Details
 
 1.  Azure Synapse Analytics Workspace setup - create the resource group, storage container and Synapse Analytics studio
-<img src="" width="850" height="500"> 
-   
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CreaterResource%26Services.png" width="850" height="500"> 
+
+   From the Synapse studio, click the Develop tab and create a new SQL script.
+  <img src="" width="850" height="500"> 
