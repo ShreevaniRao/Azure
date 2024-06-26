@@ -26,5 +26,9 @@ This project attempts the use case to
 4. Ad-hoc exploration of raw data in a data lake using LDW tables and views.
    
 
+<a name="project-architecture"></a>
+## Project Architecture
+
+Below diagram displays the design and details of the logical data warehouse architecture :
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/Collage.jpg" width="850" height="500"> 
