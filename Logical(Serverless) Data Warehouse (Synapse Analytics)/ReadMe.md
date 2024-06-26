@@ -16,13 +16,14 @@
 ##  Table of Contents
 1. [Project Overview](#introduction)
 2. [Project Architecture](#project-architecture)
+3. [Resources](#Resources)
 
 <a name="introduction"></a>
 ## Project Overview 
 This project attempts the use case to 
 1. Build a Serverless/Logical Data Warehouse using **Azure Synapse Analytics** that allows creation of relational database objects like tables and views over collections of data files that represent logical entities to store the data in **Azure Data Lake** that can be used to read data from Delimited text files(CSV). Then using **CETAS (Create External Table as Select)** write back to the data lakehouse to save the CSV data with a **Parquet file** This Azure Synapse workspace created includes an on-demand SQL endpoint. The endpoint lets SQL Server administrators and developers use familiar environments to work with LDWs that Azure Synapse serverless SQL pools define.
 2. Showcase Incremental Fact Loading and Slowly Changing Dimensions.
-3. Data warehouse serving layer for BI - using serveless SQL endpoint connect to Power BI to showcase the analytical queries
+3. Serve Data layer for BI - using serveless SQL endpoint connect to Power BI to showcase the analytical queries
 4. Ad-hoc exploration of raw data in a data lake using LDW tables and views.
    
 
@@ -31,4 +32,8 @@ This project attempts the use case to
 
 Below diagram displays the design and details of the logical data warehouse architecture :
 
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/Collage.jpg" width="850" height="500"> 
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/ServerlessDWArchitecture.png" width="850" height="500"> 
+
+<a name="Resources"></a>
+## Resources
+Using a set of tables from the **WideWorldImporters** example database which have been exported to CSV format. The main tables are Sales Order and Sales Order Lines with related tables including Items, Customers and Suppliers.
