@@ -27,4 +27,4 @@ This project attempts the use case to
    
 
 
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/ProjectOverviewUpdatedColors.png" width="850" height="500"> 
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/Collage.jpg" width="850" height="500"> 
