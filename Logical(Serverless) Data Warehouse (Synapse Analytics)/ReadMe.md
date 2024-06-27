@@ -54,3 +54,4 @@ Attempted to apply the [best practices](https://learn.microsoft.com/en-us/azure/
   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/SynapseCreateDW.png" width="950" height="450"> 
 
 2. Setup security - The user account which is being used in the Synapse Studio will need to be added to the Azure Storage Access Control (IAM) as a **Storage Blob Data Contributor**. to be able to read and write to the storage account.
+3. Create Views in the Serverless SQL database to enable querying of the source data using **Openrowset**. Serverless SQL Pools includes 2 SQL functions, filepath and filename, that can be used to return the folder path/name and file name from the data in the source Azure storage account. These 2 functions can also be used to filter on certain folders and files to reduce the amount of data processed and also to improve read performance.
