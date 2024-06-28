@@ -54,10 +54,17 @@ Attempted to apply the [best practices](https://learn.microsoft.com/en-us/azure/
   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/SynapseCreateDW.png" width="950" height="450"> 
 
 2. Setup security - The user account which is being used in the Synapse Studio will need to be added to the Azure Storage Access Control (IAM) as a **Storage Blob Data Contributor**. to be able to read and write to the storage account.
-3. Create Views in the Serverless SQL database to enable querying of the source data using **OPENROWSET** function The OPENROWSET(BULK...) function allows to access files in Azure Storage to read contents of a remote data source (for example file) and returns the content as a set of rows. Serverless SQL Pools includes 2 SQL functions, **Filepath** and **Filename**, that can be used to return the folder path/name and file name from the data in the source Azure storage account. These 2 functions can also be used to filter on certain folders and files in the data lake to reduce the amount of data processed and also to improve read performance. This leads to saving both time and money(You need to pay for executed queries and the pricing varies based on the amount of data processed by each query).
+   
+3. Create Views in the Serverless SQL database to enable querying of the source data using **OPENROWSET** function The OPENROWSET(BULK...) function allows to access files in Azure Storage to read contents of a remote data source (for example file) and returns the content as a set of rows. Serverless SQL Pools includes 2 SQL functions, [**Filepath**](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql/best-practices-serverless-sql-pool#use-filename-and-filepath-functions-to-target-specific-partitions) and [**Filename**](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql/best-practices-serverless-sql-pool#use-filename-and-filepath-functions-to-target-specific-partitions), that can be used to return the folder path/name and file name from the data in the source Azure storage account. These 2 functions can also be used to filter on certain folders and files in the data lake to reduce the amount of data processed and also to improve read performance. This leads to saving both time and money(You need to pay for executed queries and the pricing varies based on the amount of data processed by each query).
 
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CreateViewsForAllTables.png" width="950" height="550"> 
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CreateViewWithFilePath.png" width="950" height="550"> 
 
 Create views with different ways to define the column definition using OPENROWSET....
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CreateViewsForAllTables.png" width="950" height="550"> 
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CreateViewsWithColumnNames.jpg" width="950" height="750"> 
+
+4. We can now ad-hoc explore the source data by querying the views for useful data agregations, use Filepath function to scan only the required folder(reduces the amount of data scanned), and moreover create complex views using the base views in the LDW.
+   
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/BasicQueriesUsingLoadedTablesFromCSVFilespng.png" width="950" height="750"> 
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/ComplexViewsWithBaseViews.jpg" width="1150" height="650">
 
