@@ -74,9 +74,15 @@ Create views with different ways to define the column definition using OPENROWSE
 6. Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. It provides efficient data compression and encoding schemes with enhanced performance to handle complex data in bulk. It supports predicate pushdown which is used to filter data at the data source(as early as possible), reducing the amount of data transmitted and processed. As Parquet improves performance in terms of reading file-based data from data lakes and also reduces the amount of data stored and processed, it is a preferable format for data analytics projects.
 
 7. Use CETAS to transform the data of the entities by creating a **Dimensional Model with STAR Schema** and store the select query as a table in the external storage. The data in the LDW is organized and segregated as Facts and Dimensions - with FACT table in the center having foreign keys to all the Dimension tables.
-The Fact table stores data which is usually aggregated/rolled up for the multiple Dimension tables.
+The Fact table stores data which is usually aggregated/rolled up using the Foreign keys of the multiple Dimension tables which stores the data for which we need to report the queries for.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CETASDiagram.png" width="1150" height="450">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/STARSchema.png" width="1150" height="450">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/StarSchemaUses.png" width="1150" height="550">
 
+
+Using CETAS to write source data as Parquet to a destination folder. 
+The load writes the data out to a sub-folder \01\ in each dimension (except the Date dimension) as this is the initial load. Future loads will populate a sequence of sub-folders.
+We use ROW_NUMBER() to generate a **Surrogate key** on type Integer.
+A ValidFromDate of 2021-01-01 is used as this is the start of our Sales data.
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CETASToTransformDataForStarSchemaTables.png" width="1150" height="650">
