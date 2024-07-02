@@ -93,5 +93,7 @@ A ValidFromDate of 2021-01-01 is used as this is the start of our Sales data.
 Created views for the Dimensions using the parquet file data.
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/TransformViewsWithParquetData.png" width="950" height="650">
 
-9. Using CETAS to write source data as Parquet file to a destination folder for Fact table using Sales Orders & Sales Orderline Details .
-    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/LoadInitialFactSalesTableWithTransformation.png" width="950" height="750">
+9. Using CETAS to write source data as Parquet file to a destination folder for Fact table using Sales Orders & Sales Orderline Details and its corresponding view.
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/LoadInitialFactSalesTableWithTransformation.png" width="950" height="750">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CreateViewsForStarSchemaTables.png" width="950" height="650">
+    
