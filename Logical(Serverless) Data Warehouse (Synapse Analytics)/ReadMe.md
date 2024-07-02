@@ -73,8 +73,8 @@ Create views with different ways to define the column definition using OPENROWSE
 5. Write back to the data lake by reading the CSV files and saving them as **Parquet Files** using **CETAS (Create External Table As Select)**
 6. Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. It provides efficient data compression and encoding schemes with enhanced performance to handle complex data in bulk. It supports predicate pushdown which is used to filter data at the data source(as early as possible), reducing the amount of data transmitted and processed. As Parquet improves performance in terms of reading file-based data from data lakes and also reduces the amount of data stored and processed, it is a preferable format for data analytics projects.
 
-7. Use CETAS to transform the data of the entities by creating a **Dimensional Model with STAR Schema** and store the select query as a table in the external storage. The data in the LDW is organized and segregated as Facts and Dimensions - with FACT table in the center having foreign keys to all the Dimension tables.
-The Fact table stores data which is usually aggregated/rolled up using the Foreign keys of the multiple Dimension tables which stores the data for which we need to report the queries for.
+7. Use CETAS to transform & enhance the data of the entities by creating a **Dimensional Model with STAR Schema** and store the select query as a table in the external storage. The data in the LDW is organized and segregated as Facts and Dimensions - with FACT table in the center having foreign keys to all the Dimension tables creating a star shape.
+The Fact table stores data which is usually aggregated/rolled up using the Foreign keys of the multiple Dimension tables which stores the data of the entities for which we need to report the aggregates/rollup (e.g customers, suppliers etc).
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CETASDiagram.png" width="1150" height="450">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/STARSchema.png" width="1150" height="450">
@@ -96,4 +96,6 @@ Created views for the Dimensions using the parquet file data.
 9. Using CETAS to write source data as Parquet file to a destination folder for Fact table using Sales Orders & Sales Orderline Details and its corresponding view.
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/LoadInitialFactSalesTableWithTransformation.png" width="950" height="750">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CreateViewsForStarSchemaTables.png" width="950" height="650">
-    
+
+10. Analyse with queries using the transformed views of Parquet data showcasing easy joins and relationship with Fact & Dimension views
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/QueriesUsingTransformedViews.png" width="950" height="650">
