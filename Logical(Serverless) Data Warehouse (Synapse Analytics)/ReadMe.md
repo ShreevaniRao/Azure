@@ -23,7 +23,7 @@
 ## Project Overview 
 This project attempts the use case to 
 1. Build a Serverless/Logical Data Warehouse using **Azure Synapse Analytics** that allows creation of relational database objects like tables and views over collections of data files that represent logical entities to store the data in **Azure Data Lake** that can be used to read data from Delimited text files(CSV).
-2. Use **CETAS (Create External Table as Select)** to write back to the data lake to save the CSV data with a **Parquet file**
+2. Use **CETAS (Create External Table as Select)** to write back to the data lake to save the CSV data as a **Parquet file**
 3. Create Dimensional Modelling and STAR Schema
 4. Showcase Incremental Fact Loading and Slowly Changing Dimensions.
 5. Serve Data layer for BI - using serveless SQL endpoint connect to Power BI to showcase the analytical queries
@@ -71,3 +71,5 @@ Create views with different ways to define the column definition using OPENROWSE
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/Ad-hocqueryusingcomplexviews.png" width="1150" height="350">
 
 5. Write back to the data lake by reading the CSV files and saving them as **Parquet Files** using **CETAS (Create External Table As Select)**
+6. Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. It provides efficient data compression and encoding schemes with enhanced performance to handle complex data in bulk. It supports predicate pushdown which is used to filter data at the data source, reducing the amount of data transmitted and processed.
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CETASDiagram.png" width="1150" height="450">
