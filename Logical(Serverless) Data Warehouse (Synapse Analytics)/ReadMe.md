@@ -81,8 +81,13 @@ The Fact table stores data which is usually aggregated/rolled up using the Forei
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/StarSchemaUses.png" width="1150" height="550">
 
 
-Using CETAS to write source data as Parquet to a destination folder. 
+Using CETAS to write source data as Parquet file to a destination folder. 
 The load writes the data out to a sub-folder \01\ in each dimension (except the Date dimension) as this is the initial load. Future loads will populate a sequence of sub-folders.
-We use ROW_NUMBER() to generate a **Surrogate key** on type Integer.
+Ued ROW_NUMBER() to generate a **Surrogate key** as type Integer.
 A ValidFromDate of 2021-01-01 is used as this is the start of our Sales data.
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CETASToTransformDataForStarSchemaTables.png" width="1150" height="650">
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/TransformedCETASForDimCustomer.png" width="950" height="550">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/StorageContainerForDimensions.png" width="950" height="650">
+
+
