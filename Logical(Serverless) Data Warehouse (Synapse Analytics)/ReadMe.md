@@ -22,10 +22,11 @@
 <a name="introduction"></a>
 ## Project Overview 
 This project attempts the use case to 
-1. Build a Serverless/Logical Data Warehouse using **Azure Synapse Analytics** that allows creation of relational database objects like tables and views over collections of data files that represent logical entities to store the data in **Azure Data Lake** that can be used to read data from Delimited text files(CSV). Then using **CETAS (Create External Table as Select)** write back to the data lakehouse to save the CSV data with a **Parquet file** 
-2. Showcase Incremental Fact Loading and Slowly Changing Dimensions.
-3. Serve Data layer for BI - using serveless SQL endpoint connect to Power BI to showcase the analytical queries
-4. Ad-hoc exploration of raw data in a data lake using LDW tables and views.
+1. Build a Serverless/Logical Data Warehouse using **Azure Synapse Analytics** that allows creation of relational database objects like tables and views over collections of data files that represent logical entities to store the data in **Azure Data Lake** that can be used to read data from Delimited text files(CSV).
+2. Use **CETAS (Create External Table as Select)** to write back to the data lake to save the CSV data with a **Parquet file** 
+3. Showcase Incremental Fact Loading and Slowly Changing Dimensions.
+4. Serve Data layer for BI - using serveless SQL endpoint connect to Power BI to showcase the analytical queries
+5. Ad-hoc exploration of raw data in a data lake using LDW tables and views.
    
 
 <a name="project-architecture"></a>
@@ -62,9 +63,8 @@ Attempted to apply the [best practices](https://learn.microsoft.com/en-us/azure/
 Create views with different ways to define the column definition using OPENROWSET....
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CreateViewsWithColumnNames.jpg" width="950" height="750"> 
 
-4. We can now ad-hoc explore the source data by querying the views for useful data agregations, use Filepath function to scan only the required folder(reduces the amount of data scanned), and moreover create complex views using the base views in the LDW.
+4. We can now ad-hoc explore the source data by querying the views for useful data agregations, use Filepath function to scan only the required folder(reduces the amount of data scanned), and moreover create complex views using the base views in the LDW to denormalize and query.
    
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/BasicQueriesUsingLoadedTablesFromCSVFilespng.png" width="950" height="750"> 
-
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/ComplexViewsWithBaseViews.jpg" width="1150" height="650">
-
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/Ad-hocqueryusingcomplexviews.png" width="1150" height="350">
