@@ -90,4 +90,5 @@ A ValidFromDate of 2021-01-01 is used as this is the start of our Sales data.
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/TransformedCETASForDimCustomer.png" width="950" height="550">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/StorageContainerForDimensions.png" width="950" height="650">
 
-
+8. Created views for the Dimensions using the parquet file data.
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CreateViewsForDim%26FactsToTransform.png" width="950" height="650">
