@@ -100,4 +100,8 @@ Created views for the Dimensions using the parquet file data.
 10. Analyse with queries using the transformed views of Parquet data showcasing easy joins and relationship with Fact & Dimension views to aggregate the Fact table aggregation Details.
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/QueriesUsingTransformedViews.png" width="950" height="650">
 
-11.
+11. After initial load of the data lake, now loading new and changed data of the Dimensions & Facts can be handled in the data warehouse. For Dimensions data this will be handled by **Type 2 SCD(Slowly Changing Dimension)** , and for Facts details like Sales Order and SalesOrderline details - incremental loading can be tracked.
+
+For Dimensions - Will track an update in the Supplier Category for a Supplier to showcase , while keeping the old existing data for historical purposes. 
+A new Supplier added in the data needs to be updated. 
+The new Supplier details were uploaded to 'datalakehouse/ChangedData/2021-06-22/Purchasing_Suppliers' path.
