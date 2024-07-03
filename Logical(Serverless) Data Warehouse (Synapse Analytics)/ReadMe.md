@@ -76,9 +76,11 @@ Create views with different ways to define the column definition using OPENROWSE
 7. Use CETAS to transform & enhance the data of the entities by creating a **Dimensional Model with STAR Schema** and store the select query as a table in the external storage. The data in the LDW is organized and segregated as Facts and Dimensions - with FACT table in the center having foreign keys to all the Dimension tables creating a star shape.
 The Fact table stores data which is usually aggregated/rolled up using the Foreign keys of the multiple Dimension tables which stores the data of the entities for which we need to report the aggregates/rollup (e.g customers, suppliers etc).
 
+The below diagrams details the STAR schema and its uses in the data warehouse.
+
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CETASDiagram.png" width="1150" height="450">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/STARSchema.png" width="1150" height="450">
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/StarSchemaUses.png" width="1150" height="550">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/StarSchemaUses.png" width="750" height="300">
 
 
 8. Using CETAS to write source data as Parquet file to a destination folder for Dimensions tables for Customers, Suppliers, StockItems, Date. 
