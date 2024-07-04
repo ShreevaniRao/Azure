@@ -21,7 +21,7 @@
 5. 
 <a name="introduction"></a>
 ## Project Overview 
-This project attempts the use case to 
+This project attempts to address the use case to 
 1. Build a Serverless/Logical Data Warehouse using **Azure Synapse Analytics** that allows creation of relational database objects like tables and views over collections of data files that represent logical entities to store the data in **Azure Data Lake** that can be used to read data from Delimited text files(CSV).
 2. Use **CETAS (Create External Table as Select)** to write back to the data lake to save the CSV data as a **Parquet file**
 3. Create **Dimensional Modelling and STAR Schema**
