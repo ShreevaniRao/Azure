@@ -113,8 +113,10 @@ Created views for the Dimensions using the parquet file data.
   transformed/facts/factsales/YYYY-MM-DD/
   
 
-Start by manually loading one of the CSV file of Sales data in the location parameter in the CETAS and by using the FilePathDate colmn in the source view to select only the data that needs to be loaded. The FilePathDate column in the View is the result of the filepath() function which can be used as a filter to only select/scan the requested folder. This reduces the amount of data processed as only the required folder and therefore data within the folder is scanned. If we had multiple data files for increments, can use the dynamic stored procedure to process them in a loop.
-
+Start by manually loading one of the CSV file of Sales data in the location parameter in the CETAS and by using the FilePathDate colmn in the source view to select only the data that needs to be loaded. The FilePathDate column in the View is the result of the filepath() function which can be used as a filter to only select/scan the requested folder. This reduces the amount of data processed as only the required folder and therefore data within the folder is scanned. 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/SalesFactIncrementalLoad.png" width="950" height="650">
+
+
+If we had multiple data files for increments, can use the dynamic stored procedure to process them in a loop.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/Stor_ProcForFactSalespng.png" width="950" height="650">
