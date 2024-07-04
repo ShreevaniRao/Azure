@@ -120,3 +120,9 @@ Start by manually loading one of the CSV file of Sales data in the location para
 If we had multiple data files for increments, can use the dynamic stored procedure to process them in a loop.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/Stor_ProcForFactSalespng.png" width="950" height="650">
+
+### Slowly Changing Dimension
+Serverless SQL Pools do not support updating data in the Data Lake, it is an append-only process in that files can be added to the underlying storage but we cannot run SQL to change existing data. However, we can load new and changed dimension data into new destination folders under the root dimension folder.
+
+The SQL code below will create a View which targets selecting changed data for Suppliers.
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CreateViewForIncrementalChangeSuppliers.png" width="950" height="450">
