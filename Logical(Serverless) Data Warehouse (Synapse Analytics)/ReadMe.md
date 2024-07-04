@@ -138,3 +138,6 @@ If we now query the existing view to select data from the Supplier dimension, we
 To complete the Type 2 SCD the single ValidFrom date to calculate the ValidTo and also calculate the ActiveMember flag for each dimension row. We use the **LEAD function and partition by the SupplierID (source system business key) to generate contiguous date ranges. Please note that we can also use datetime values and change the DATEADD accordingly.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/SCDViewForSupplierDim.png" width="850" height="400">
+
+Querying from the new Dimension View, able to see date ranges and which row is the current active member.
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/QuerySupplierDimSCDChanges.png" width="850" height="400">
