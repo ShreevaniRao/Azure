@@ -102,8 +102,16 @@ Created views for the Dimensions using the parquet file data.
 10. Analyse with queries using the transformed views of Parquet data showcasing easy joins and relationship with Fact & Dimension views to aggregate the Fact table aggregation Details.
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/QueriesUsingTransformedViews.png" width="950" height="650">
 
-11. After initial load of the data lake, over a period of time to address loading new and changed data of the Dimensions & Facts can be handled in the data warehouse. For Dimensions data this will be handled by **Type 2 SCD(Slowly Changing Dimension)** , and for Facts details like Sales Order and SalesOrderline details - incremental loading can be tracked.
+11. After initial load in the data lake, over a period of time, to address loading new and changed data of the Dimensions & Facts table details in the data warehouse which will be addressed with the below details.
+* For Dimensions this will be handled by **Type 2 SCD(Slowly Changing Dimension)** , and for
+* Facts details like Sales Order and SalesOrderline details - incremental loading can be tracked.
+* For Dimensions - Will track an update in the Supplier Category for a Supplier, while keeping the old existing data for historical purposes. 
+* A new Supplier added will also be dealt by updating the Supplier table with a new record.
+* The new Supplier CSV files were uploaded to 'datalakehouse/ChangedData/2021-06-22(YYYY-MM-DD)/Purchasing_Suppliers' path.
+* Will uplolad new Sales Orders and Sales Order Lines CSV files for 2 days (2021-04-18 & 2021-04-19)
+* The Sales data gets uploaded in the following new folders. YYYY-MM-DD must be replaced with the date of the data.
+  /sourcedatapartitionsalesorder/YYYY-MM-DD/
+  /sourcedatapartitionsalesorderline/YYYY-MM-DD/
 
-For Dimensions - Will track an update in the Supplier Category for a Supplier, while keeping the old existing data for historical purposes. 
-A new Supplier added in the data needs to be updated. 
-The new Supplier details were uploaded to 'datalakehouse/ChangedData/2021-06-22/Purchasing_Suppliers' path.
+Start by manually loading one of the CSV file of Sales data in the location parameter in the CETAS and by using the FilePathDate colmn in the source view to select only the data that needs to be loaded. The FilePathDate column in the View is the result of the filepath() function which can be used as a filter to only select/scan the requested folder. This reduces the amount of data processed as only the required folder and therefore data within the folder is scanned.
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/SalesFactIncrementalLoad.png" width="950" height="650">
