@@ -110,8 +110,11 @@ Created views for the Dimensions using the parquet file data.
 * The new Supplier CSV files were uploaded to 'datalakehouse/ChangedData/2021-06-22(YYYY-MM-DD)/Purchasing_Suppliers' path.
 * Will uplolad new Sales Orders and Sales Order Lines CSV files for 2 days (2021-04-18 & 2021-04-19)
 * The Sales data gets uploaded in the following new folders. YYYY-MM-DD must be replaced with the date of the data.
-  /sourcedatapartitionsalesorder/YYYY-MM-DD/
-  /sourcedatapartitionsalesorderline/YYYY-MM-DD/
+  transformed/facts/factsales/YYYY-MM-DD/
+  
 
-Start by manually loading one of the CSV file of Sales data in the location parameter in the CETAS and by using the FilePathDate colmn in the source view to select only the data that needs to be loaded. The FilePathDate column in the View is the result of the filepath() function which can be used as a filter to only select/scan the requested folder. This reduces the amount of data processed as only the required folder and therefore data within the folder is scanned.
+Start by manually loading one of the CSV file of Sales data in the location parameter in the CETAS and by using the FilePathDate colmn in the source view to select only the data that needs to be loaded. The FilePathDate column in the View is the result of the filepath() function which can be used as a filter to only select/scan the requested folder. This reduces the amount of data processed as only the required folder and therefore data within the folder is scanned. If we had multiple data files for increments, can use the dynamic stored procedure to process them in a loop.
+
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/SalesFactIncrementalLoad.png" width="950" height="650">
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/Stor_ProcForFactSalespng.png" width="950" height="650">
