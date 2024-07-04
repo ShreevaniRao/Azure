@@ -126,3 +126,7 @@ Serverless SQL Pools do not support updating data in the Data Lake, it is an app
 
 The SQL code below will create a View which targets selecting changed data for Suppliers.
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CreateViewForIncrementalChangeSuppliers.png" width="950" height="450">
+
+The SQL code below writes the new and changed data out to a sub-folder /02 in the current Supplier dimension folder. First select the maximum surrogate key from the current dimension data and use this to continue the sequence when writing the changed and new data. Within the CSV file is a date column which indicates when the source data changed, we can use this as our ValidFrom value.
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CETASForSCD-PurchaseSupplierChanges.png" width="950" height="450">
