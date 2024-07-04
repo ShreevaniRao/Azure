@@ -130,3 +130,11 @@ The SQL code below will create a View which targets selecting changed data for S
 The SQL code below writes the new and changed data out to a sub-folder /02 in the current Supplier dimension folder. First select the maximum surrogate key from the current dimension data and use this to continue the sequence when writing the changed and new data. Within the CSV file is a date column which indicates when the source data changed, we can use this as our ValidFrom value.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CETASForSCD-PurchaseSupplierChanges.png" width="950" height="450">
+
+If we now query the existing view to select data from the Supplier dimension, we get all the existing data, the changed data, and the new data. However, we are missing vital columns which are required to flag the date range validity of a dimension row.The query result shows that SupplierID 5 has changed Supplier Category.
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/QuerySCDChangesSupplier.png" width="950" height="450">
+
+To complete the Type 2 SCD the single ValidFrom date to calculate the ValidTo and also calculate the ActiveMember flag for each dimension row. We use the **LEAD function and partition by the SupplierID (source system business key) to generate contiguous date ranges. Please note that we can also use datetime values and change the DATEADD accordingly.
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/SCDViewForSupplierDim.png" width="850" height="400">
