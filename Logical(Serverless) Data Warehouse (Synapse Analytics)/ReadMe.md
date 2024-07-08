@@ -142,5 +142,15 @@ To complete the [Type 2 SCD](https://learn.microsoft.com/en-us/data-engineering/
 Querying from the new Dimension View, able to see date ranges and which row is the current active member.
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/QuerySupplierDimSCDChanges.png" width="850" height="400">
 
-Now, it would be more acuurate to create the Sales Facts external table using this new view with the updated supplier details using the updated stored procedure as below
+Now, it would be more accurate to create the Sales Facts external table using this new view with the updated supplier details using the updated stored procedure as below
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/Stored_Proc_Sales_Facts_withSCD_Suppllier.png" width="950" height="450">
+
+
+12. Finally using  PowerBI to connect to these Serverless dimensional Warehouse for reporting and analytical purposes. Created a simple date visualization to display the use of the Date dimension to filter the Sales aggregations for the selected dates by showing Sales Order Quantity by Month Name, to demonstrate the partition prune and therefore reduced data processed.
+
+13. Create a copy of the Dim Date object as Dim Date Filter and used this as the filter whilst keeping the original Dim Date as a chart axis in the data visualisation and we see data processed in the Sql Monitor to guage the data processed.
+14. Conclude that if Power BI passes the date filters using **IN** then Serverless SQL Pools will successfully use the filepath() filter and data processed is reduced.
+15. First we connect to the Serverless warehouse using **Serverless SQL endpoint** by specifying the the database name - **sqllogicaldw** ensuring **DirectoQuery** connectivity mode.
+16. Establish the data modeling by making sure the relationships are set.
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/PBIModelling.png" width="950" height="450">   
