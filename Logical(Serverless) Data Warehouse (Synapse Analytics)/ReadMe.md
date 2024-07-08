@@ -17,8 +17,8 @@
 1. [Project Overview](#introduction)
 2. [Project Architecture](#project-architecture)
 3. [Resources](#Resources)
-4. [LDW Details](#Details)
-5. 
+4. [Logical DataWarehouse Details](#Details)
+   
 <a name="introduction"></a>
 ## Project Overview 
 This project attempts to address the use case to 
@@ -47,7 +47,7 @@ Below diagram displays the design and details of the logical data warehouse arch
 
 
 <a name="Details"></a>
-## LDW Details
+## Logical DataWarehouse Details
 
 1.  Azure Synapse Analytics Workspace setup - create the resource group, storage container and Synapse Analytics studio
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CreaterResource%26Services.png" width="950" height="500"> 
