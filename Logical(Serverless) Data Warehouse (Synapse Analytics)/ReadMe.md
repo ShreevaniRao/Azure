@@ -174,3 +174,12 @@ Let’s check the SQL that has been run on the Serverless SQL Pools database. We
 If we now use the Year and Month filters to specify a particular month, in this case we’ll select 2021 and 4. This is the SQL that is sent from Power BI, as you can see there is a JOIN between the Fact Sales and the Dim Date views then a WHERE filter on the Dim Date view.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/PBISQLWIthDateFilter.png" width="950" height="800">
+
+**Changing the Power BI Data Model to Composite**
+If we set the Dim Date table to **Import** mode whilst keeping the Fact Sales table as DirectQuery, then the SQL query passed to Serverless SQL Pools will still use JOIN.
+
+However, if we then remove the Month Name from the data visualisation, we now see IN being used to filter dates which will successfully filter only on the required source folders and we see data processed reduced.
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/PBISqlCodeDateWithINClause.png" width="1150" height="1000">
+
+18. Summarsing the fndings - If we expose the **filepath()** function in a View to return the YYYY-MM-DD value, we can then use this to filter the source folders and reduce data processed. However, to invoke this from Power BI we need to set the Date dimension as **Import** and only use this as a filter. This will send the list of dates as an **IN** filter. However for big date ranges this too might create a big SQL statement, to cater this situation we might want to breakdown the **SalesOrderPathDate** column in FactSales into 4 columns for MOnth, Year, Quarter & Day by applying transformation to this column with duplication and extracting month, quarter, day & year.
