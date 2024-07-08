@@ -28,6 +28,7 @@ This project attempts to address the use case to
 4. Showcase **Incremental Fact Loading and Slowly Changing Dimensions**.
 5. Serve Data layer for BI - using serveless SQL endpoint connect to Power BI to showcase the analytical queries
 6. Ad-hoc exploration of raw data in a data lake using LDW tables and views.
+7. Demonstrate the usage of SQL monitoring to guage the data processing using Power BI Date filters with **filepath()**
    
 
 <a name="project-architecture"></a>
