@@ -102,7 +102,7 @@ Created views for the Dimensions using the parquet file data.
 10. Analyse with queries using the transformed views of Parquet data showcasing easy joins and relationship with Fact & Dimension views to aggregate the Fact table aggregation Details.
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/QueriesUsingTransformedViews.png" width="950" height="650">
 
-11. After initial load in the data lake, over a period of time, to address loading new and changed data of the Dimensions & Facts table details in the data warehouse which will be addressed with the below details.
+11. After initial load in the data lake, over a period of time, to address loading new and changed data of the Dimensions & Facts table details in the data warehouse, will be addressed with the below details.
 * For Dimensions this will be handled by **Type 2 SCD(Slowly Changing Dimension)** , and for
 * Facts details like Sales Order and SalesOrderline details - incremental loading can be tracked.
 * For Dimensions - Will track an update in the Supplier Category for a Supplier, while keeping the old existing data for historical purposes. 
@@ -135,9 +135,12 @@ If we now query the existing view to select data from the Supplier dimension, we
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/QuerySCDChangesSupplier.png" width="950" height="450">
 
-To complete the Type 2 SCD the single ValidFrom date to calculate the ValidTo and also calculate the ActiveMember flag for each dimension row. We use the **LEAD function and partition by the SupplierID (source system business key) to generate contiguous date ranges. Please note that we can also use datetime values and change the DATEADD accordingly.
+To complete the [Type 2 SCD](https://learn.microsoft.com/en-us/data-engineering/playbook/articles/scd-using-change-data-feed#choose-methods-to-track-scd-type-2) the single ValidFrom date to calculate the ValidTo and also calculate the ActiveMember flag for each dimension row. We use the **LEAD function and partition by the SupplierID (source system business key) to generate contiguous date ranges. Please note that we can also use datetime values and change the DATEADD accordingly. This below new view completes the SCD Type 2 Dimension.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/SCDViewForSupplierDim.png" width="850" height="400">
 
 Querying from the new Dimension View, able to see date ranges and which row is the current active member.
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/QuerySupplierDimSCDChanges.png" width="850" height="400">
+
+Now, it would be more acuurate to create the Sales Facts external table using this new view with the updated supplier details using the updated stored procedure as below
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/Stored_Proc_Sales_Facts_withSCD_Suppllier.png" width="950" height="450">
