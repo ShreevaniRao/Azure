@@ -153,4 +153,24 @@ Now, it would be more accurate to create the Sales Facts external table using th
 15. First we connect to the Serverless warehouse using **Serverless SQL endpoint** by specifying the the database name - **sqllogicaldw** ensuring **DirectoQuery** connectivity mode.
 16. Establish the data modeling by making sure the relationships are set.
 
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/PBIModelling.png" width="950" height="450">   
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/PBIModelling.png" width="950" height="450">
+
+Create Report and Test Date Filters
+* Click File > Options & Settings > Options then under Current File > Query Reduction > Filters select Add a single Apply button to the filter pane to apply changes at once then click OK
+ Click on the Report icon to switch the view to the canvas.
+ Select the DimDate.MonthName column and in the Column tools menu at the top, select Sort By Column > Month (this will sort the names of the Month by the Month number to get the correct order).
+* Drag the FactSales.SalesOrderQuantity column onto the canvas to create simple column chart visualisation, this will now trigger a query on the Serverless SQL Pool to return the SUM of this column.
+* Drag the DimDate.MonthName column onto the column chart to add the Month name as the axis.
+* Expand the Filters pane on the right and drag the DimDate.Year and DimDate.Month columns into the filters and change the filter type to Basic filtering.
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/PBIVIz.png" width="950" height="450">
+
+17. Check SQL Syntax from Power BI
+Let’s check the SQL that has been run on the Serverless SQL Pools database. We do this in Synapse Studio by clicking Monitor > SQL Requests
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/SQLRequestsFromPBI.png" width="950" height="550">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/SQLCodeGeneratedPBI.png" width="950" height="750">
+
+If we now use the Year and Month filters to specify a particular month, in this case we’ll select 2021 and 4. This is the SQL that is sent from Power BI, as you can see there is a JOIN between the Fact Sales and the Dim Date views then a WHERE filter on the Dim Date view.
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/PBISQLWIthDateFilter.png" width="950" height="800">
