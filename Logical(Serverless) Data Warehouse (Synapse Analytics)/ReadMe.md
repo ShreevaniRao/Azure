@@ -11,7 +11,7 @@
   
 ### The logical data warehouse (LDW) pattern lays a lightweight virtualized relational layer on top of data that's stored in a data lake or database. This virtualization layer provides data warehouse access without requiring data movement. This solution can combine online transaction processing (OLTP) data with analytical data from data lakes for a low-complexity, low-latency way to serve business intelligence (BI) and analytics workloads.
 ### Azure Synapse serverless SQL pools define an LDW that has logical tables and views accessible through the Azure Synapse workspace serverless SQL pool on-demand endpoint. It uses a pay-per-query costing model where you pay for the compute per TB of data processed while executing the query and not for the minimum reserved resources for the compute(dedicated SQL pool). You just pay for the storage of the data.
-### Reporting, BI, and other analytics applications access LDW data and views by using the Azure Synapse workspace serverless SQL endpoint.
+### Reporting, BI, and other analytics applications access LDW data and views by using the Azure Synapse workspace serverless SQL endpoint for a quick data exploration of the data in the data lake by avoiding time consuming ETL processes alongwith the benefit of familiar T-SQL code.
 
 ##  Table of Contents
 1. [Project Overview](#introduction)
