@@ -84,8 +84,8 @@ Below diagram displays the design and details of the resource architecture :
 - Used Spark Cluster in Azure Databricks to transform using Pyspark & Python with multiple Azure Databricks notebooks.
 - Created pipeline activities in ADF to save the transformed data in Delta file format into 'silver' & 'gold' storage containers.
 
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/StorageMount.png" width="800" height="550">
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformCodeBronzetoSilver.png" width="800" height="550">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/StorageMount.png" width="850" height="550">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformCodeBronzetoSilver.png" width="750" height="450">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/TransformedDataInSilverContainer.png" width="800" height="550">
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/CompletePipeline-ADF.png" width="800" height="400">
 
@@ -120,7 +120,7 @@ Below diagram displays the design and details of the resource architecture :
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-###  Technologies Used
+###  Tech Stack Used
 
 - **Data Source**: SQL Server
 - **Orchestration**: Azure Data Factory & Azure Databricks
