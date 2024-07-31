@@ -57,6 +57,8 @@ Below diagram displays the design and details of the resource architecture :
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/AzurePipeline.gif" width="850" height="500"> 
 
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/MedallionArchitecture.png" width="850" height="500"> 
+
 ### Setup Environment
 - Create the Resource group.
 - Create all the resources - ADF, Azure Databricks, Azure Key Vault, Data Lake Storage container & Azure Synapse Analytics in the resource group.
