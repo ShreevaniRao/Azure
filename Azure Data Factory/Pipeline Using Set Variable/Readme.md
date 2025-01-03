@@ -29,6 +29,7 @@ The `pl_set_variable` pipeline demonstrates the usage of the **Set Variable** ac
   - **Purpose**: Represents an API URL passed to the pipeline for processing.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20Using%20Set%20Variable/SetVariableWithPipelineParameter.jpg" width="850" height="500">
+
 ---
 
 ### Activities
@@ -50,6 +51,8 @@ The `pl_set_variable` pipeline demonstrates the usage of the **Set Variable** ac
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20Using%20Set%20Variable/ParentPipelineWithSetVarActivity.jpg" width="850" height="500">
 
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20Using%20Set%20Variable/PipelineWithSetVariable.jpg" width="850" height="500">
 ---
 
 ## Usage Scenarios
