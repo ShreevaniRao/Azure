@@ -9,6 +9,8 @@ This project uses Azure Data Factory to orchestrate multiple activities and work
 - **Pipeline 1**: Executes another pipeline (`pl_set_variable`) that sets some necessary variables.
 - **Pipeline 2**: Dependent on the success of **Pipeline 1**, it executes a pipeline (`pl_copy_csv_files`) that performs specific actions such as copying CSV files and passing parameters from the previous pipeline.
 
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20Orchestration/ExecutePipelinesActivityOutput.jpg" width=850 height=500>
+
 ## Pipeline Architecture
 
 The ADF pipeline orchestration demonstrates:
@@ -20,6 +22,8 @@ The ADF pipeline orchestration demonstrates:
 - **Key Features**:
   - Wait for completion.
   - No input parameters or complex configurations for the execution stage.
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20Orchestration/ParentPipelineWithSetVarActivity.jpg" width=850 height=500>
 
 ### 2. **Execute Pipeline 2**
 - **Type**: ExecutePipeline
@@ -34,4 +38,6 @@ The ADF pipeline orchestration demonstrates:
 - Parameter `pl_relativeurl` is dynamically passed from **Pipeline 1** to **Pipeline 2** using:
   ```json
   "@activity('Execute Pipeline1').output.pipelineReturnValue.pl_relativeurl"
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20Orchestration/ExecutePipelineActivityWithChildPipeline.jpg" width=900 height=500>
 
