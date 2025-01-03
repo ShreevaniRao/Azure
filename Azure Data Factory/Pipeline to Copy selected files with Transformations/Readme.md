@@ -3,8 +3,8 @@
 ## **Pipeline Summary**
 This Azure Data Factory pipeline demonstrates how to 
 - Filter specific files from a source folder using metadata,
-- Copy them to a destination folder,
-- Transform the copied files.
+- Copy them to a destination folder in a data lake folder,
+- Transform the copied files and save them to another data lake folder.
 - It highlights advanced capabilities like dynamic file handling, metadata-driven workflows, and flexible transformations, making it ideal for scalable data engineering scenarios.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/CopySelectedFileusingPipelineRun.jpg" width="950" height="450"> 
@@ -92,24 +92,48 @@ This Azure Data Factory pipeline demonstrates how to
   - Reference the Data Flow (`df_transform_data`) for the transformation logic.
   - Define dependencies to ensure execution only after successful file copy.
 
+#### **Transformations in Data Flow**
+1. **Data Cleaning**:
+   - Handle null values, correct data types, or fix structural issues.
+2. **Data Enrichment**:
+   - Derive new columns or aggregate existing data for insights.
+3. **Restructuring**:
+   - Optimize file layouts for downstream analysis (e.g., sorting, partitioning).
+4. **Transform Result**:
+  - Cleaned and transformed files are written back to the destination folder.
+  - 
+#### **Sink Configuration in Data Flow**:
+- **Datasets Used**: `ds_reporting`
+  - Destination: Configured to save transformed data with required format settings (e.g., `.txt` files with quoted text).
+- **Settings**:
+  - Writes transformed data dynamically for each input file.
+  - Ensures all required files have been cleaned and restructured before proceeding.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/DataFlowTransformation.jpg" width="900" height="450"> 
 ---
 
-## **Fork and Deploy Instructions**
-Follow these steps to set up and use the pipeline from this repository:
+## **Dataset Details**
 
-1. **Set Up Datasets**:
-   - Create and configure datasets (`ds_source_api_meta`, `ds_parameterized_source`, `ds_reporting`) in Azure Data Factory:
-     - **Source Dataset**: Fetch file metadata.
-     - **Parameterized Dataset**: Use for dynamic file reading.
-     - **Sink Dataset**: Point to the destination folder.
+1. **`ds_source_api_meta`**:
+   - **Purpose**: Fetch metadata for files in the source folder.
+   - **Usage**: Referenced in `GetMetadata` activity to retrieve the file list.
 
-2. **Deploy the Data Flow**:
-   - Import the `df_transform_data` file from the repository and customize it for your transformation needs.
+2. **`ds_parameterized_source`**:
+   - **Purpose**: Dynamically access individual files in the source folder.
+   - **Usage**: Used in the `Copy` activity to set the file name dynamically for each iteration.
 
-3. **Recreate Activities**:
-   - Use the pipeline steps provided to define activities and their relationships.
+3. **`ds_reporting`**:
+   - **Purpose**: Save copied and transformed files to the destination.
+   - **Usage**: Acts as the destination dataset for both `Copy` and `ExecuteDataFlow` activities.
 
-4. **Run the Pipeline**:
-   - Trigger the pipeline execution and monitor activity progress in the Azure portal.
+---
+
+## **End Results**
+- **Files Transformed**:
+  - Only files starting with the string `Fact` are copied and transformed.
+- **Saved Sink**:
+  - The processed files are saved to the destination container or folder in a cleaned and structured format ready for downstream consumption.
+  - The output includes meaningful transformations aligned with the requirements.
+
+## **Conclusion**
+This Azure Data Factory pipeline uses a metadata-driven approach to filter and copy specific files from a source folder to a destination folder, and subsequently transform the copied data using a Data Flow. This enables efficient file selection, dynamic data handling, and scalable transformations.
