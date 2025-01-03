@@ -127,6 +127,8 @@ The Scheduled Trigger enables automatic pipeline execution for streamlined data 
   - **Time Zone**: `Central Standard Time`.
 - **Pipeline Linked**:
   - Pipeline Reference: **pl_copy_select_files_with_metadata**.
+    
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/PipelineTriggerToCopySelectedFiles.jpg" width=850 height=500>
 
 ## **End Results**
 - **Files Transformed**:
