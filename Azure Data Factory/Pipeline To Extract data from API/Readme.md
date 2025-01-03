@@ -4,7 +4,8 @@
 This pipeline performs the following tasks:  
 1. **Retrieve CSV files from an API and store them in Azure Data Lake Storage Gen2 (ADLS Gen2)**  
 2. **Load the CSV files from ADLS Gen2 into an Azure SQL Database**  
-<!img
+<img src="" width="850" height="500"> 
+
 ---
 
 ## Steps
