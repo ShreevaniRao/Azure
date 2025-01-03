@@ -7,31 +7,13 @@ This Azure Data Factory pipeline demonstrates how to
 - Transform the copied files and save them to another data lake folder.
 - It highlights advanced capabilities like dynamic file handling, metadata-driven workflows, and flexible transformations, making it ideal for scalable data engineering scenarios.
 
+## Key Features
+- **Metadata-Based Selection**: Identifies files starting with "Fact" in their names using metadata from the source.
+- **ForEach Loop**: Iterates over the identified files to process each individually.
+- **Conditional Copy**: Filters files based on a naming convention and copies them to the destination folder.
+- **Data Transformation**: Leverages a Data Flow activity to apply custom transformations to the copied files.
+- **Automated Scheduling**: A Scheduled Trigger executes the pipeline at one-minute intervals during a defined period.
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/CopySelectedFileusingPipelineRun.jpg" width="950" height="450"> 
----
-
-## **Key Features**
-1. **Metadata Activity (`GetMetadata`)**:
-   - Extracts detailed file information from the source folder.
-   - Enables dynamic processing of files based on their properties.
-
-2. **ForEach Activity**:
-   - Iterates through metadata to process individual files.
-   - Handles file-specific logic dynamically.
-
-3. **Conditional Logic (`IfCondition`)**:
-   - Filters files based on naming patterns (e.g., files starting with string `Fact`).
-
-4. **Copy Activity (`Copy`)**:
-   - Copies filtered files from the source to the destination folder dynamically.
-   - Allows parameterized dataset handling.
-
-5. **Data Flow Transformation (`ExecuteDataFlow`)**:
-   - Applies custom transformations to the processed files.
-   - Leverages Azure Data Flow for efficient transformation at scale.
-
-     
-
 ---
 
 ## **Pipeline Steps to Recreate**
@@ -128,12 +110,31 @@ This Azure Data Factory pipeline demonstrates how to
 
 ---
 
+## Details of the Trigger: **tr_selectedfiles_with_transformation**
+
+### Trigger Type
+The pipeline is orchestrated by a **Scheduled Trigger** to run automatically at regular intervals without manual intervention.
+
+### Usage and Purpose
+The Scheduled Trigger enables automatic pipeline execution for streamlined data ingestion and transformation. During the active timeframe (from December 29 to December 31, 2024), it runs every minute, allowing near real-time processing of selective files.
+
+### Trigger Properties:
+- **Description**: "Copying to the sink - selected files with some transformations".
+- **Recurrence Details**:
+  - **Frequency**: Every 1 minute.
+  - **Start Time**: `2024-12-29T23:10:00` (Central Standard Time).
+  - **End Time**: `2024-12-31T00:00:00` (Central Standard Time).
+  - **Time Zone**: `Central Standard Time`.
+- **Pipeline Linked**:
+  - Pipeline Reference: **pl_copy_select_files_with_metadata**.
+
 ## **End Results**
 - **Files Transformed**:
   - Only files starting with the string `Fact` are copied and transformed.
 - **Saved Sink**:
   - The processed files are saved to the destination container or folder in a cleaned and structured format ready for downstream consumption.
   - The output includes meaningful transformations aligned with the requirements.
+  - By adding a time-based trigger, the process becomes autonomous, offering regular updates to the data sink.
 
 ## **Conclusion**
-This Azure Data Factory pipeline uses a metadata-driven approach to filter and copy specific files from a source folder to a destination folder, and subsequently transform the copied data using a Data Flow. This enables efficient file selection, dynamic data handling, and scalable transformations.
+This Azure Data Factory pipeline uses a metadata-driven approach to filter and copy specific files from a source folder to a destination folder, and subsequently transform the copied data using a Data Flow. This enables efficient file selection, dynamic data handling, and scalable transformations supplemented with an automated Scheduled Trigger.
