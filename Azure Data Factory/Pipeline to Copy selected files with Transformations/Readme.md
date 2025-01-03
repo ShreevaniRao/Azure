@@ -28,7 +28,9 @@ This Azure Data Factory pipeline demonstrates how to
 5. **Data Flow Transformation (`ExecuteDataFlow`)**:
    - Applies custom transformations to the processed files.
    - Leverages Azure Data Flow for efficient transformation at scale.
-<!img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/CopySelectedFileusingPipelineRun.jpg", width ="850", height=">
+
+     
+
 ---
 
 ## **Pipeline Steps to Recreate**
