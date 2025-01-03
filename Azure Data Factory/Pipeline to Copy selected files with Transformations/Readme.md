@@ -7,6 +7,7 @@ This Azure Data Factory pipeline demonstrates how to
 - Transform the copied files.
 - It highlights advanced capabilities like dynamic file handling, metadata-driven workflows, and flexible transformations, making it ideal for scalable data engineering scenarios.
 
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/CopySelectedFileusingPipelineRun.jpg" width="950" height="450"> 
 ---
 
 ## **Key Features**
@@ -43,6 +44,8 @@ This Azure Data Factory pipeline demonstrates how to
   - Extract the `childItems` property to fetch file details.
 - **Output**: A list of files available for processing.
 
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/CopySelectedFilesUsingMetaData.jpg" width="950" height="450"> 
+
 ### **2. Iterate Through Metadata**
 - **Activity**: `ForEach`
 - **Purpose**: Loop through the metadata output for file-by-file processing.
@@ -53,6 +56,8 @@ This Azure Data Factory pipeline demonstrates how to
     ```
   - Enable sequential execution to process one file at a time.
 
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/CopySelectedFileForEachActivity.jpg" width="950" height="450"> 
+
 #### **Inside `ForEach`**
 1. **Filter Files**
    - **Activity**: `IfCondition`
@@ -61,6 +66,8 @@ This Azure Data Factory pipeline demonstrates how to
      ```json
      "@startswith(item().name, 'Fact')"
      ```
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/CopySelectedFileIFCondition.jpg" width="700" height="450"> 
 
 2. **Copy Filtered Files**
    - **Activity**: `Copy`
