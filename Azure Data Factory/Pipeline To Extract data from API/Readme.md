@@ -1,6 +1,13 @@
 
 # Pipeline Overview: pl_getapidata
 
+## Summary  
+This pipeline provides a robust workflow for:
+- Automating data retrieval from APIs  
+- Storing data securely in ADLS Gen2  
+- Loading cleaned and processed data into an Azure SQL Database
+- Adding parameters enhances adaptability, supports multi-purpose workflows, and demonstrates advanced skills in designing maintainable pipelines—a valuable skill set for data engineering roles.
+
 This pipeline performs the following tasks:  
 1. **Retrieve CSV files from an API and store them in Azure Data Lake Storage Gen2 (ADLS Gen2)**  
 2. **Load the CSV files from ADLS Gen2 into an Azure SQL Database**  
@@ -100,9 +107,3 @@ Modify or extend pipeline behavior at runtime without redeploying.
 
 - Reduced Maintenance Effort:
 When business rules change, like endpoint URLs or table mappings, only parameter values need to be updated rather than altering the pipeline design.
-## Summary  
-This pipeline provides a robust workflow for:
-- Automating data retrieval from APIs  
-- Storing data securely in ADLS Gen2  
-- Loading cleaned and processed data into an Azure SQL Database
-- Adding parameters enhances adaptability, supports multi-purpose workflows, and demonstrates advanced skills in designing maintainable pipelines—a valuable skill set for data engineering roles.
