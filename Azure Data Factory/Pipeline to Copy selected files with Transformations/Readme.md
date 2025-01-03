@@ -79,6 +79,10 @@ This Azure Data Factory pipeline demonstrates how to
        ```
      - Sink: `ds_reporting` for the destination folder.
 
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/CopySelectedFileusingParameterizedDS-Source.jpg" width="800" height="450"> 
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/CopySelectedFileusingParameterizedDS-Sink.jpg" width="800" height="450"> 
 ---
 
 ### **3. Transform Copied Files**
@@ -86,11 +90,10 @@ This Azure Data Factory pipeline demonstrates how to
 - **Purpose**: Perform transformations on the copied files in the destination folder.
 - **Configuration**:
   - Reference the Data Flow (`df_transform_data`) for the transformation logic.
-  - Set compute properties:
-    - **Core Count**: 8
-    - **Compute Type**: General
   - Define dependencies to ensure execution only after successful file copy.
 
+
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/DataFlowTransformation.jpg" width="900" height="450"> 
 ---
 
 ## **Fork and Deploy Instructions**
