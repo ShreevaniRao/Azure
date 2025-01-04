@@ -1,0 +1,53 @@
+{
+    "name": "pl_prod",
+    "properties": {
+        "activities": [
+            {
+                "name": "Execute Pipeline1",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "policy": {
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "pl_set_variable",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true
+                }
+            },
+            {
+                "name": "Execute Pipeline2",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Execute Pipeline1",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "pl_copy_csv_files",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "pl_relativeurl": {
+                            "value": "@activity('Execute Pipeline1').output.pipelineReturnValue.pl_relativeurl",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "annotations": []
+    }
+}
