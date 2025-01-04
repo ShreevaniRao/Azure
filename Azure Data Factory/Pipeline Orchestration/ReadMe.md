@@ -33,6 +33,8 @@ The ADF pipeline orchestration demonstrates:
   - Wait for completion.
   - Utilizes **dependency management** to trigger only upon successful execution of the preceding pipeline.
   - Dynamic **parameter passing** from output values (`@activity('Execute Pipeline1').output.pipelineReturnValue.pl_relativeurl`).
+  - 
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20Orchestration/DependentPipelineForExecutePipeline.jpg" width=900 height=500>
 
 ### 3. **Dynamic Parameter Passing**
 - Parameter `pl_relativeurl` is dynamically passed from **Pipeline 1** to **Pipeline 2** using:
