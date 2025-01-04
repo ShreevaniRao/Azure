@@ -1,0 +1,52 @@
+{
+    "name": "pl_set_variable",
+    "properties": {
+        "description": "Pipeline to use set variable activity to parse the pipeline parameter having API url to extract the fact file name that can be passed to subsequent copy activity",
+        "activities": [
+            {
+                "name": "If Condition1",
+                "type": "IfCondition",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@endswith(pipeline().parameters.relativeurl,'.csv')",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "Set variable1",
+                            "type": "SetVariable",
+                            "dependsOn": [],
+                            "policy": {
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "variableName": "pipelineReturnValue",
+                                "value": [
+                                    {
+                                        "key": "pl_relativeurl",
+                                        "value": {
+                                            "type": "Expression",
+                                            "content": "@pipeline().parameters.relativeurl"
+                                        }
+                                    }
+                                ],
+                                "setSystemVariable": true
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "relativeurl": {
+                "type": "string",
+                "defaultValue": "ShreevaniRao/Azure/refs/heads/main/Azure%20Data%20Factory/Fact_Sales_1.csv"
+            }
+        },
+        "annotations": []
+    }
+}
