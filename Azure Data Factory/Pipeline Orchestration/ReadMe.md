@@ -9,6 +9,15 @@ This project uses Azure Data Factory to orchestrate multiple activities and work
 - **Pipeline 1**: Executes another pipeline (`pl_set_variable`) that sets some necessary variables.
 - **Pipeline 2**: Dependent on the success of **Pipeline 1**, it executes a pipeline (`pl_copy_csv_files`) that performs specific actions such as copying CSV files and passing parameters from the previous pipeline.
 
+## Key Skills Highlighted
+This project highlights a range of key skills in Azure Data Factory and pipeline orchestration:
+
+- Pipeline Orchestration: Managing complex workflows by sequencing and controlling the execution of multiple dependent pipelines.
+- Data Transformation and Movement: Orchestrating the movement and transformation of data, particularly related to file copying tasks in Azure Data Factory.
+- Error Handling and Dependency Management: Setting conditional dependencies between activities to ensure that workflows execute in the correct sequence and only proceed if the previous activity is successful.
+- Parameterization: Using dynamic expression-based parameters and referencing outputs from other activities within the same pipeline.
+- Monitoring and Management: Using ADF’s monitoring capabilities to track and manage pipeline executions, handling errors, and ensuring smooth execution.
+
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20Orchestration/ExecutePipelinesActivityOutput.jpg" width=850 height=500>
 
 ## Pipeline Architecture
@@ -43,3 +52,13 @@ The ADF pipeline orchestration demonstrates:
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20Orchestration/ExecutePipelineActivityWithChildPipeline.jpg" width=900 height=500>
 
+## Summary
+
+This pipeline demonstrates advanced Azure Data Factory orchestration capabilities, showcasing:
+
+- **Dependable Sequencing**: Pipelines are designed with clear dependencies, ensuring seamless execution and minimal errors.
+- **Dynamic Parameterization**: Outputs from preceding pipelines dynamically inform subsequent pipeline parameters, enabling flexible and reusable workflows.
+- **Robust Automation**: Automated copying of data (e.g., CSV files) between Azure resources simplifies and streamlines data engineering tasks.
+- **Real-World Problem-Solving**: Reflects a practical solution for modular and efficient pipeline management in large-scale data projects.
+
+By leveraging conditional dependencies, parameter passing, and modular design, this pipeline effectively handles complex workflows, highlighting my expertise in orchestrating end-to-end data pipelines in Azure Data Factory.
