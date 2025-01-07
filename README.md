@@ -4,7 +4,7 @@
 
 ## **Featured Projects**
 
-### 1. **Azure End-to-End Data Engineering Project**
+### 1. [**Azure End-to-End Data Engineering Project**](https://github.com/ShreevaniRao/Azure/tree/main/End%20to%20End%20Data%20Engineering%20Project)
 
 **Description**:  
 An end-to-end solution leveraging the **Medallion Architecture** to ingest, process, and analyze data using **Azure Data Factory (ADF)** and **Azure Databricks**.
