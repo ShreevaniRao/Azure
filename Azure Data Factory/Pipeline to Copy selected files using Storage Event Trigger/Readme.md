@@ -1,4 +1,4 @@
-# Azure Data Factory Pipeline: `pl_show_storage_event_trigger`
+# Azure Data Factory Pipeline Overview: `pl_show_storage_event_trigger`
 
 ## Summary
 
