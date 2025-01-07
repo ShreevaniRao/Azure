@@ -30,8 +30,8 @@ This pipeline performs the following tasks:
   - File Format: Delimited Text (with `.txt` extension and quotes around all fields)  
   - Sink Dataset: `ds_adlsg2_sourceapi_files`  
 
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20To%20Extract%20data%20from%20API/GetApiData-Source.jpg" width="950" height="450">
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20To%20Extract%20data%20from%20API/GetApiData-Sink.jpg" width="950" height="450">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20To%20Ingest%20Data%20using%20API/GetApiData-Source.jpg" width="950" height="450">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20To%20Ingest%20Data%20using%20API/GetApiData-Sink.jpg" width="950" height="450">
 
 ---
 
@@ -67,8 +67,8 @@ The pipeline maps fields from the CSV to SQL table columns with data conversion:
 **Dependencies**:  
 This activity depends on the successful completion of `ac_copy_api_adlsg2`.  
 
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20To%20Extract%20data%20from%20API/GetApiData-AzureSqlDB-Source.jpg" width="950" height="450">
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20To%20Extract%20data%20from%20API/GetApiData-AzureSqlDB-Sink.jpg" width="950" height="450">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20To%20Ingest%20Data%20using%20API/GetApiData-AzureSqlDB-Source.jpg" width="950" height="450">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20To%20Ingest%20Data%20using%20API/GetApiData-AzureSqlDB-Sink.jpg" width="950" height="450">
 ---
 
 ## Parameters in the Pipeline
