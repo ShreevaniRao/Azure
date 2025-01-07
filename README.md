@@ -30,7 +30,7 @@ A demonstration of serverless analytics with **Azure Synapse Analytics**, showca
 
 ---
 
-## 3. [**Azure Data Factory Pipelines Overview**](https://github.com/ShreevaniRao/Azure/tree/main/Azure%20Data%20Factory)
+## 3. [**Azure Data Factory Pipelines **](https://github.com/ShreevaniRao/Azure/tree/main/Azure%20Data%20Factory)
 
 ### **Key Pipelines Developed:**
 
