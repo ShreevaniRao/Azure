@@ -1,4 +1,4 @@
-### **Azure Data Factory Pipeline Overview: Copy and Transform Selected Files Using Metadata**
+### **Azure Data Factory Pipeline Overview: pl_copy_select_files_with_metadata**
 
 ## **Pipeline Summary**
 This Azure Data Factory pipeline demonstrates how to 
