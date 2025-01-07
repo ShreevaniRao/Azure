@@ -3,7 +3,7 @@
 Below is the list of Azure Data Factory (ADF) pipelines developed, categorized by their functionality and stored under respective folders:
 
 1. **Pipeline to Ingest Data Using API**  
-   - Ingests data from APIs into Azure Data Lake Storage using ADF. Includes handling for pagination and authentication mechanisms.
+   - Ingests data from APIs into Azure Data Lake Storage using ADF.
 
 2. **Pipeline to Copy Selected Files with Transformations**  
    - Copies specific files from Azure Blob Storage to other destinations, applying transformation rules (e.g., column mapping or format conversion) during the process.
