@@ -17,7 +17,7 @@ An end-to-end solution leveraging the **Medallion Architecture** to ingest, proc
 
 ---
 
-### 2. [**Azure Serverless Logical Data Warehouse**]()
+### 2. [**Azure Serverless Logical Data Warehouse**](https://github.com/ShreevaniRao/Azure/tree/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics))
 
 **Description**:  
 A demonstration of serverless analytics with **Azure Synapse Analytics**, showcasing advanced SQL features and seamless integration with Power BI for insights.
