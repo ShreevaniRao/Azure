@@ -1,4 +1,4 @@
-# Azure Data Factory Project: Pipeline Orchestration
+# Pipeline overview - pl_prod
 
 This project demonstrates my ability to design, orchestrate, and manage data workflows using ADF pipelines. Below is an overview of the pipeline logic and skills applied in this project.
 
