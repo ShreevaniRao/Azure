@@ -33,7 +33,7 @@ This is an end-to-end data engineering project using **Azure cloud computing pla
 
 ### Dataset
 
-**AdventureWorks** is a sample database provided by Microsoft for free on online platforms. It is a product sample database originally published by Microsoft to demonstrate the supposed design of a SQL server database using SQL server 2008. Here are some key points to know about AdventureWorks:
+**AdventureWorks** Database is a Microsoft product sample for an online transaction processing(OLTP) database. It is a product sample database originally published by Microsoft to demonstrate the supposed design of a SQL server database using SQL server 2008. Here are some key points to know about AdventureWorks:
 
 - AdventureWorks database supports a manufacturing MNC named Adventure Works Cycles.
 - It is a sample Online Transaction Processing (or OLTP) database, which is a type of data processing where multiple transactions occur concurrently. These are shipped by Microsoft with all of their SQL server products.
