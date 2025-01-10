@@ -86,7 +86,7 @@ The below diagrams details the STAR schema and its uses in the data warehouse.
 
 8. Using CETAS to write source data as Parquet file to a destination folder for Dimensions tables for Customers, Suppliers, StockItems, Date. 
 The load writes the data out to a sub-folder \01\ in each dimension (except the Date dimension) as this is the initial load. Future loads will populate a sequence of sub-folders.
-Ued ROW_NUMBER() to generate a **Surrogate key** as type Integer.
+Used ROW_NUMBER() to generate a **Surrogate key** as type Integer.
 A ValidFromDate of 2021-01-01 is used as this is the start of our Sales data.
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Logical(Serverless)%20Data%20Warehouse%20(Synapse%20Analytics)/Assets/CETASToTransformDataForStarSchemaTables.png" width="1150" height="650">
 
