@@ -13,6 +13,9 @@ This project implements a robust, scalable Enterprise Data Platform using Azure 
 - Create a flexible, scalable data transformation pipeline
 
 ### Technical Approach
+
+<!img src="">
+
 - **Architecture**: Medallion (Bronze, Silver, Gold Layers)
 - **Governance Framework**: Unity Catalog
 - **Design Pattern**: Star Schema
