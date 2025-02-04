@@ -14,7 +14,7 @@ This project implements a robust, scalable Enterprise Data Platform using Azure 
 
 ### Technical Approach
 
-<!img src="">
+<!img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/PipelineArchitecture.jpg" width=900, height=800>
 
 - **Architecture**: Medallion (Bronze, Silver, Gold Layers)
 - **Governance Framework**: Unity Catalog
