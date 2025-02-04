@@ -2,7 +2,7 @@
 
 ## 📋 Project Overview
 
-This project implements a robust, scalable Enterprise Data Platform using Azure Databricks, focusing on modern data engineering principles and advanced analytics capabilities.
+This project implements a robust, scalable Enterprise Data Platform using Azure Databricks, focusing on modern data engineering principles and advanced analytics capabilities. This is still WIP and will be updated regularly.
 
 ## 🎯 Project Objectives
 
