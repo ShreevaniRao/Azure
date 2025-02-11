@@ -29,6 +29,63 @@ This project implements a robust, scalable Enterprise Data Platform using Azure 
    - Capture source system data
    - Minimal transformations
    - Preserve data lineage
+     ## ADF Pipeline: Incremental Data Load
+
+      This Azure Data Factory pipeline performs an initial & incremental data load from a Github repository to Azure SQL Database.
+      Finally from the Azure table the car sales data is copied to the Bronze layer container of the Data lake.
+      
+      This pipeline needs an initial setup of creating 2 Azure Sql tables -
+     
+      1. 'Source_Cars_Data' table is used to ingest data from a csv file in the Github, containing data of car sales. 
+      2. 'Watermark' table to mark the last data ingested.
+         
+      **Pipeline Activities:**
+     
+   *   **`CopyGitData`**:
+       *   Copies a delimited text file from a Git repository to an Azure SQL table.
+       *   Purpose: Loads initial configuration data (e.g., Branch IDs, Dealer IDs, Model IDs).
+       *   **Source:**
+           *   Delimited text file.
+           *   Accessed via HTTP Linked Service (GET request).
+           **Dataset Parameter:** Uses load_flag that accepts the csv file name to dynamically built the relative url for initial and incremental loads
+       *   **Sink:** Azure SQL Database.
+       *   **Type Conversion:** Imports Schema from the Git file for the Azure SQL table.
+   *   **`LastLoad`**:
+       *   Looks up the last loaded `date_id` from the `watermark` table in Azure SQL.
+       *   Purpose: Determines the starting point for incremental data extraction.
+       *   SQL Query: `select last_load from watermark`
+       *   **Dataset Parameter:** Uses the `ds_AzureSqlTable` dataset, parameterized with `table_name = "watermark"`.
+   *   **`CurrentLoad`**:
+       *   Looks up the maximum `date_id` from the `source_cars_data` table in Azure SQL.
+       *   Purpose: Determines the latest available date for data extraction.
+       *   SQL Query: `select max(date_id) as max_date from source_cars_data`
+       *   **Dataset Parameter:** Uses the `ds_AzureSqlTable` dataset, parameterized with `table_name = "source_cars_data"`.
+   *   **`Copy data to Bronze Layer`**:
+       *   Copies data from `source_cars_data` (Azure SQL) to a Parquet file in Bronze container of Azure Data Lake Storage.
+       *   **Incremental Load:** Selects data based on the `date_id` column, filtering for records greater than `LastLoad` and less than or equal to `CurrentLoad`.
+       *   SQL Query (Parameterized):
+           ```
+           SELECT * FROM source_cars_data
+           WHERE date_id > '@{activity('LastLoad').output.firstRow.last_load}'
+             AND date_id <= '@{activity('CurrentLoad').output.firstRow.max_date}'
+           ```
+       *   **Source Dataset Parameter:** Uses the `ds_AzureSqlTable` dataset, parameterized with `table_name = "source_cars_data"`.
+       *   **Sink Dataset:** Uses the `ds_datalake` dataset (points to the Bronze layer in ADLS).
+       *   **Data Type Mappings:** Converts source data types (varchar, bigint, int) to Parquet-compatible types (UTF8, INT_64, INT_32).  Specific examples:
+           *   `varchar` to `UTF8`
+           *   `bigint` to `INT_64`
+           *   `int` to `INT_32`
+   *   **`UpdateWatermarkTable`**:
+       *   Updates the `watermark` table in Azure SQL with the latest `max_date` loaded.
+       *   Purpose: Ensures that the next pipeline run picks up only new data.
+       *   Stored Procedure: `[dbo].[UpdateWatermarkTable]`
+       *   **Parameter:** `@lastload = @{activity('CurrentLoad').output.firstRow.max_date}` (Expression dynamically sets the `lastload` parameter with the maximum `date_id`).
+       *   **Linked Service:** Uses the `ls_SqlDb` linked service to connect to the Azure SQL Database.
+      
+      **Data Flow:**
+      1.  Git Repository (via HTTP API) --> Azure SQL (Initial Configuration - `CopyGitData`)
+      2.  Azure SQL (Source) --> Azure Data Lake Storage (Bronze Layer - `Copy data to Bronze Layer`)
+
 
 2. **Silver Layer**: Data Cleansing & Standardization
    - Data quality enforcement
