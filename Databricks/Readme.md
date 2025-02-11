@@ -34,11 +34,13 @@ This project implements a robust, scalable Enterprise Data Platform using Azure 
       This Azure Data Factory pipeline performs an initial & incremental data load from a Github repository to Azure SQL Database.
       Finally from the Azure table the car sales data is copied to the Bronze layer container of the Data lake.
       
-      This pipeline needs an initial setup of creating 2 Azure Sql tables -
+      This pipeline needs an initial setup of creating 2 Azure Sql tables & a Stored Procedure -
      
       1. 'Source_Cars_Data' table is used to ingest data from a csv file in the Github, containing data of car sales. 
       2. 'Watermark' table to mark the last data ingested.
-         
+      3. 'UpdateWatermarkTable' - that updates & marks the last load date.
+  
+         <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/ADFPipeline.jpg" width="700" height="450">
       **Pipeline Activities:**
      
    *   **`CopyGitData`**:
