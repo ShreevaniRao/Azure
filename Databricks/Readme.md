@@ -8,7 +8,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
 
 ### Primary Goals
 - Implement Medallion Architecture for processing data to progressively refine to make it reliable, and readily available for analysis.
-- Showcase incremental Data loading with parameterized datasets.
+- Showcase incremental Data loading with parameterized datasets by using parquet file format.
 - Process data to incorporate CDC & SCD (Type 1) for Fact & Dimension tables.
 - Leverage Unity Catalog for centralized data governance, lineage.
 - Use Pyspark to process the data by splitting into multiple Gold layer tables(STAR) alongwith creating external Delta Tables.
