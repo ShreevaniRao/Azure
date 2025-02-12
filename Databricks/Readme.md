@@ -2,15 +2,17 @@
 
 ## 📋 Project Overview
 
-This project implements a robust, scalable Enterprise Data Platform using Azure Databricks, focusing on modern data engineering principles and advanced analytics capabilities. This is still WIP and will be updated regularly.
+This project implements a robust, scalable ETL solution using Azure Databricks & Azure Data Factory, focusing on modern data engineering principles and advanced analytics capabilities. This solution automates the process of incrementally loading sales data from an Azure SQL Database (source_cars_data) to an Azure Data Lake Storage Gen2 (ADLS Gen2) Bronze layer using ADF pipeline, which progressively processes & transforms data into Silver & Gold Layers of the medallion architecture to showcase the Change Data Capture (CDC) for the Fact table data alongwith Slowly changing Dimensions(SCD) changes for the Dimensions Tables.
 
 ## 🎯 Project Objectives
 
 ### Primary Goals
-- Develop a comprehensive data engineering solution
-- Implement Medallion Architecture for data processing
-- Leverage Unity Catalog for centralized data governance
-- Create a flexible, scalable data transformation pipeline
+- Implement Medallion Architecture for processing data to progressively refine to make it reliable, and readily available for analysis.
+- Showcase incremental Data loading with parameterized datasets.
+- Process data to incorporate CDC & SCD (Type 1) for Fact & Dimension tables.
+- Leverage Unity Catalog for centralized data governance, lineage.
+- Use Pyspark to process the data by splitting into multiple Gold layer tables(STAR) alongwith creating external Delta Tables.
+
 
 ### Technical Approach
 
@@ -31,7 +33,7 @@ This project implements a robust, scalable Enterprise Data Platform using Azure 
    - Preserve data lineage
      ## ADF Pipeline: Incremental Data Load
 
-      This Azure Data Factory pipeline performs an initial & incremental data load from a Github repository to Azure SQL Database.
+      This Azure Data Factory pipeline performs an initial & incremental car sales data load from a Github repository to Azure SQL Database.
       Finally from the Azure table the car sales data is copied to the Bronze layer container of the Data lake.
       
       This pipeline needs an initial setup of creating 2 Azure Sql tables & a Stored Procedure -
