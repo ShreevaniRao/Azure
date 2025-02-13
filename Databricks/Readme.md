@@ -2,7 +2,7 @@
 
 ## 📋 Project Overview
 
-This project implements a robust, scalable ETL solution using Azure Databricks & Azure Data Factory, focusing on modern data engineering principles and advanced analytics capabilities. This solution automates the process of incrementally loading sales data from an Azure SQL Database (source_cars_data) to an Azure Data Lake Storage Gen2 (ADLS Gen2) Bronze layer using ADF pipeline, which progressively processes & transforms data into Silver & Gold Layers of the medallion architecture to showcase the Change Data Capture (CDC) for the Fact table data alongwith Slowly changing Dimensions(SCD) changes for the Dimensions Tables.
+This project implements a robust, scalable ETL solution using Azure Databricks & Azure Data Factory, focusing on modern data engineering principles and advanced analytics capabilities. This solution automates the process of incrementally loading sales data from an Azure SQL Database (source_cars_data) to an Azure Data Lake Storage Gen2 (ADLS Gen2) Bronze layer using ADF pipeline. Using Databricks workflows the pipeline progressively processes & transforms data in Silver & Gold Layers of the medallion architecture to showcase the Change Data Capture (CDC) for the Fact table data alongwith Slowly changing Dimensions(SCD) changes for the Dimensions Tables.
 
 ## 🎯 Project Objectives
 
@@ -12,6 +12,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
 - Process data to incorporate CDC & SCD (Type 1) for Fact & Dimension tables.
 - Leverage Unity Catalog for centralized data governance, lineage.
 - Use Pyspark to process the data by splitting into multiple Gold layer tables(STAR) alongwith creating external Delta Tables.
+- Using Databricks Workflow to automate the ETL process to create Parquet & Delta format files to be able to consume for analytical insights.
 
 
 ### Technical Approach
