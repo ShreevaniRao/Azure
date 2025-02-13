@@ -101,13 +101,13 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
    In this step Azure Databricks resource is created and launched to setup Unity Catalog.
 
    **Unity Catalog Configuration:** - Follow this [Unity Catalog setup](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/get-started) link to create your own Catalog and assign Azure managed identity to access the Data lake storage containers.
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CompleteIncrementalPipelineRun.jpg" width="700" height="450">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CarsUnityCatalog.jpg" width="700" height="450">
 
    **Databricks Access Connector:** -  Follow this [Create Access Connector](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/azure-managed-identities) link to setup this Storage credentials to access data lake
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CompleteIncrementalPipelineRun.jpg" width="700" height="450">
 
    **Create External Location:** - Setup external locations that map to the 3 data lake storage containers - Bronze, Silver & Gold (need to be created manually aahead) which will have databricks read and write delta tables to these locations
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CompleteIncrementalPipelineRun.jpg" width="700" height="450">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogExternalLocations.jpg" width="500" height="450">
 
 
 
