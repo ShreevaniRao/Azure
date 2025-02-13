@@ -90,7 +90,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
       **Data Flow:**
       1.  Git Repository (via HTTP API) --> Azure SQL (Initial Configuration - `CopyGitData`)
       2.  Azure SQL (Source) --> Azure Data Lake Storage (Bronze Layer - `Copy data to Bronze Layer`)
-
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/PipelineArchitecture.jpg" width="900" height="450">
 
 2. **Silver Layer**: Data Cleansing & Standardization
    - Data quality enforcement
