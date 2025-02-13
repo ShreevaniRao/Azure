@@ -131,7 +131,9 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
       + The new Fact table created uses 4 Dimension table's business keys & surrogate keys to join and filter the data to load.
       + Every notebook can be run multiple times to verify and validate the row count is accurate & valid.
       + Every notebook also writes and saves the Dimension and Fact tables in the Gold Data lake container in **Delta file format**.
-
+        
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Catalog-Schema-Table.jpg" width="575" height="270">
+      
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/STARSchema.jpg" width="575" height="270">
 
       **[gold_dim_branch](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/gold_dim_branch.py):** - Creates cars-catalog.gold.dim_branch
