@@ -114,7 +114,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
    
    Created a new folder repository - 'CarsProject' to organize the pyspark notebooks artefacts in the Workspace.
 
-   **Catalog-Schema-Table:** - Created 'Cars-Catalog' Unity Catalog and used it to contain the 2 schemas - 'Silver' & ' Gold'. All the Delta Tables created will be using this data hierarchy to make use of a structured system. Refer to [db_notebook]() for this setup
+   **Catalog-Schema-Table:** - Created 'Cars-Catalog' Unity Catalog and used it to contain the 2 schemas - 'Silver' & ' Gold'. All the Delta Tables created will be using this data hierarchy to make use of a structured system. Refer to [db_notebook](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/db_notebook.py) for this setup
 
 5. **Gold Layer**: Business-Ready Analytics
    - Aggregated insights
