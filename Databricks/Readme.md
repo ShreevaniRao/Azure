@@ -90,14 +90,42 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
       **Data Flow:**
       1.  Git Repository (via HTTP API) --> Azure SQL (Initial Configuration - `CopyGitData`)
       2.  Azure SQL (Source) --> Azure Data Lake Storage (Bronze Layer - `Copy data to Bronze Layer`)
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/PipelineArchitecture.jpg" width="900" height="450">
 
-2. **Silver Layer**: Data Cleansing & Standardization
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CompleteIncrementalPipelineRun.jpg" width="700" height="450">
+
+3. **Silver Layer**: Data Cleansing & Standardization
    - Data quality enforcement
    - Schema validation
    - Consistent data formatting
+     
+   In this step Azure Databricks resource is created and launched to setup Unity Catalog.
 
-3. **Gold Layer**: Business-Ready Analytics
+   **Unity Catalog Configuration:** - Follow this [Unity Catalog setup](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/get-started) link to create your own Catalog and assign Azure managed identity to access the Data lake storage containers.
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CompleteIncrementalPipelineRun.jpg" width="700" height="450">
+
+   **Databricks Access Connector:** -  Follow this [Create Access Connector](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/azure-managed-identities) link to setup this Storage credentials to access data lake
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CompleteIncrementalPipelineRun.jpg" width="700" height="450">
+
+   **Create External Location:** - Setup external locations that map to the 3 data lake storage containers - Bronze, Silver & Gold (need to be created manually aahead) which will have databricks read and write delta tables to these locations
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CompleteIncrementalPipelineRun.jpg" width="700" height="450">
+
+
+
+**4. Storage Credentials and External Locations:**
+
+*   **Create ADLS Gen2 Storage Account (if needed):**
+    *   *If you already have an ADLS Gen2 storage account for the Bronze, Silver, and Gold layers, skip this step.*
+    *   In the Azure Portal, search for "Storage Account" and click "Create".
+    *   Configure the storage account:
+        *   **Subscription & Resource Group:** Select the appropriate values.
+        *   **Storage Account Name:** Choose a unique name.
+        *   **Region:** Select the *same region* as your Databricks workspace, metastore, and Azure SQL Database.
+        *   **Performance:** Standard.
+        *   **Redundancy:** LRS or higher, based on requirements.
+        *   **Advanced Settings:** Enable Hierarchical Namespace (for ADLS Gen2).
+    *   Click "Review + Create", then "Create".
+
+4. **Gold Layer**: Business-Ready Analytics
    - Aggregated insights
    - Dimensional modeling
    - Optimized for reporting
