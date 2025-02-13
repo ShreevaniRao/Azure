@@ -23,7 +23,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
 - **Governance Framework**: Unity Catalog
 - **Design Pattern**: Star Schema
 - **Processing Engine**: Apache Spark
-- **Platform**: Azure Databricks
+- **Platform**: Azure Databricks & Data Factory
 
 ## 🌐 Technical Architecture
 
