@@ -117,12 +117,21 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
    **Catalog-Schema-Table:** - Created 'Cars-Catalog' Unity Catalog and used it to contain the 2 schemas - 'Silver' & ' Gold'. All the Delta Tables created will be using this data hierarchy to make use of a structured system. Refer to [db_notebook](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/db_notebook.py) for this setup.
 
    **[silver_notebook](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/silver_notebook.py):** - Pyspark notebook to read the Bronze layer data to transform the data for adding new columns by splitting the existing column data, creating new calculated columns and also aggregate the existing data to perform ad-hoc query using vizualizatons like pie chart.
+   Finally writing the transformed data to the Silver container in parquet file format that can be leveraged for data analytics.
 
 5. **Gold Layer**: Business-Ready Analytics
    - Aggregated insights
    - Dimensional modeling
    - Optimized for reporting
 
+- In this stage multiple pyspark notebooks are used to create **STAR schema dimensional modeling** consuming the transformed Silver container data and splitting into Fact & Dimensionas tables and saving them into Unity Catalog data hierarchy 'Catalog-Schema-Table(Delta)'.
+- All these pyspark notebooks use Databricks Widgets to parameterize the pipeline run for incremental load with user input.
+- Every pyspark notebook dynamically checks for load type and accordingly creates a Delta table or upserts the existing Delta table (SCD Type 1).
+- The new Delta Dimensional tables created are assigned a new Surrogate key and its unique serial value generated.
+- Every notebook can be run multiple times to verify and validate the row count is accurate & valid.
+- Every notebook also writes and saves the Dimension and Fact tables in the Gold Data lake container in Delta file format.
+
+**[gold_notebook](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/silver_notebook.py):**
 ## 🔍 Key Components
 
 ### Data Sources
