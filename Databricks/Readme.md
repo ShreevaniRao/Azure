@@ -119,7 +119,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
    **[silver_notebook](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/silver_notebook.py):** - Pyspark notebook to read the Bronze layer data to transform the data for adding new columns by splitting the existing column data, creating new calculated columns and also aggregate the existing data to perform ad-hoc query using vizualizatons like pie chart.
    Finally writing the transformed data to the Silver container in parquet file format that can be leveraged for data analytics.
 
-5. **Gold Layer**: Business-Ready Analytics
+4. **Gold Layer**: Business-Ready Analytics
    - Aggregated insights
    - Dimensional modeling
    - Optimized for reporting
@@ -133,6 +133,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
       + Every notebook also writes and saves the Dimension and Fact tables in the Gold Data lake container in **Delta file format**.
         
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Catalog-Schema-Table.jpg" width="575" height="270">
+  
       
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/STARSchema.jpg" width="575" height="270">
 
@@ -146,7 +147,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
       
       **[gold_fact_sales](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/gold_fact_sales.py):**- Creates cars-catalog.gold.fact_carsales
 
-6. **Complete pipeline using Databricks Workflow**
+5. **Complete pipeline using Databricks Workflow**
 
 ## 🔍 Key Components
 
