@@ -98,7 +98,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
    - Schema validation
    - Consistent data formatting
      
-   In this step Azure Databricks resource is created and Unity Catalog, Databricks Access Connector, Storage Credentials & External Data Locations are setup as below -
+   In this step Azure Databricks resource is created and Unity Catalog, Databricks Access Connector, Storage Credentials, External Data Locations & Spark cluster are setup as below -
 
    **Unity Catalog Configuration:** - Follow this [Unity Catalog setup](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/get-started) link to create your own Catalog and assign Azure managed identity to access the Data lake storage containers.
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CarsUnityCatalog.jpg" width="700" height="450">
@@ -108,10 +108,12 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
 
    **Create External Location:** - Setup external locations that map to the 3 data lake storage containers - Bronze, Silver & Gold (need to be created manually ahead) which will have databricks read and write delta tables to these locations
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogExternalLocations.jpg" width="500" height="300">
-
+   
+   **Spark Cluster:** - Created a Personal Compute cluster (verified Unity Catalog enabled)
+   
    Created a new folder repository - 'CarsProject' to organize the pyspark notebooks artefacts in the Workspace.
 
-4. **Gold Layer**: Business-Ready Analytics
+5. **Gold Layer**: Business-Ready Analytics
    - Aggregated insights
    - Dimensional modeling
    - Optimized for reporting
