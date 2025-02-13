@@ -110,6 +110,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogExternalLocations.jpg" width="500" height="300">
    
    **Spark Cluster:** - Created a Personal Compute cluster (verified Unity Catalog enabled)
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/DBSparkClusterCompute.jpg" width="450" height="200">
    
    Created a new folder repository - 'CarsProject' to organize the pyspark notebooks artefacts in the Workspace.
 
