@@ -132,6 +132,8 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
       + Every notebook can be run multiple times to verify and validate the row count is accurate & valid.
       + Every notebook also writes and saves the Dimension and Fact tables in the Gold Data lake container in **Delta file format**.
 
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/STARSchema.jpg" width="575" height="270">
+
       **[gold_dim_branch](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/gold_dim_branch.py):** - Creates cars-catalog.gold.dim_branch
       
       **[gold_dim_dealer](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/gold_dim_dealer.py):** - Creates cars-catalog.gold.dim_dealer
@@ -142,6 +144,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
       
       **[gold_fact_sales](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/gold_fact_sales.py):**- Creates cars-catalog.gold.fact_carsales
 
+6. **Complete pipeline using Databricks Workflow**
 
 ## 🔍 Key Components
 
