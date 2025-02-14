@@ -1,6 +1,6 @@
 # 🚀 Databricks ETL Project: Enterprise Data Platform
 
-## 📋 Project Overview (WIP)
+## 📋 Project Overview
 
 This project implements a robust and scalable enterprise data platform, showcasing advanced data engineering principles using Azure Databricks and Azure Data Factory. It automates the end-to-end ETL process, incrementally loading car sales data from an Azure SQL Database into an Azure Data Lake Storage Gen2 (ADLS Gen2) Bronze layer using a parameterized ADF pipeline. Leveraging Databricks Workflows, the pipeline orchestrates the progressive processing and transformation of data through the Medallion architecture (Bronze, Silver, and Gold layers). The solution incorporates Change Data Capture (CDC) for the Fact table, Slowly Changing Dimensions (SCD Type 1) handling for Dimension tables, and enforces comprehensive data governance using Unity Catalog. The project culminates in a well-designed star schema data model optimized for efficient and insightful analytical queries.
 
