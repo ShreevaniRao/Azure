@@ -24,6 +24,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
 - **Design Pattern**: Star Schema
 - **Processing Engine**: Apache Spark
 - **Platform**: Azure Databricks & Data Factory
+- **Consumption:** Power BI (or other BI tools) connects to the Gold layer for reporting.
 
 ## 🌐 Technical Architecture
 
