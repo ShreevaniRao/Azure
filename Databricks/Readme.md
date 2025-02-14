@@ -163,3 +163,8 @@ This project implements a robust and scalable enterprise data platform, showcasi
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/SuccessfulIncrementalLoadRun.jpg" width="775" height="570">
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/VerifyIncrementalLoadData.jpg" width="775" height="570">
    
+8. **Alternate solution & approach**
+
+   Alternately the Databricks notebooks can be executed in the ADF pipeline which will trigger the Databricks Workflow and can be monitored for the similar output.
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/AlternateSolution.jpg" width="1000" height="570">
+   
