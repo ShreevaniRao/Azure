@@ -2,7 +2,7 @@
 
 ## 📋 Project Overview (WIP)
 
-This project implements a robust, scalable ETL solution using Azure Databricks & Azure Data Factory, focusing on modern data engineering principles and advanced analytics capabilities. This solution automates the process of incrementally loading sales data from an Azure SQL Database (source_cars_data) to an Azure Data Lake Storage Gen2 (ADLS Gen2) Bronze layer using ADF pipeline. Using Databricks workflows the pipeline progressively processes & transforms data in Silver & Gold Layers of the medallion architecture to showcase the Change Data Capture (CDC) for the Fact table data alongwith Slowly changing Dimensions(SCD) changes for the Dimensions Tables.
+This project implements a robust and scalable enterprise data platform, showcasing advanced data engineering principles using Azure Databricks and Azure Data Factory. It automates the end-to-end ETL process, incrementally loading car sales data from an Azure SQL Database into an Azure Data Lake Storage Gen2 (ADLS Gen2) Bronze layer using a parameterized ADF pipeline. Leveraging Databricks Workflows, the pipeline orchestrates the progressive processing and transformation of data through the Medallion architecture (Bronze, Silver, and Gold layers). The solution incorporates Change Data Capture (CDC) for the Fact table, Slowly Changing Dimensions (SCD Type 1) handling for Dimension tables, and enforces comprehensive data governance using Unity Catalog. The project culminates in a well-designed star schema data model optimized for efficient and insightful analytical queries.
 
 ## 🎯 Project Objectives
 
