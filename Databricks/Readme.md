@@ -100,12 +100,15 @@ This project implements a robust and scalable enterprise data platform, showcasi
 
    **Unity Catalog Configuration:** - Follow this [Unity Catalog setup](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/get-started) link to create your own Catalog and assign Azure managed identity(DB Access connector) to access the Data lake storage containers.
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CarsUnityCatalog.jpg" width="700" height="450">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogDetails.jpg" width="600" height="250">
+   
 
    **Databricks Access Connector:** -  Follow this [Create Access Connector](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/azure-managed-identities) link to setup this Storage credentials to access data lake
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogStorageCredential.jpg" width="550" height="220">
 
    **Create External Location:** - Setup external locations that map to the 3 data lake storage containers - Bronze, Silver & Gold (need to be created manually ahead) which will have databricks read and write delta tables to these locations
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogExternalLocations.jpg" width="500" height="300">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/ExternalLocationForUnityCatalog.jpg" width="500" height="300">
    
    **Spark Cluster:** - Created a Personal Compute cluster (verified Unity Catalog enabled)
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/DBSparkClusterCompute.jpg" width="575" height="270">
@@ -167,4 +170,21 @@ This project implements a robust and scalable enterprise data platform, showcasi
 
    Alternately the Databricks notebooks can be executed in the ADF pipeline which will trigger the Databricks Workflow and can be monitored for the similar output.
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/AlternateSolution.jpg" width="1000" height="570">
+
+9 **Unity Catalog - Data Governance with Unity Catalog: Managing Metadata, Access Control, and Lineage**
+
+   Below details showcases the way Unity Catalog can be leveraged to
+   Grant granular access to tables -
    
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogGranularACL.jpg" width="1000" height="570">
+
+   Track the lineage of any asset -
+   
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogLineage.jpg" width="900" height="470">
+
+   Illustrates metadata enrichment and data discoverability -
+    
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogDataDiscovery.jpg" width="900" height="300">
+    
+   
+
