@@ -100,7 +100,7 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
      
    In this step Azure Databricks resource is created and Unity Catalog, Databricks Access Connector, Storage Credentials, External Data Locations & Spark cluster are setup as below -
 
-   **Unity Catalog Configuration:** - Follow this [Unity Catalog setup](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/get-started) link to create your own Catalog and assign Azure managed identity to access the Data lake storage containers.
+   **Unity Catalog Configuration:** - Follow this [Unity Catalog setup](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/get-started) link to create your own Catalog and assign Azure managed identity(DB Access connector) to access the Data lake storage containers.
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CarsUnityCatalog.jpg" width="700" height="450">
 
    **Databricks Access Connector:** -  Follow this [Create Access Connector](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/azure-managed-identities) link to setup this Storage credentials to access data lake
@@ -147,7 +147,8 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
       
       **[gold_fact_sales](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/gold_fact_sales.py):**- Creates cars-catalog.gold.fact_carsales
 
-5. **Complete pipeline using Databricks Workflow**
+5. **Complete ETL pipeline using Databricks Workflows**
+      Created a Job to run multiple tasks to automate all the above pyspark notebooks. Further parallelized the tasks run to process the notebooks parallely to optimize the pipeline.
 
 ## 🔍 Key Components
 
