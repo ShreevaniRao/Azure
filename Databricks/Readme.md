@@ -148,10 +148,21 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
       **[gold_fact_sales](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/gold_fact_sales.py):**- Creates cars-catalog.gold.fact_carsales
 
 5. **Complete ETL pipeline using Databricks Workflows**
-      Created a Job to run multiple tasks to automate all the above pyspark notebooks. Further parallelized the tasks run to process the notebooks parallely to optimize the pipeline.
+   
+      Created a Job to run multiple tasks to automate all the above pyspark notebooks. Further parallelized the tasks runs, to process the notebooks parallely to optimize the pipeline.
    
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/WorkflowJobs.jpg" width="775" height="370">
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/ParellelWorkFlowJobs.jpg" width="775" height="570">
+   
+7. **Debug, Troubleshoot & Validate the data**
+   
+      Multiple runs of the notebooks execution and job runs resulted in ability to learn to diagnose, debug and troubleshoot the issues.
+   
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/FailedIncrementlLoadWorkflow.jpg" width="775" height="570">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Troubleshoot&DebugScript.jpg" width="775" height="570">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/FailedRunOfWorkFlow.jpg" width="775" height="570">        
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/SuccessfulIncrementalLoadRun.jpg" width="775" height="570">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/VerifyIncrementalLoadData.jpg" width="775" height="570">
    
 
 
