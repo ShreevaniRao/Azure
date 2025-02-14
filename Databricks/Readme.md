@@ -6,16 +6,15 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
 
 ## 🎯 Project Objectives
 
-### Primary Goals
-- Implement Medallion Architecture for processing data to progressively refine to make it reliable, and readily available for analysis.
-- Showcase incremental Data loading with parameterized datasets by using parquet file format.
-- Process data to incorporate CDC & SCD (Type 1) for Fact & Dimension tables.
-- Leverage Unity Catalog for centralized data governance, lineage.
-- Use Pyspark to process the data by splitting into multiple Gold layer tables(STAR) alongwith creating external Delta Tables.
-- Using Databricks Workflow to automate the ETL process to create Parquet & Delta format files to be able to consume for analytical insights.
+### Primary Goals & Achievements
+- **Implemented Medallion Architecture**: Designed and implemented a Bronze-Silver-Gold architecture for progressive data refinement, ensuring data quality and analytical readiness.
+- **Automated Incremental Data Loading**: Developed an ADF pipeline that incrementally loads data from Azure SQL Database to ADLS Gen2 (Bronze layer) using parameterized datasets and Parquet format, optimizing for performance and cost efficiency.
+- **Developed CDC and SCD (Type 1) Processing**: Created Databricks workflows to process data, incorporating CDC for fact tables and SCD (Type 1) handling for dimension tables, ensuring data accuracy and consistency.
+- **Leveraged Unity Catalog for Data Governance**: Integrated Unity Catalog for centralized data governance, enabling data discovery, access control, and lineage tracking.
+- **Designed a Star Schema Data Model**: Developed a star schema in the Gold layer using PySpark, creating dimension and fact tables optimized for analytical queries.
+- **Automated ETL Pipeline with Databricks Workflows**: Orchestrated the entire ETL process using Databricks Workflows, including parallel task execution for optimized performance.
 
-
-### Technical Approach
+### Technical Architecture
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/PipelineArchitecture.jpg" width="900" height="450">
 
@@ -25,8 +24,6 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
 - **Processing Engine**: Apache Spark
 - **Platform**: Azure Databricks & Data Factory
 - **Consumption:** Power BI (or other BI tools) connects to the Gold layer for reporting.
-
-## 🌐 Technical Architecture
 
 ### Data Flow Stages
 1. **Bronze Layer**: Raw Data Ingestion
@@ -161,9 +158,8 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
    
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/FailedIncrementlLoadWorkflow.jpg" width="775" height="570">
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Troubleshoot&DebugScript.jpg" width="775" height="570">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/FailedRunOfWorkFlow.jpg" width="775" height="570">        
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/FailedRunOfWorkFlow.jpg" width="775" height="570">  
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/WorkflowRuns.jpg" width="775" height="570"> 
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/SuccessfulIncrementalLoadRun.jpg" width="775" height="570">
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/VerifyIncrementalLoadData.jpg" width="775" height="570">
    
-
-
