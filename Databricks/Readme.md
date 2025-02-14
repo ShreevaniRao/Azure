@@ -149,7 +149,10 @@ This project implements a robust, scalable ETL solution using Azure Databricks &
 
 5. **Complete ETL pipeline using Databricks Workflows**
       Created a Job to run multiple tasks to automate all the above pyspark notebooks. Further parallelized the tasks run to process the notebooks parallely to optimize the pipeline.
-
+   
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/WorkflowJobs.jpg" width="575" height="270">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/ParallelWorkflowJobs.jpg" width="575" height="270">
+   
 ## 🔍 Key Components
 
 ### Data Sources
