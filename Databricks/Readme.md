@@ -2,16 +2,16 @@
 
 ## 📋 Project Overview
 
-This project implements a robust and scalable enterprise data platform, showcasing advanced data engineering principles using Azure Databricks and Azure Data Factory. It automates the end-to-end ETL process, incrementally loading car sales data from an Azure SQL Database into an Azure Data Lake Storage Gen2 (ADLS Gen2) Bronze layer using a parameterized ADF pipeline. Leveraging Databricks Workflows, the pipeline orchestrates the progressive processing and transformation of data through the Medallion architecture (Bronze, Silver, and Gold layers). The solution incorporates Change Data Capture (CDC) for the Fact table, Slowly Changing Dimensions (SCD Type 1) handling for Dimension tables, and enforces comprehensive data governance using Unity Catalog. The project culminates in a well-designed star schema data model optimized for efficient and insightful analytical queries.
+This project implements a robust and scalable enterprise data platform, showcasing advanced data engineering principles using Azure Databricks and Azure Data Factory. It automates the end-to-end ETL process, incrementally loading car sales data with GitHub API and Azure SQL Database into an Azure Data Lake Storage Gen2 (ADLS Gen2) Bronze layer using a parameterized ADF pipeline. Leveraging Databricks Workflows, the pipeline orchestrates the progressive processing and transformation of data through the Medallion architecture (Bronze, Silver, and Gold layers). The solution incorporates Change Data Capture (CDC) for the Fact table, Slowly Changing Dimensions (SCD Type 1) handling for Dimension tables, and enforces comprehensive data governance using Unity Catalog. The project culminates in a well-designed star schema data model optimized for efficient and insightful analytical queries.
 
 ## 🎯 Project Objectives
 
 ### Primary Goals & Achievements
 - **Implemented Medallion Architecture**: Designed and implemented a Bronze-Silver-Gold architecture for progressive data refinement, ensuring data quality and analytical readiness.
-- **Automated Incremental Data Loading**: Developed an ADF pipeline that incrementally loads data from Azure SQL Database to ADLS Gen2 (Bronze layer) using parameterized datasets and Parquet format, optimizing for performance and cost efficiency.
+- **Automated Incremental Data Loading**: Developed an ADF pipeline that incrementally loads data using GitHub API into Azure SQL Database to ADLS Gen2 (Bronze layer) using parameterized datasets and Parquet format, optimizing for performance and cost efficiency.
 - **Developed CDC and SCD (Type 1) Processing**: Created Databricks workflows to process data, incorporating CDC for fact tables and SCD (Type 1) handling for dimension tables, ensuring data accuracy and consistency.
 - **Leveraged Unity Catalog for Data Governance**: Integrated Unity Catalog for centralized data governance, enabling data discovery, access control, and lineage tracking.
-- **Designed a Star Schema Data Model**: Developed a star schema in the Gold layer using PySpark, creating dimension and fact tables optimized for analytical queries.
+- **Designed a Star Schema Data Model**: Developed a star schema in the Gold layer using PySpark, creating Dimension and Fact tables optimized for analytical queries.
 - **Automated ETL Pipeline with Databricks Workflows**: Orchestrated the entire ETL process using Databricks Workflows, including parallel task execution for optimized performance.
 
 ### Technical Architecture
