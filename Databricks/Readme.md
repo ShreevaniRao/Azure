@@ -11,7 +11,7 @@ This project implements a robust and scalable enterprise data platform, showcasi
 - **Automated Incremental Data Loading**: Developed an ADF pipeline that incrementally loads data using GitHub API into Azure SQL Database to ADLS Gen2 (Bronze layer) using parameterized datasets and Parquet format, optimizing for performance and cost efficiency.
 - **Developed CDC and SCD (Type 1) Processing**: Created Databricks workflows to process data, incorporating CDC for fact tables and SCD (Type 1) handling for dimension tables, ensuring data accuracy and consistency.
 - **Leveraged Unity Catalog for Data Governance**: Integrated Unity Catalog for centralized data governance, enabling data discovery, access control, and lineage tracking.
-- **Designed a Star Schema Data Model**: Developed a star schema in the Gold layer using PySpark, creating Dimension and Fact tables optimized for analytical queries.
+- **Designed a Star Schema Data Model**: Developed a star schema in the Gold layer using PySpark by splitting a single big csv file & creating multiple Dimensions and Fact tables optimized for analytical queries.
 - **Automated ETL Pipeline with Databricks Workflows**: Orchestrated the entire ETL process using Databricks Workflows, including parallel task execution for optimized performance.
 
 ### Technical Architecture
