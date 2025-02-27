@@ -14,7 +14,7 @@ This project implements a robust and scalable enterprise data platform, showcasi
 - **Designed a Star Schema Data Model**: Developed a star schema in the Gold layer using PySpark by splitting a single big csv file & creating multiple Dimensions and Fact tables optimized for analytical queries.
 - **Automated ETL Pipeline with Databricks Workflows**: Orchestrated the entire ETL process using Databricks Workflows, including parallel task execution for optimized performance.
 
-### Technical Architecture
+### Technical Architecture and Data Flow
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/PipelineArchitecture.jpg" width="900" height="450">
 
@@ -24,6 +24,23 @@ This project implements a robust and scalable enterprise data platform, showcasi
 - **Processing Engine**: Apache Spark
 - **Platform**: Azure Databricks & Data Factory
 - **Consumption:** Power BI (or other BI tools) connects to the Gold layer for reporting.
+
+The project utilizes a Medallion Architecture with Bronze, Silver, and Gold layers:
+
+1. **Data Ingestion (Bronze Layer)**
+   - Uses Azure Data Factory (ADF) for incremental data loading
+   - Sources include GitHub API and Azure SQL Database
+   - Data stored in Azure Data Lake Storage Gen2 (ADLS Gen2) in Parquet format
+
+2. **Data Processing (Silver Layer)**
+   - Implements Change Data Capture (CDC) for fact tables
+   - Applies Slowly Changing Dimensions (SCD) Type 1 for dimension tables
+   - Utilizes Databricks for data transformation and quality checks
+
+3. **Data Modeling (Gold Layer)**
+   - Creates a star schema optimized for analytical queries using Delta Lake tables
+   - Splits a single CSV file into multiple dimension and fact tables using PySpark
+   - Leverages **Delta Lake** for ACID transactions, schema enforcement, and time travel capabilities
 
 ### Data Flow Stages
 1. **Bronze Layer**: Raw Data Ingestion
@@ -189,4 +206,7 @@ This project implements a robust and scalable enterprise data platform, showcasi
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/AlternateSolution.jpg" width="1000" height="570">
     
    
-
+### Conclusion
++ This project showcases a sophisticated approach to enterprise data engineering, combining best practices in data architecture, processing, and governance. 
++ It demonstrates proficiency in Azure cloud services, big data technologies, and advanced ETL techniques, with a particular emphasis on leveraging Delta Lake for reliable and high-performance data storage in the Gold layer. 
++ This makes it a valuable addition to a data engineer's portfolio, highlighting skills in modern data lake technologies and optimized analytical data models.
