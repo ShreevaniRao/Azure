@@ -155,7 +155,7 @@ This project implements a robust and scalable enterprise data platform, showcasi
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/WorkflowJobs.jpg" width="775" height="370">
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/ParellelWorkFlowJobs.jpg" width="775" height="570">
    
-7. **Debug, Troubleshoot & Validate the data**
+6. **Debug, Troubleshoot & Validate the data**
    
       Multiple runs of the notebooks execution and job runs resulted in ability to learn to diagnose, debug and troubleshoot the issues.
    
@@ -166,12 +166,8 @@ This project implements a robust and scalable enterprise data platform, showcasi
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/SuccessfulIncrementalLoadRun.jpg" width="775" height="570">
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/VerifyIncrementalLoadData.jpg" width="775" height="570">
    
-8. **Alternate solution & approach**
 
-   Alternately the Databricks notebooks can be executed in the ADF pipeline which will trigger the Databricks Workflow and can be monitored for the similar output.
-    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/AlternateSolution.jpg" width="1000" height="570">
-
-9 **Unity Catalog - Data Governance with Unity Catalog: Managing Metadata, Access Control, and Lineage**
+7. **Unity Catalog - Data Governance with Unity Catalog: Managing Metadata, Access Control, and Lineage**
 
    Below details showcases the way Unity Catalog can be leveraged to
    Grant granular access to tables -
@@ -185,6 +181,12 @@ This project implements a robust and scalable enterprise data platform, showcasi
    Illustrates metadata enrichment and data discoverability -
     
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogDataDiscovery.jpg" width="900" height="300">
+
+
+8. **Alternate solution & approach**
+
+   Alternately the Databricks notebooks can be executed in the ADF pipeline which will trigger the Databricks Workflow and can be monitored for the similar output.
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/AlternateSolution.jpg" width="1000" height="570">
     
    
 
