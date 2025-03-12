@@ -1,13 +1,11 @@
-# Azure Data Factory Pipeline overview - pl_prod
+## Pipeline Summary
 
 This project demonstrates my ability to design, orchestrate, and manage data workflows using ADF pipelines. Below is an overview of the pipeline logic and skills applied in this project.
 
-## Overview
-
-This project uses Azure Data Factory to orchestrate multiple activities and workflows by executing one pipeline after another with dependencies and parameter passing. The following pipeline setup is implemented:
+Using Azure Data Factory to orchestrate multiple activities and workflows by executing one pipeline after another with dependencies and parameter passing. The following pipeline setup is implemented:
 
 - **Pipeline 1**: Executes another pipeline (`pl_set_variable`) that sets some necessary variables.
-- **Pipeline 2**: Dependent on the success of **Pipeline 1**, it executes a pipeline (`pl_copy_csv_files`) that performs specific actions such as copying CSV files and passing parameters from the previous pipeline.
+- **Pipeline 2**: Dependent on the success of **Pipeline 1**, executes a pipeline (`pl_copy_csv_files`) that performs specific actions such as copying CSV files and passing parameters from the previous pipeline.
 
 ## Key Skills Highlighted
 This project highlights a range of key skills in Azure Data Factory and pipeline orchestration:
@@ -20,7 +18,7 @@ This project highlights a range of key skills in Azure Data Factory and pipeline
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20Orchestration/ExecutePipelinesActivityOutput.jpg" width=850 height=500>
 
-## Pipeline Architecture
+## Pipeline Architecture - pl_prod
 
 The ADF pipeline orchestration demonstrates:
 
