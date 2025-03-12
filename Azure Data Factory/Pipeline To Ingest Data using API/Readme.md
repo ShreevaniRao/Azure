@@ -1,7 +1,4 @@
-
-# Azure Data Factory Pipeline Overview: pl_getapidata
-
-## Summary  
+## Pipeline Summary  
 This pipeline provides a robust workflow for:
 - Automating data retrieval from APIs  
 - Storing data securely in ADLS Gen2  
@@ -16,7 +13,7 @@ This pipeline performs the following tasks:
 
 ---
 
-## Steps
+## Steps to create the pipeline - pl_getapidata
 
 ### **1. ac_copy_api_adlsg2**
 **Description**: Retrieve CSV files via an HTTP request and store them in ADLS Gen2.
