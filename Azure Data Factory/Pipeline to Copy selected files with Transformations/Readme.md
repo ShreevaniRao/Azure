@@ -8,7 +8,7 @@ This Azure Data Factory pipeline demonstrates how to
 - It highlights advanced capabilities like dynamic file handling, metadata-driven workflows, and flexible transformations, making it ideal for scalable data engineering scenarios.
 
 ## Key Features
-- **Metadata-Based Selection**: Identifies files starting with "Fact" in their names using metadata from the source.
+- **Metadata-Based Selection**: Identifies filenames starting with "Fact" in their names using metadata from the source.
 - **ForEach Loop**: Iterates over the identified files to process each individually.
 - **Conditional Copy**: Filters files based on a naming convention and copies them to the destination folder.
 - **Data Transformation**: Leverages a Data Flow activity to apply custom transformations to the copied files.
