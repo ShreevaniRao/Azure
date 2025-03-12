@@ -48,7 +48,7 @@ Demonstrate using multiple Azure resources to
 - Apply data cleaning and transformation logic using Pyspark & Python in Azure Databricks notebook.
 - Utilize Azure Synapse Analytics to load transformed data into **Delta files** in Data Lake Storage container.
 - Analyze and create interactive data visualizations and reports with Microsoft Power BI Desktop connecting to Azure Synapse Analytics serverless database.
-- Implement Azure Active Directory (AAD) and Azure Key Vault for monitoring and governance.
+- Used Azure Active Directory (AAD) and Azure Key Vault for monitoring and governance.
 
 <a name="project-architecture"></a>
 ## Project Architecture
