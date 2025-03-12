@@ -27,7 +27,7 @@ This pipeline performs the following tasks:
   - Source Dataset: `ds_http_csv`  
 - **Sink**:
   - Sink Type: ADLS Gen2  
-  - File Format: Delimited Text (with `.txt` extension and quotes around all fields)  
+  - File Format: Delimited Text (with `.csv` extension and quotes around all fields)  
   - Sink Dataset: `ds_adlsg2_sourceapi_files`  
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20To%20Ingest%20Data%20using%20API/GetApiData-Source.jpg" width="950" height="450">
