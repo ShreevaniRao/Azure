@@ -1,5 +1,3 @@
-### **Azure Data Factory Pipeline Overview: pl_copy_select_files_with_metadata**
-
 ## **Pipeline Summary**
 This Azure Data Factory pipeline demonstrates how to 
 - Filter specific files from a source folder using metadata,
@@ -16,7 +14,7 @@ This Azure Data Factory pipeline demonstrates how to
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Azure%20Data%20Factory/Pipeline%20to%20Copy%20selected%20files%20with%20Transformations/CopySelectedFileusingPipelineRun.jpg" width="950" height="450"> 
 ---
 
-## **Pipeline Steps to Recreate**
+## **Pipeline steps to recreate** - **pl_copy_select_files_with_metadata**
 
 ### **1. Metadata Retrieval**
 - **Activity**: `GetMetadata`
