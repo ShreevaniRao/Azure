@@ -10,7 +10,7 @@
 
 ### To analyze insights and create a Power BI visualization using sample AdventureWorks dataset with Azure End to End Data Engineering pipeline that ingests data from On-Premise Sql Server database by orchestrating Ingestion, Transform and Load activities. 
 
-### Azure Data Factory pipeline orchestrates activities to ingest On-premise Sql Sever Data to Azure Data Lake Storage, transforms the ingested data using Azure Databricks notebooks that code the logic using Pyspark & Python with Spark cluster. Azure Synapse Analytics pipeline loads the transformed data from Data lake containers into Serveless SQL database views created dynamically using a stored procedure, which finally Power BI desktop imports by connecting to the Serverless SQL Endpoint of Azure Synapse database. 
+### Azure Data Factory pipeline orchestrates activities to ingest On-premise Sql Sever Data to Azure Data Lake Storage, transforms the ingested data using Azure Databricks notebooks that code the logic using Pyspark with Spark cluster. Azure Synapse Analytics pipeline loads the transformed data from Data lake containers into Serveless SQL database views created dynamically using a stored procedure, which finally Power BI desktop imports by connecting to the Serverless SQL Endpoint of Azure Synapse database. 
 </div>
 <br>
 
@@ -27,7 +27,7 @@
 <a name="introduction"></a>
 ## Project Overview 
 
-This is an end-to-end data engineering project using **Azure cloud computing platform**, which attempts the use case to build an end to end solution by ingesting the tables from on-premise SQL Server database with **Azure Data Factory** pipeline to copy on-prem data by connecting using Self hosting integration runtime and store the data in **Azure Data Lake**  and transform the raw data with multiple **Azure Databricks** notebooks using Pyspark & Python. **Azure Synapse Analytics** uses pipeline to orchestrate activities that load the transformed data to a Sql Serverless database to create dynamic database views which can always get updated for any changes in the schema and data in data lake. Finally using **Microsoft Power BI** to integrate with Azure synapse analytics to import the data from the views to build an interactive dashboard to derive & display the business insights. Also, I have used **Azure Active Directory** (AAD) and **Azure Key Vault** for the security and governance purpose. A **medallion architecture** of data design pattern is used, to logically organize data in a lakehouse, with the goal of incrementally improving the quality of data as it flows through various layers.
+This is an end-to-end data engineering project using **Azure cloud computing platform**, which attempts the use case to build an end to end solution by ingesting the tables from on-premise SQL Server database with **Azure Data Factory** pipeline to copy on-prem data by connecting using Self hosting integration runtime and store the data in **Azure Data Lake**  and transform the raw data with multiple **Azure Databricks** notebooks using Pyspark. **Azure Synapse Analytics** uses pipeline to orchestrate activities that load the transformed data to a Sql Serverless database to create dynamic database views which can always get updated for any changes in the schema and data in data lake. Finally using **Microsoft Power BI** to integrate with Azure synapse analytics to import the data from the views to build an interactive dashboard to derive & display the business insights. Also, I have used **Azure Active Directory** (AAD) and **Azure Key Vault** for the security and governance purpose. A **medallion architecture** of data design pattern is used, to logically organize data in a lakehouse, with the goal of incrementally improving the quality of data as it flows through various layers.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/ProjectOverviewUpdatedColors.png" width="850" height="500"> 
 
@@ -45,7 +45,7 @@ For this project I used the **Lightweight (LT) data**: a lightweight and pared d
 Demonstrate using multiple Azure resources to
 - Connect on-premise SQL Server database to Azure cloud using SHIR - **Self Hosting Integration Runtime**.
 - Ingest data as **Parquet files** into Azure Data Lake storage container using Azure Data Factory(ADF).
-- Apply data cleaning and transformation logic using Pyspark & Python in Azure Databricks notebook.
+- Apply data cleaning and transformation logic using Pyspark in Azure Databricks notebook.
 - Utilize Azure Synapse Analytics to load transformed data into **Delta files** in Data Lake Storage container.
 - Analyze and create interactive data visualizations and reports with Microsoft Power BI Desktop connecting to Azure Synapse Analytics serverless database.
 - Used Azure Active Directory (AAD) and Azure Key Vault for monitoring and governance.
@@ -81,7 +81,7 @@ Below diagram displays the design and details of the resource architecture :
 <a name="data-transformation"></a>
 ### Data Transformation
 - Mounted Azure Blob Storage to Databricks to read raw data from the Data Lake 'bronze' container.
-- Used Spark Cluster in Azure Databricks to transform using Pyspark & Python with multiple Azure Databricks notebooks.
+- Used Spark Cluster in Azure Databricks to transform using Pyspark with multiple Azure Databricks notebooks.
 - Created pipeline activities in ADF to save the transformed data in Delta file format into 'silver' & 'gold' storage containers.
 
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/End%20to%20End%20Data%20Engineering%20Project/Assets/StorageMount.png" width="850" height="550">
