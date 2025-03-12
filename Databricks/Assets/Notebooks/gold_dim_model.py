@@ -86,8 +86,8 @@ if(load_incremental == '0'):
     max_value = 1
 else:
     max_value_df = spark.sql("Select max(dim_model_key) from `cars-catalog`.gold.dim_model")
-    max_value_result = max_value_df.collect()[0][0]
-    max_value = (max_value_result if max_value_result is not None else 0) + 1  # returns the 1st row and 1st column value from the df
+    max_value_result = max_value_df.collect()[0][0] # returns the 1st row and 1st column value from the df
+    max_value = (max_value_result if max_value_result is not None else 0) + 1  
 
 
 
