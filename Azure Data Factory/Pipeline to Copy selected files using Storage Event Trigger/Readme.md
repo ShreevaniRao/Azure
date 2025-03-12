@@ -1,8 +1,6 @@
-## Azure Data Factory Pipeline Overview: `pl_show_storage_event_trigger`
+## Pipeline Summary
 
-## Summary
-
-The `pl_show_storage_event_trigger` pipeline, coupled with the **Blob Event Trigger**, automates the process of handling files uploaded to Azure Blob Storage. It focuses on identifying files prefixed with **"Fact"**, moving them to a destination container, and cleaning up the source. This setup demonstrates how ADF pipelines can react to real-time storage events, showcasing a robust event-driven architecture.
+The `pl_show_storage_event_trigger` pipeline, coupled with the **Blob Event Trigger**, automates the process of handling files uploaded to Azure Blob Storage. It focuses on identifying filenames prefixed with **"Fact"**, moving them to a destination container, and cleaning up the source location. This setup demonstrates how ADF pipelines can react to real-time storage events, showcasing a robust event-driven architecture.
 
 ---
 
@@ -35,7 +33,7 @@ The `pl_show_storage_event_trigger` pipeline, coupled with the **Blob Event Trig
 
 ---
 
-## Pipeline Steps and Activities
+ ## Pipeline Steps and Activities - `pl_show_storage_event_trigger`
 
 ### 1. **Trigger Initialization**
    - **Trigger**: `tr_storage_event_copy_selected_files`
