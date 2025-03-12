@@ -1,6 +1,4 @@
-# Azure Data Factory Pipeline Overview: `pl_set_variable`
-
-## Summary
+## Pipeline Summary
 
 The `pl_set_variable` pipeline demonstrates the usage of the **Set Variable** activity to manipulate and store pipeline parameters dynamically. Specifically, it is designed to extract and process information from an input URL (pipeline parameter `relativeurl`) to isolate the relevant filename. This pipeline is intended to be invoked by another parent pipeline using the **Execute Pipeline** activity, showcasing a modular and reusable pipeline architecture.
 
@@ -19,7 +17,7 @@ The `pl_set_variable` pipeline demonstrates the usage of the **Set Variable** ac
 
 ---
 
-## Pipeline Details
+## Pipeline Details - `pl_set_variable`
 
 ### Parameters
 - **`relativeurl`**:
