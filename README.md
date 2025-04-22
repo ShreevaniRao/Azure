@@ -1,5 +1,5 @@
 # **Azure Projects Repository**
-#### This collection showcases end-to-end data engineering solutions and advanced analytics implementations. Below, you’ll find highlights of my work with Azure tools.
+#### This collection showcases end-to-end data engineering solutions and advanced analytics implementations. Below, you’ll find highlights of my work with Azure services.
 ---
 
 ## **Featured Projects**
