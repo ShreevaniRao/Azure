@@ -37,7 +37,7 @@ Multiple pipelines developed to demonstrate below functions
 3. **Orchestration Pipeline**: Dependencies managed using pipeline chaining, conditional execution, and alerts for monitoring.
 
 ---
-## 4. [**Azure Databricks**](https://github.com/ShreevaniRao/Azure/tree/main/Azure%20Data%20Factory)
+## 4. [**Azure Databricks**](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Readme.md)
 
 - Scalable enterprise data platform built with **Azure Databricks** and **Azure Data Factory**
 - Automated, end-to-end ETL for car sales data, incrementally loading from **GitHub API** and **Azure SQL Database** into **ADLS Gen2** using parameterized ADF pipelines
