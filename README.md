@@ -36,4 +36,13 @@ Multiple pipelines developed to demonstrate below functions
 2. **Transformations Pipeline**: ETL workflows built for scalable data processing.
 3. **Orchestration Pipeline**: Dependencies managed using pipeline chaining, conditional execution, and alerts for monitoring.
 
+---
 ## 4. [**Azure Databricks**](https://github.com/ShreevaniRao/Azure/tree/main/Azure%20Data%20Factory)
+
+- Scalable enterprise data platform built with **Azure Databricks** and **Azure Data Factory**
+- Automated, end-to-end ETL for car sales data, incrementally loading from **GitHub API** and **Azure SQL Database** into **ADLS Gen2** using parameterized ADF pipelines
+- Data processed through the **Medallion architecture** (Bronze, Silver, Gold layers) orchestrated by **Databricks Workflows**
+- Implements **Change Data Capture (CDC)** for fact tables and **Slowly Changing Dimensions (SCD Type 1)** for dimension tables
+- Enforces data governance and security with **Unity Catalog**
+- Delivers a **star schema** modeled in **Delta tables** for efficient analytics and BI use
+
