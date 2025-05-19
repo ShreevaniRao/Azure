@@ -16,7 +16,7 @@ This project implements a robust and scalable enterprise data platform, showcasi
 
 ### Technical Architecture and Data Flow
 
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/PipelineArchitecture.jpg" width="900" height="450">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/PipelineArchitecture.jpg" width="900" height="450">
 
 - **Architecture**: Medallion (Bronze, Silver, Gold Layers)
 - **Governance Framework**: Unity Catalog
@@ -58,7 +58,7 @@ The project utilizes a Medallion Architecture with Bronze, Silver, and Gold laye
       2. 'Watermark' table to mark the last data ingested.
       3. 'UpdateWatermarkTable' - that updates & marks the last load date.
   
-         <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/ADFPipeline.jpg" width="700" height="450">
+         <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/ADFPipeline.jpg" width="700" height="450">
       **Pipeline Activities:**
      
    *   **`CopyGitData`**:
@@ -106,7 +106,7 @@ The project utilizes a Medallion Architecture with Bronze, Silver, and Gold laye
       1.  Git Repository (via HTTP API) --> Azure SQL (Initial Configuration - `CopyGitData`)
       2.  Azure SQL (Source) --> Azure Data Lake Storage (Bronze Layer - `Copy data to Bronze Layer`)
 
-    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CompleteIncrementalPipelineRun.jpg" width="700" height="450">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/CompleteIncrementalPipelineRun.jpg" width="700" height="450">
 
 3. **Silver Layer**: Data Cleansing & Standardization
    - Data quality enforcement
@@ -115,26 +115,26 @@ The project utilizes a Medallion Architecture with Bronze, Silver, and Gold laye
      
    In this step Azure Databricks resource is created and Unity Catalog, Databricks Access Connector, Storage Credentials, External Data Locations & Spark cluster are setup as below -
 
-   **Unity Catalog Configuration:** - Follow this [Unity Catalog setup](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/get-started) link to create your own Catalog and assign Azure managed identity(DB Access connector) to access the Data lake storage containers.
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/CarsUnityCatalog.jpg" width="700" height="450">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogDetails.jpg" width="600" height="250">
+   **Unity Catalog Configuration:** - Follow this [Unity Catalog setup](https://learn.microsoft.com/en-us/azure/Databricks/ETL/data-governance/unity-catalog/get-started) link to create your own Catalog and assign Azure managed identity(DB Access connector) to access the Data lake storage containers.
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/CarsUnityCatalog.jpg" width="700" height="450">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/UnityCatalogDetails.jpg" width="600" height="250">
    
 
-   **Databricks Access Connector:** -  Follow this [Create Access Connector](https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/azure-managed-identities) link to setup this Storage credentials to access data lake
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogStorageCredential.jpg" width="550" height="220">
+   **Databricks Access Connector:** -  Follow this [Create Access Connector](https://learn.microsoft.com/en-us/azure/Databricks/ETL/data-governance/unity-catalog/azure-managed-identities) link to setup this Storage credentials to access data lake
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/UnityCatalogStorageCredential.jpg" width="550" height="220">
 
    **Create External Location:** - Setup external locations that map to the 3 data lake storage containers - Bronze, Silver & Gold (need to be created manually ahead) which will have databricks read and write delta tables to these locations
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogExternalLocations.jpg" width="500" height="300">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/ExternalLocationForUnityCatalog.jpg" width="500" height="300">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/UnityCatalogExternalLocations.jpg" width="500" height="300">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/ExternalLocationForUnityCatalog.jpg" width="500" height="300">
    
    **Spark Cluster:** - Created a Personal Compute cluster (verified Unity Catalog enabled)
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/DBSparkClusterCompute.jpg" width="575" height="270">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/DBSparkClusterCompute.jpg" width="575" height="270">
    
    Created a new folder repository - 'CarsProject' to organize the pyspark notebooks artefacts in the Workspace.
 
-   **Catalog-Schema-Table:** - Created 'Cars-Catalog' Unity Catalog and used it to contain the 2 schemas - 'Silver' & ' Gold'. All the Delta Tables created will be using this data hierarchy to make use of a structured system. Refer to [db_notebook](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/db_notebook.py) for this setup.
+   **Catalog-Schema-Table:** - Created 'Cars-Catalog' Unity Catalog and used it to contain the 2 schemas - 'Silver' & ' Gold'. All the Delta Tables created will be using this data hierarchy to make use of a structured system. Refer to [db_notebook](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/Notebooks/db_notebook.py) for this setup.
 
-   **[silver_notebook](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/silver_notebook.py):** - Pyspark notebook to read the Bronze layer data to transform the data for adding new columns by splitting the existing column data, creating new calculated columns and also aggregate the existing data to perform ad-hoc query using vizualizatons like pie chart.
+   **[silver_notebook](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/Notebooks/silver_notebook.py):** - Pyspark notebook to read the Bronze layer data to transform the data for adding new columns by splitting the existing column data, creating new calculated columns and also aggregate the existing data to perform ad-hoc query using vizualizatons like pie chart.
    Finally writing the transformed data to the Silver container in parquet file format that can be leveraged for data analytics.
 
 4. **Gold Layer**: Business-Ready Analytics
@@ -150,38 +150,38 @@ The project utilizes a Medallion Architecture with Bronze, Silver, and Gold laye
       + Every notebook can be run multiple times to verify and validate the row count is accurate & valid.
       + Every notebook also writes and saves the Dimension and Fact tables in the Gold Data lake container in **Delta file format**.
         
-      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Catalog-Schema-Table.jpg" width="575" height="270">
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/Catalog-Schema-Table.jpg" width="575" height="270">
   
       
-      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/STARSchema.jpg" width="575" height="270">
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/STARSchema.jpg" width="575" height="270">
 
-      **[gold_dim_branch](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/gold_dim_branch.py):** - Creates cars-catalog.gold.dim_branch
+      **[gold_dim_branch](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/Notebooks/gold_dim_branch.py):** - Creates cars-catalog.gold.dim_branch
       
-      **[gold_dim_dealer](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/gold_dim_dealer.py):** - Creates cars-catalog.gold.dim_dealer
+      **[gold_dim_dealer](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/Notebooks/gold_dim_dealer.py):** - Creates cars-catalog.gold.dim_dealer
       
-      **[gold_dim_model](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/gold_dim_model.py):** - Creates cars-catalog.gold.dim_model
+      **[gold_dim_model](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/Notebooks/gold_dim_model.py):** - Creates cars-catalog.gold.dim_model
       
-      **[gold_dim_date](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/gold_dim_date.py):** - Creates cars-catalog.gold.dim_date
+      **[gold_dim_date](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/Notebooks/gold_dim_date.py):** - Creates cars-catalog.gold.dim_date
       
-      **[gold_fact_sales](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Notebooks/gold_fact_sales.py):**- Creates cars-catalog.gold.fact_carsales
+      **[gold_fact_sales](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/Notebooks/gold_fact_sales.py):**- Creates cars-catalog.gold.fact_carsales
 
 5. **Complete ETL pipeline using Databricks Workflows**
    
       Created a Job to run multiple tasks to automate all the above pyspark notebooks. Further parallelized the tasks runs, to process the notebooks parallely to optimize the pipeline.
    
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/WorkflowJobs.jpg" width="775" height="370">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/ParellelWorkFlowJobs.jpg" width="775" height="570">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/WorkflowJobs.jpg" width="775" height="370">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/ParellelWorkFlowJobs.jpg" width="775" height="570">
    
 6. **Debug, Troubleshoot & Validate the data**
    
       Multiple runs of the notebooks execution and job runs resulted in ability to learn to diagnose, debug and troubleshoot the issues.
    
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/FailedIncrementlLoadWorkflow.jpg" width="775" height="570">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/Troubleshoot&DebugScript.jpg" width="775" height="570">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/FailedRunOfWorkFlow.jpg" width="775" height="570">  
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/WorkflowRuns.jpg" width="775" height="570"> 
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/SuccessfulIncrementalLoadRun.jpg" width="775" height="570">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/VerifyIncrementalLoadData.jpg" width="775" height="570">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/FailedIncrementlLoadWorkflow.jpg" width="775" height="570">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/Troubleshoot&DebugScript.jpg" width="775" height="570">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/FailedRunOfWorkFlow.jpg" width="775" height="570">  
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/WorkflowRuns.jpg" width="775" height="570"> 
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/SuccessfulIncrementalLoadRun.jpg" width="775" height="570">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/VerifyIncrementalLoadData.jpg" width="775" height="570">
    
 
 7. **Unity Catalog - Data Governance with Unity Catalog: Managing Metadata, Access Control, and Lineage**
@@ -189,21 +189,21 @@ The project utilizes a Medallion Architecture with Bronze, Silver, and Gold laye
    Below details showcases the way Unity Catalog can be leveraged to
    Grant granular access to tables -
    
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogGranularACL.jpg" width="1000" height="570">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/UnityCatalogGranularACL.jpg" width="1000" height="570">
 
    Track the lineage of any asset -
    
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogLineage.jpg" width="900" height="470">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/UnityCatalogLineage.jpg" width="900" height="470">
 
    Illustrates metadata enrichment and data discoverability -
     
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/UnityCatalogDataDiscovery.jpg" width="900" height="300">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/UnityCatalogDataDiscovery.jpg" width="900" height="300">
 
 
 8. **Alternate solution & approach**
 
    Alternately the Databricks notebooks can be executed in the ADF pipeline which will trigger the Databricks Workflow and can be monitored for the similar output.
-    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Assets/AlternateSolution.jpg" width="1000" height="570">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Assets/AlternateSolution.jpg" width="1000" height="570">
     
    
 ### Conclusion
