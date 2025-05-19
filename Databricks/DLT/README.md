@@ -1,8 +1,6 @@
-# 🚀 Databricks DTL Project
+# 🚀 Delta Live Tables (DLT) Project
 
-# 📋 Delta Live Tables (DLT) Project
-
-This repository outlines the steps for a data processing pipeline using **Delta Live Tables (DLT)**, a declarative framework built by Databricks for reliable ETL processing.  
+This repository outlines the steps for a data processing pipeline using **Delta Live Tables (DLT)**, a [declarative framework](https://docs.databricks.com/gcp/en/data-engineering/procedural-vs-declarative) built by Databricks for reliable ETL processing.  
 DLT simplifies pipeline development by handling orchestration automation, cluster management, data quality, and error handling automatically, enabling developers to focus on transformations.
 
 > **Note:** Delta Live Tables require a Premium Databricks plan.
@@ -23,20 +21,20 @@ DLT simplifies pipeline development by handling orchestration automation, cluste
 ## Project Setup and Prerequisites
 
 - **Schema Creation:**  
-  Created a new schema called `ETL` under the `dlt=catalog` catalog to house all DLT artifacts.
+  Created a new schema called `etl` under the `dlt-catalog` catalog to house all DLT artifacts.
 
 - **Sample Data:**  
   - Used Databricks sample data: `samples.tpch.orders` and `samples.tpch.customer`.
-  - Deep clones created under `Dev.bronze` as `orders_raw` and `customer_raw`.
+  - Deep clones created for tables as `orders_raw` and `customer_raw`.
 
 - **Autoloader Preparation:**  
-  - Created a managed volume `Landing` in `Dev.ETL`.
+  - Created a managed volume `autoloader` in `dlt-catalog.etl`.
   - Set up folders:
     - `files` (for landing input files)
     - `autoloader_schemas` (for storing schema inference information)
 
 - **Setup Notebook:**  
-  Used to execute initial schema, cloning, and volume creation steps.
+  dlt setup - Used to execute initial schema, cloning, and volume creation steps.
 
 - **Source Table Enhancements:**  
   - Added columns to `customer_raw`:
@@ -51,20 +49,17 @@ DLT simplifies pipeline development by handling orchestration automation, cluste
 DLT pipelines operate using three primary types of datasets:
 
 - **Streaming Tables:**  
-  Used to process incremental data. Support streaming sources and allow appending data.
+  A [streaming table](https://docs.databricks.com/gcp/en/dlt/streaming-tables) in Databricks is a Delta table specifically designed to support streaming or incremental data processing. Unlike traditional tables that are typically loaded in batches, a streaming table is continuously updated as new data arrives from streaming sources, such as files landing in cloud storage or messages from a data stream.They are typically used for initial ingestion layers (e.g., Bronze).
 
 - **Materialized Views:**  
-  Used for transformations, aggregations, or computations. Typically read from batch sources.
+  A [materialized view](https://docs.databricks.com/aws/en/dlt/materialized-views) is a special kind of database object that stores the results of a query as a physical table, enabling fast access to precomputed data and reducing the need to recalculate results each time the view is queried.Generally used for transformations, aggregations, and computations. They provide an up-to-date view of the data based on the defined query. Often used for Silver and Gold layers
 
 - **Views:**  
-  Used for intermediate transformations that are not stored in the target schema.
-
-> DLT pipelines are powered by Delta Lake, inheriting its capabilities.  
-> DLT code can be written in Python or SQL.
+  Temporary intermediate transformations that are not stored at the target schema. Useful for breaking down complex logic within the pipeline.
 
 ---
 
-## Creating the DLT Pipeline
+## Setting up the DLT Pipeline configuration
 
 The DLT pipeline was created using the Databricks UI:
 
@@ -81,14 +76,14 @@ The DLT pipeline was created using the Databricks UI:
 
 ## Building the Data Pipeline (Logical Flow)
 
-The project followed a multi-layered architecture (Medallion: Bronze, Silver, Gold):
+The project followed a multi-layered [Medallion architecture](https://docs.databricks.com/gcp/en/lakehouse/medallion) (Bronze, Silver, Gold):
 
 ### Bronze Layer (Ingestion)
-
+Data is ingested from raw sources (like Delta tables or files) into Streaming Tables or Materialized Views
 - **Orders:**  
-  Read from `orders_raw` as a Streaming Table using `@dlt.table` and `spark.readStream.table`.
+  Read from `orders_raw` as a Streaming Table using `@dlt.table` and `spark.readStream.table` into a orders_bronze Streaming Table.
 - **Customer:**  
-  Read from `customer_raw` as a Materialized View using `@dlt.table` and `spark.read.table`.
+  Read from `customer_raw` as a batch source for a Materialized View using `@dlt.table` and `spark.read.table`.
 - **Properties:**  
   Included optional table properties (like `quality`) and comments.
 
