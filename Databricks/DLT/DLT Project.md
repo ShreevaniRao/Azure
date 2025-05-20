@@ -9,27 +9,27 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
 **Steps:**
 
 *   **Set up the Environment:**
-    *   Created a new folder for DLT pipelines within the workspace.
-    *   Used a setup notebook to **create a new schema** (e.g., `etl` under the `dlt-catalog` catalog) for the DLT run.
+    *   Used a [setup]() notebook to **create a new catalog & schema** -> `etl` under the `dlt-catalog` catalog for the DLT run.
     *   **Deep cloned sample data** (e.g., `orders` and `customer` from `samples.tpch`) into raw tables (e.g., `etl.bronze.orders_raw`, `etl.bronze.customer_raw`) to use as source data.
     *   **Insight:** Setting up a dedicated schema and cloning data provides a clean, repeatable starting point for the pipeline development. Using `deep clone` creates independent copies of the source data.
 
-    *(Insert Screenshot: Creating Schema and Cloning Data)*
+
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DLTInitialSetup%26Queries.jpg" width="900" height="450">
 
 *   **Understand DLT Dataset Types:**
-    *   Learned about the three main types of datasets in DLT: **Streaming Tables**, **Materialized Views**, and **Views** [2].
-    *   **Streaming Tables** are used for streaming sources and processing incremental data, allowing data to be appended [2].
-    *   **Materialized Views** are generally used for transformations, aggregations, or computations [2].
-    *   **Views** are typically used for intermediate transformations and are **not stored** at the target schema [2, 3].
-    *   Understood that DLT pipelines are powered by **Delta Lake**, inheriting its capabilities [2].
+    *   Learned about the three main types of datasets in DLT: **Streaming Tables**, **Materialized Views**, and **Views** .
+    *   **Streaming Tables** are used for streaming sources and processing incremental data, allowing data to be appended.
+    *   **Materialized Views** are generally used for transformations, aggregations, or computations.
+    *   **Views** are typically used for intermediate transformations and are **not stored** at the target schema.
+    *   Understood that DLT pipelines are powered by **Delta Lake**, inheriting its capabilities.
     *   **Insight:** Choosing the right dataset type is crucial for defining how data is processed and stored. Streaming tables are key for efficiency with ever-growing data.
 
-*   **Write the Initial DLT Code:**
-    *   Noted that DLT code can be written in **Python or SQL** and requires a special **job compute** type, not the standard all-purpose compute [2, 4].
-    *   Imported the necessary **`dlt` Python module** [4].
-    *   **Created a Streaming Table** (`orders_bronze`) for the `orders_raw` source using the `@dlt.table` decorator and `spark.readStream.table()` to read the Delta table as a streaming source [4, 5]. Added optional table properties like `quality` and a comment [4].
-    *   **Created a Materialized View** (`customer_bronze`) for the `customer_raw` source using the `@dlt.table` decorator and `spark.read.table()` to read the Delta table as a batch source [5, 6]. Used the `name` parameter to explicitly set the table name [5].
-    *   **Insight:** The `@dlt.table` and `@dlt.view` decorators, along with the `dlt` module, are the core building blocks for defining datasets and transformations in DLT. The key difference between streaming tables and materialized views often lies in how their source is read (`readStream` vs `read`) [6].
+*   **[DLT]() Code to create the DLT Datasets:**
+    *   DLT code can be written in **Python or SQL** and requires a special **job compute** type, not the standard all-purpose compute.
+    *   Imported the necessary **`dlt` Python module**.
+    *   **Created a Streaming Table** (`orders_bronze`) for the `orders_raw` source using the `@dlt.table` decorator and `spark.readStream.table()` to read the Delta table as a streaming source. Added optional table properties like `quality` and a comment.
+    *   **Created a Materialized View** (`customer_bronze`) for the `customer_raw` source using the `@dlt.table` decorator and `spark.read.table()` to read the Delta table as a batch source. Used the `name` parameter to explicitly set the table name.
+    *   **Insight:** The `@dlt.table` and `@dlt.view` decorators, along with the `dlt` module, are the core building blocks for defining datasets and transformations in DLT. The key difference between streaming tables and materialized views often lies in how their source is read (`readStream` vs `read`).
 
     *(Insert Screenshot: Creating orders_bronze Streaming Table)*
     *(Insert Screenshot: Creating customer_bronze Materialized View)*
