@@ -39,6 +39,7 @@ Multiple pipelines developed to demonstrate below functions
 ---
 ## 4. [**Azure Databricks**](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Readme.md)
 
+ **ETL**
 - Scalable enterprise data platform built with **Azure Databricks** and **Azure Data Factory**
 - Automated, end-to-end ETL for car sales data, incrementally loading from **GitHub API** and **Azure SQL Database** into **ADLS Gen2** using parameterized ADF pipelines
 - Data processed through the **Medallion architecture** (Bronze, Silver, Gold layers) orchestrated by **Databricks Workflows**
@@ -46,3 +47,33 @@ Multiple pipelines developed to demonstrate below functions
 - Enforces data governance and security with **Unity Catalog**
 - Delivers a **star schema** modeled in **Delta tables** for efficient analytics and BI use
 
+**DLT**
+
+Project with steps for a data processing pipeline using Delta Live Tables (DLT) showcasing -
+- **Incremental Loading**:
+Streaming Tables automatically process only new data on each pipeline run.
+
+- **Schema Evolution**:
+Adding/modifying columns or renaming tables is handled automatically by DLT.
+
+- **Autoloader Integration**:
+Integrated **Autoloader** (spark.readStream.format("cloudFiles")) to ingest files from a landing volume.
+Configured with options for schema hinting, schema location, file format, and path glob filter.
+DLT managed checkpoint location for Autoloader automatically.
+
+- **Append Flow**:
+Used @dlt.**append_flow** to combine streaming data from multiple sources into a union Streaming Table.
+
+- **Passing Parameters** (Dynamic Tables):
+Pipeline configurations can be accessed within the DLT notebook using spark.conf.get.
+Example: dynamically creating separate Gold Materialized Views filtered by order status.
+
+- **Change Data Capture (CDC) with apply_changes**:
+Used **@dlt.apply_changes** for SCD Type 1 and 2.
+Tracked historical changes and handled deletes/truncates.
+Updated downstream logic to read from SCD Type 2 table and filter for active records.
+
+- **Data Quality with Expectations**:
+Defined rules using **@dlt.expect and @dlt.expect_all**.
+Actions: Warning (default), Drop, Fail.
+Data quality metrics shown in UI and event logs.
