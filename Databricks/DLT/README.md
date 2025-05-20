@@ -1,9 +1,7 @@
-# 🚀 Delta Live Tables (DLT) Project
+ # 🚀 Delta Live Tables (DLT) Project
 
 This repository outlines the steps for a data processing pipeline using **Delta Live Tables (DLT)**, a [declarative framework](https://docs.databricks.com/gcp/en/data-engineering/procedural-vs-declarative) built by Databricks for reliable ETL processing.  
 DLT simplifies pipeline development by handling orchestration automation, cluster management, data quality, and error handling automatically, enabling developers to focus on transformations.
-
- **Note:** Delta Live Tables require a Premium Databricks plan.
 
 ---
 
@@ -20,6 +18,7 @@ DLT simplifies pipeline development by handling orchestration automation, cluste
 
 ## Project Setup and Prerequisites
 
+ **Note:** Delta Live Tables require a Premium Databricks plan.
 - **Schema Creation:**  
   Created a new schema called `etl` under the `dlt-catalog` catalog to house all DLT artifacts.
 
@@ -29,9 +28,7 @@ DLT simplifies pipeline development by handling orchestration automation, cluste
 
 - **Autoloader Preparation:**  
   - Created a managed volume `autoloader` in `dlt-catalog.etl`.
-  - Set up folders:
-    - `files` (for landing input files)
-    - `autoloader_schemas` (for storing schema inference information)
+  - Uploaded csv files:
 
 - **Setup Notebook:**  
   dlt setup - Used to execute initial schema, cloning, and volume creation steps.
@@ -63,12 +60,12 @@ DLT pipelines operate using three primary types of datasets:
 
 The DLT pipeline was created using the Databricks UI:
 
-- Initiated a new DLT pipeline by selecting "DLT pipelines".
-- Provided a pipeline name (e.g., `00_DLT_introduction`).
-- Selected a Product Edition (Core, Pro, Advanced).
+- Initiated a new DLT pipeline by selecting "ETL pipelines".
+- Provided a pipeline name (e.g., `dlt_01`).
+- Selected a Product Edition (Core, Pro, Advanced) depending on the DLT feature in use.
 - Chose a Pipeline Mode (Triggered or Continuous).
 - Specified the path to the DLT notebook containing transformation code.
-- Defined the target schema (e.g., `Dev.ETL`).
+- Defined the target schema (e.g., `dlt-catalog.etl`).
 - Configured compute settings (number of workers, worker type).
 - Added optional configurations for dynamic pipeline parameters.
 
@@ -90,7 +87,7 @@ Data is ingested from raw sources (like Delta tables or files) into Streaming Ta
 ### Intermediate Layer (Joining)
 
 - Created a View - order_customer_view to join the orders bronze Streaming Table and the customer bronze Materialized View using `@dlt.view`.
-- Used the `live.` keyword to reference pipeline datasets (e.g., `live.orders_bronze`).
+- Used the `LIVE.` keyword to reference pipeline datasets (e.g., `LIVE.orders_bronze`).
 - Join logic defined with Spark DataFrame operations (e.g., left_outer join on customer key).
 
 ### Silver Layer (Transformations)
