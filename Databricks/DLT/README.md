@@ -3,7 +3,7 @@
 This repository outlines the steps for a data processing pipeline using **Delta Live Tables (DLT)**, a [declarative framework](https://docs.databricks.com/gcp/en/data-engineering/procedural-vs-declarative) built by Databricks for reliable ETL processing.  
 DLT simplifies pipeline development by handling orchestration automation, cluster management, data quality, and error handling automatically, enabling developers to focus on transformations.
 
-> **Note:** Delta Live Tables require a Premium Databricks plan.
+ **Note:** Delta Live Tables require a Premium Databricks plan.
 
 ---
 
@@ -89,18 +89,18 @@ Data is ingested from raw sources (like Delta tables or files) into Streaming Ta
 
 ### Intermediate Layer (Joining)
 
-- Created a View to join the orders bronze Streaming Table and the customer bronze Materialized View using `@dlt.view`.
+- Created a View - order_customer_view to join the orders bronze Streaming Table and the customer bronze Materialized View using `@dlt.view`.
 - Used the `live.` keyword to reference pipeline datasets (e.g., `live.orders_bronze`).
 - Join logic defined with Spark DataFrame operations (e.g., left_outer join on customer key).
 
 ### Silver Layer (Transformations)
 
-- Created a Materialized View `joined_silver` from the intermediate join view using `@dlt.table`.
+- Created a Materialized View `customerOrders_silver` from the intermediate join view using `@dlt.table`.
 - Added an `insert_date` column using `current_timestamp`.
 
 ### Gold Layer (Aggregation)
 
-- Created a final Materialized View (e.g., `orders_aggregated_gold`) from the `joined_silver` table using `@dlt.table`.
+- Created a final Materialized View (e.g., `orders_aggregated_gold`) from the `customerOrders_silver` table using `@dlt.table`.
 - Performed aggregations based on `Market_segment` (e.g., counting `order_keys`, summing `total_price`).
 - Added an `insert_date` column.
 
@@ -161,7 +161,7 @@ Data is ingested from raw sources (like Delta tables or files) into Streaming Ta
 
 By using these DLT features, this project demonstrates how to build a robust, maintainable, and observable data pipeline capable of handling common data engineering patterns like incremental loading, CDC, and data quality enforcement declaratively.
 
-> **DLT enables declarative, production-grade data engineering with minimal operational overhead.**
+**DLT enables declarative, production-grade data engineering with minimal operational overhead.**
 
 ---
 
