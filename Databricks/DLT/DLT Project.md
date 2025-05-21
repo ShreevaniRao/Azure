@@ -60,35 +60,36 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
 
 
 *   **Verify Pipeline Output:**
-    *   Examined the Databricks Catalog to see the created datasets [3]. Confirmed that Streaming Tables and Materialized Views were created, while Views were not persisted [3].
-    *   Queried the final gold table (`orders_aggregated_gold`) to verify the aggregated data [3].
-    *   Terminated the DLT cluster after successful development runs to manage costs [3].
-    *   **Insight:** DLT automatically manages the creation and storage of specified tables and materialized views based on the defined code. Views are temporary constructs used only during the pipeline run [3].
+    *   Examined the Databricks Catalog to see the created datasets. Confirmed that Streaming Tables and Materialized Views were created, while Views were not persisted.
+    *   Queried the final gold table (`orders_aggregated_gold`) to verify the aggregated data.
+    *   Terminated the DLT cluster after successful development runs to manage costs.
+    *   **Insight:** DLT automatically manages the creation and storage of specified tables and materialized views based on the defined code. Views are temporary constructs used only during the pipeline run.
 
-    *(Insert Screenshot: Datasets in Catalog after Run)*
-    *(Insert Screenshot: Querying the Final Gold Table)*
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryTheGold%26VerifyOtherDataAssets.jpg" width="700" height="550">
+
 
 ###   2: DLT Internals & Incremental Load
 
-This   dives deeper into DLT's internal workings, focusing on how it handles incremental data and dataset management, and introduces features for modifying/renaming tables and data lineage.
+This dives deeper into DLT's internal workings, focusing on how it handles incremental data and dataset management, and introduces features for modifying/renaming tables and data lineage.
 
 **Steps:**
 
 *   **Understand Dataset Management:**
-    *   Learned that DLT manages all datasets (Streaming Tables, Materialized Views, Views) created within a pipeline and ties them to a specific **Pipeline ID** [12, 13].
-    *   Deleting a DLT pipeline **deletes all associated datasets** [12].
+    *   Learned that DLT manages all datasets (Streaming Tables, Materialized Views, Views) created within a pipeline and ties them to a specific **Pipeline ID**.
+    *   Deleting a DLT pipeline **deletes all associated datasets**.
     *   **Insight:** This integrated management simplifies data lifecycle handling for pipeline-generated data, ensuring consistency between the pipeline definition and its output.
 
 *   **Process Incremental Data:**
-    *   Inserted new records into the source `orders_raw` table (the source for the `orders_bronze` streaming table) [14].
-    *   Reran the DLT pipeline (in Triggered mode) [14].
-    *   Observed that the `orders_bronze` streaming table **only read the newly inserted incremental records** (e.g., 10k records) during the run, demonstrating efficient incremental processing [14].
-    *   Confirmed the final aggregated gold table reflected the new data, with increased counts [14].
-    *   **Insight:** Streaming tables in DLT are designed for incremental processing. When their source is updated, they only process the new changes on subsequent runs, which is crucial for performance and cost-effectiveness with large datasets [14].
+    *   Inserted new records into the source `orders_raw` table (the source for the `orders_bronze` streaming table).
+    *   Reran the DLT pipeline (in Triggered mode).
+    *   Observed that the `orders_bronze` streaming table **only read the newly inserted incremental records** (e.g., 10k records) during the run, demonstrating efficient incremental processing.
+    *   Confirmed the final aggregated gold table reflected the new data, with increased counts.
+    *   **Insight:** Streaming tables in DLT are designed for incremental processing. When their source is updated, they only process the new changes on subsequent runs, which is crucial for performance and cost-effectiveness with large datasets.
+       
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/IncrementalDataLoadedGraph.jpg" width="750" height="550">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GoldViewInitialRecordsCounts.jpg" width="350" height="150">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GoldViewAfterIncrementRecordsCounts.jpg" width="350" height="150">
 
-    *(Insert Screenshot: Inserting Incremental Data into Source)*
-    *(Insert Screenshot: Pipeline Run showing Incremental Read on Streaming Table)*
-    *(Insert Screenshot: Final Gold Table reflecting Increased Counts)*
 
 *   **Modify and Add Columns:**
     *   Modified the DLT code to **add a new aggregated column** (`sum_of_total_price`) and **rename an existing column** (`count_orders`) in the `orders_aggregated_gold` materialized view [15].
