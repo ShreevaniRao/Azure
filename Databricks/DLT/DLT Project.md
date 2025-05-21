@@ -12,8 +12,7 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
     *   Used a [setup]() notebook to **create a new catalog & schema** -> `etl` under the `dlt-catalog` catalog for the DLT run.
     *   **Deep cloned sample data** (e.g., `orders` and `customer` from `samples.tpch`) into raw tables (e.g., `etl.bronze.orders_raw`, `etl.bronze.customer_raw`) to use as source data.
     *   **Insight:** Setting up a dedicated schema and cloning data provides a clean, repeatable starting point for the pipeline development. Using `deep clone` creates independent copies of the source data.
-
-
+</br>
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DLTInitialSetup%26Queries.jpg" width="900" height="450">
 
 *   **Understand DLT Dataset Types:**
@@ -21,7 +20,7 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
     *   **Streaming Tables** are used for streaming sources and processing incremental data, allowing data to be appended.
     *   **Materialized Views** are generally used for transformations, aggregations, or computations.
     *   **Views** are typically used for intermediate transformations and are **not stored** at the target schema.
-    *   Understood that DLT pipelines are powered by **Delta Lake**, inheriting its capabilities.
+    *   Understood that DLT pipelines are powered by **Delta Lake**, inheriting its **ACID** capabilities.
     *   **Insight:** Choosing the right dataset type is crucial for defining how data is processed and stored. Streaming tables are key for efficiency with ever-growing data.
 
 *   **[DLT]() Code to create the DLT Datasets:**
@@ -31,8 +30,7 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
     *   **Created a Materialized View** (`customer_bronze`) for the `customer_raw` source using the `@dlt.table` decorator and `spark.read.table()` to read the Delta table as a batch source. Used the `name` parameter to explicitly set the table name.
     *   **Insight:** The `@dlt.table` and `@dlt.view` decorators, along with the `dlt` module, are the core building blocks for defining datasets and transformations in DLT. The key difference between streaming tables and materialized views often lies in how their source is read (`readStream` vs `read`).
 
-    *(Insert Screenshot: Creating orders_bronze Streaming Table)*
-    *(Insert Screenshot: Creating customer_bronze Materialized View)*
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/CreateInitialStreamingTable%26MatView.jpg" width="900" height="450">
 
 *   **Define Intermediate and Final Transformations:**
     *   **Created a View** (`join_view`) to join the `orders_bronze` streaming table and `customer_bronze` materialized view [6, 7]. Used the `@dlt.view` decorator and read the datasets using the **`live` keyword** (`live.customer_bronze`, `live.orders_bronze`) to reference datasets within the same pipeline [6].
