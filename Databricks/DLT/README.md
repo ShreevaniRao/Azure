@@ -162,4 +162,4 @@ By using these DLT features, this project demonstrates how to build a robust, ma
 
 ---
 
-**Feel free to clone this repository and adapt the pipeline structure for your own projects. Contributions and feedback are welcome!**
+
