@@ -91,61 +91,54 @@ This dives deeper into DLT's internal workings, focusing on how it handles incre
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GoldViewAfterIncrementRecordsCounts.jpg" width="350" height="150">
 
 
-*   **Modify and Add Columns:**
-    *   Modified the DLT code to **add a new aggregated column** (`sum_of_total_price`) and **rename an existing column** (`count_orders`) in the `orders_aggregated_gold` materialized view [15].
-    *   Validated the code changes within the notebook while connected to the DLT pipeline in development mode [15]. (Corrected errors like unimported functions or incorrect column names during validation) [15, 16].
-    *   Reran the DLT pipeline [16].
-    *   Verified that the final gold table now contained the renamed and newly added columns [16].
-    *   **Insight:** DLT's declarative nature simplifies schema changes. You just update the desired schema/transformation in the code, and DLT handles the underlying table updates and schema evolution automatically [15, 16].
+*   **Schema Evolution - Modify and Add Columns:**
+    *   Modified the DLT code to **add a new aggregated column** (`sum_of_total_price`) and **rename an existing column** (`count_orders`) in the `orders_aggregated_gold` materialized view.
+    *   Validated the code changes within the notebook while connected to the DLT pipeline in development mode. (Corrected errors like unimported functions or incorrect column names during validation).
+    *   Reran the DLT pipeline.
+    *   Verified that the final gold table now contained the renamed and newly added columns.
+    *   **Insight:** DLT's declarative nature simplifies schema changes. You just update the desired schema/transformation in the code, and DLT handles the underlying table updates and schema evolution automatically.
 
-    *(Insert Screenshot: Modifying Code to Add/Rename Columns)*
-    *(Insert Screenshot: Validating DLT Code in Notebook)*
-    *(Insert Screenshot: Final Gold Table with New/Renamed Columns)*
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphForAddingNewColumn%26RenameColInGoldLayer.jpg" width="750" height="550">
 
 *   **Rename Tables:**
-    *   Modified the DLT code to **rename a materialized view** (`joined_silver` to `order_silver`) by changing the `name` parameter in the `@dlt.table` decorator [16].
-    *   Updated the downstream table (`orders_aggregated_gold`) to read from the new table name (`live.order_silver`) [16].
-    *   Reran the DLT pipeline [13, 16].
-    *   Verified in the Databricks Catalog that the old table was removed, and a new table with the updated name was created [13].
-    *   **Insight:** Just like schema changes, renaming tables is handled automatically by DLT when the code is updated. DLT takes care of removing the old dataset and creating the new one, managing the transition seamlessly from the user's perspective [13, 16].
+    *   Modified the DLT code to **rename a materialized view** (`order_customer_silver_view` to `customerOrders_silver`) by changing the `name` parameter in the `@dlt.table` decorator.
+    *   Updated the downstream table (`orders_aggregated_gold`) to read from the new table name (`live.order_silver`).
+    *   Reran the DLT pipeline.
+    *   Verified in the Databricks Catalog that the old table was removed, and a new table with the updated name was created.
+    *   **Insight:** Just like schema changes, renaming tables is handled automatically by DLT when the code is updated. DLT takes care of removing the old dataset and creating the new one, managing the transition seamlessly from the user's perspective.
 
-    *(Insert Screenshot: Renaming Table in Code)*
-    *(Insert Screenshot: Catalog showing Old Table Gone, New Table Created)*
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/EaseOfChangeinSilverTableName.jpg" width="750" height="550">
 
 *   **Explore DLT Internals:**
-    *   Understood that DLT datasets (Streaming Tables, Materialized Views) are **abstractions** on top of internal tables managed by DLT [13].
-    *   Located the **internal catalog** (`Databricks internal`) and schema (`dlt_materialization_schema`) where the underlying data tables are stored, tied to the Pipeline ID [13, 17]. This internal schema is typically hidden from developers [17].
-    *   Examined the details of a streaming table (e.g., `orders_bronze`) and found the **table ID** which points to the exact storage location [17].
-    *   Explored the storage location in the Azure portal and identified a **`_dlt_metadata` folder** containing **checkpoint data** for the streaming table [17].
-    *   **Insight:** DLT uses an internal catalog to manage the physical storage of its datasets. Streaming tables leverage checkpointing, stored alongside the data, to efficiently track and process only the incremental changes [17].
+    *   Understood that DLT datasets (Streaming Tables, Materialized Views) are **abstractions** on top of internal tables managed by DLT.
+    *   Located the **internal catalog** (`Databricks internal`) and schema (`dlt_materialization_schema`) where the underlying data tables are stored, tied to the Pipeline ID. This internal schema is typically hidden from developers.
+    *   Examined the details of a streaming table (e.g., `orders_bronze`) and found the **table ID** which points to the exact storage location.
+    *   Explored the storage location in the Azure portal and identified a **`_dlt_metadata` folder** containing **checkpoint data** for the streaming table.
+    *   **Insight:** DLT uses an internal catalog to manage the physical storage of its datasets. Streaming tables leverage checkpointing, stored alongside the data, to efficiently track and process only the incremental changes.
 
-    *(Insert Screenshot: Databricks internal Catalog)*
-    *(Insert Screenshot: Streaming Table Details showing Table ID)*
-    *(Insert Screenshot: Storage Location showing _dlt_metadata and checkpoint)*
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DLTPipelineInternals.jpg" width="750" height="550">
 
 *   **Visualize Data Lineage:**
-    *   Explored **data lineage** powered by **Unity Catalog** for the DLT pipeline output tables [17].
-    *   Viewed the lineage graph, showing the flow of data from the raw source tables (`customer_raw`, `orders_raw`) through intermediate steps (`customer_bronze`, `order_silver`) to the final aggregated table (`orders_aggregated_gold`) [17, 18].
-    *   Demonstrated tracing **column-level lineage** (e.g., tracing `count_orders` back to `order_key`) [18].
-    *   Noted that lineage is a Unity Catalog feature and is available for standard tables as well, not just DLT outputs [18].
-    *   **Insight:** Data lineage provides crucial visibility into the data flow, helping understand dependencies, troubleshoot issues, and manage data governance. Unity Catalog makes this feature broadly available across the data platform [17, 18].
+    *   Explored **data lineage** powered by **Unity Catalog** for the DLT pipeline output tables.
+    *   Viewed the lineage graph, showing the flow of data from the raw source tables (`customer_raw`, `orders_raw`) through intermediate steps (`customer_bronze`, `order_silver`) to the final aggregated table (`orders_aggregated_gold`).
+    *   Demonstrated tracing **column-level lineage** (e.g., tracing `count_orders` back to `order_key`).
+    *   Noted that lineage is a Unity Catalog feature and is available for standard tables as well, not just DLT outputs.
+    *   **Insight:** Data lineage provides crucial visibility into the data flow, helping understand dependencies, troubleshoot issues, and manage data governance. Unity Catalog makes this feature broadly available across the data platform.
 
-    *(Insert Screenshot: Data Lineage Graph)*
-    *(Insert Screenshot: Column Lineage)*
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/UnityCatalogLineage.jpg" width="750" height="550">
 
 ###   3: DLT Append Flow & Autoloader
 
-This   shows how to integrate external file ingestion using Autoloader into a DLT pipeline and how to dynamically create tables based on pipeline parameters.
+This section shows how to integrate external file ingestion using Autoloader into a DLT pipeline and how to dynamically create tables based on pipeline parameters.
 
 **Steps:**
 
 *   **Set up for Autoloader:**
-    *   Used the setup notebook to **create a managed volume** (e.g., `landing`) under the DLT schema [19].
-    *   Created folders within the volume for landing files (`files`) and for Autoloader's schema inference location (`autoloader_schemas`) [19].
-    *   **Insight:** Using managed volumes within Unity Catalog provides a governed location for landing external files for ingestion, integrating file-based sources into the governed Lakehouse environment [19].
+    *   Used the setup notebook to **create a managed volume** (e.g., `autoloader`) under the DLT schema.
+    *   Created folders within the volume for landing files (`files`) and for Autoloader's schema inference location (`autoloader_schemas`).
+    *   **Insight:** Using managed volumes within Unity Catalog provides a governed location for landing external files for ingestion, integrating file-based sources into the governed Lakehouse environment.
 
-    *(Insert Screenshot: Creating Managed Volume and Folders)*
-    *(Insert Screenshot: Managed Volume and Folders in Catalog)*
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/IncrementalLoadingUisngAutoloader.jpg" width="650" height="350">
 
 *   **Read Data using Autoloader in DLT:**
     *   Added new code to the DLT notebook to **read data from files** using Autoloader [20].
