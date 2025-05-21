@@ -30,38 +30,34 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
     *   **Created a Materialized View** (`customer_bronze`) for the `customer_raw` source using the `@dlt.table` decorator and `spark.read.table()` to read the Delta table as a batch source. Used the `name` parameter to explicitly set the table name.
     *   **Insight:** The `@dlt.table` and `@dlt.view` decorators, along with the `dlt` module, are the core building blocks for defining datasets and transformations in DLT. The key difference between streaming tables and materialized views often lies in how their source is read (`readStream` vs `read`).
 
-<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/CreateInitialStreamingTable%26MatView.jpg" width="900" height="450">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/CreateInitialStreamingTable%26MatView.jpg" width="700" height="450">
 
 *   **Define Intermediate and Final Transformations:**
-    *   **Created a View** (`join_view`) to join the `orders_bronze` streaming table and `customer_bronze` materialized view [6, 7]. Used the `@dlt.view` decorator and read the datasets using the **`live` keyword** (`live.customer_bronze`, `live.orders_bronze`) to reference datasets within the same pipeline [6].
-    *   **Created a Silver Materialized View** (`joined_silver`) by reading the `join_view` and adding a new column (`insert_date`) with the current timestamp [7]. Changed the `quality` property to `silver` [7].
-    *   **Created a Gold Materialized View** (`orders_aggregated_gold`) by reading the `joined_silver` table, performing aggregations (e.g., `count(order_key)`) grouped by `market_segment`, and adding an `insert_date` column [7, 8]. Set the `quality` property to `gold` [8].
-    *   **Insight:** Views are useful for breaking down complex transformations into logical steps without persisting intermediate results. Reading datasets within the same pipeline using `live` is essential for chaining transformations. Aggregations typically produce materialized views.
+    *   **Created a View** (`order_customer_view`) to join the `orders_bronze` streaming table and `customer_bronze` materialized view. Used the `@dlt.view` decorator and read the datasets using the **`LIVE` keyword** (`LIVE.customer_bronze`, `LIVE.orders_bronze`) to reference datasets within the same pipeline.
+    *   **Created a Silver Materialized View** (`order_customer_view`) by reading the `customer_bronze_view` and adding a new column (`insert_date`) with the current timestamp. Changed the `quality` property to `silver`.
+    *   **Created a Gold Materialized View** (`orders_aggregated_gold`) by reading the `joined_silver` table, performing aggregations (e.g., `count(order_key)`) grouped by `market_segment`, and adding an `insert_date` column. Set the `quality` property to `gold.
+    *   **Insight:** Views are useful for breaking down complex transformations into logical steps without persisting intermediate results. Reading datasets within the same pipeline using `LIVE` is essential for chaining transformations. Aggregations typically produce materialized views.
 
-    *(Insert Screenshot: Creating join_view)*
-    *(Insert Screenshot: Creating joined_silver Materialized View)*
-    *(Insert Screenshot: Creating orders_aggregated_gold Materialized View)*
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/CreateViewAndSilver%26GoldAssets.jpg" width="700" height="450">
 
 *   **Create and Configure the DLT Pipeline:**
-    *   Created a new DLT pipeline via the Databricks UI (New -> DLT pipelines or ETL pipelines) [8].
-    *   Configured pipeline settings: **Name**, **Product Edition** (starting with Core) [8, 9], **Pipeline Mode** (Triggered or Continuous - started with Triggered) [9], selected the notebook path [9], specified **Unity Catalog** settings (Catalog and Schema) [9], and configured compute (number of workers, driver type) [9].
-    *   **Insight:** The product edition dictates available features (Core: basic ETL; Pro: CDC; Advanced: Data Quality) [8, 9]. Triggered mode is suitable for scheduled batch runs, while Continuous is for low-latency streaming [9]. Integrating with Unity Catalog ensures data governance [9].
+    *   Created a new DLT pipeline via the Databricks UI (New -> DLT pipelines or ETL pipelines).
+    *   Configured pipeline settings: **Name**, **Product Edition** (starting with Core), **Pipeline Mode** (Triggered or Continuous - started with Triggered) , selected the notebook path, specified **Unity Catalog** settings (Catalog and Schema), and configured compute (number of workers, driver type).
+    *   **Insight:** The product edition dictates available features (Core: basic ETL; Pro: CDC; Advanced: Data Quality). Triggered mode is suitable for scheduled batch runs, while Continuous is for low-latency streaming. Choose the pipeline mode based on the latency and cost requirements for your pipeline. Triggered pipelines update once and then shut down the cluster until the next manual or scheduled update. Continuous pipelines keep an always running cluster that ingests new data as it arrives. This property can be changed as your requirements evolve. Integrating with Unity Catalog ensures data governance
 
-    *(Insert Screenshot: DLT Pipeline Creation UI)*
-    *(Insert Screenshot: Pipeline Settings - Product Edition, Mode, Catalog, Schema)*
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/InitialCorePipelineSettings.jpg" width="700" height="450">
 
 *   **Run and Debug the Pipeline:**
-    *   Started the pipeline run using the UI [10].
-    *   Observed pipeline status (Initializing, Setting up tables, Running, Completed/Failed) [10].
-    *   Used the **Development mode** for easy debugging, as the cluster remains running even if the pipeline fails [10]. Production mode terminates the cluster on success or failure to save costs [10].
-    *   Identified and fixed errors by examining the **Event Log** (e.g., unimported functions like `count`, incorrect column names) [10, 11].
-    *   Reran the pipeline after correcting code [11].
-    *   **Insight:** Development mode is invaluable during the initial build and debugging phase. The Event Log provides detailed information about pipeline execution and failures, making troubleshooting efficient [10, 11].
+    *   Started the pipeline run using the UI.
+    *   Observed pipeline status (Initializing, Setting up tables, Running, Completed/Failed).
+    *   Used the [**Development mode**](https://learn.microsoft.com/en-us/azure/databricks/dlt/updates#development-and-production-modes) for easy debugging, as the cluster remains running even if the pipeline fails. Production mode terminates the cluster on success or failure to save costs.
+    *   Identified and fixed errors by examining the **Event Log** (e.g., unimported functions like `count`, incorrect column names).
+    *   Reran the pipeline after correcting code.
+    *   **Insight:** Development mode is invaluable during the initial build and debugging phase. The Event Log provides detailed information about pipeline execution and failures, making troubleshooting efficient.
 
-    *(Insert Screenshot: Pipeline Run Status UI)*
-    *(Insert Screenshot: Event Log showing Error)*
-    *(Insert Screenshot: Correcting Code based on Error)*
-    *(Insert Screenshot: Successful Pipeline Run and DAG Visualization)*
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DebugPipelineRunWithErrors.jpg" width="700" height="450">
+<img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/CorrectedPipelineErrorWithGoodGraph.jpg" width="700" height="450">
+
 
 *   **Verify Pipeline Output:**
     *   Examined the Databricks Catalog to see the created datasets [3]. Confirmed that Streaming Tables and Materialized Views were created, while Views were not persisted [3].
