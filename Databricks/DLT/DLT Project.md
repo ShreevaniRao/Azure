@@ -141,57 +141,55 @@ This section shows how to integrate external file ingestion using Autoloader int
 <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/IncrementalLoadingUisngAutoloader.jpg" width="650" height="350">
 
 *   **Read Data using Autoloader in DLT:**
-    *   Added new code to the DLT notebook to **read data from files** using Autoloader [20].
-    *   Defined a **Streaming Table** (`orders_autoloader_bronze`) using `@dlt.table` and `spark.readStream.format("cloudFiles")` [20].
-    *   Configured Autoloader options: `cloudFiles.schemaHints` (specifying expected schema), `cloudFiles.schemaLocation` (location for schema inference files), `cloudFiles.format` (e.g., CSV), `pathGlobFilter` (e.g., *.csv), and `cloudFiles.schemaEvolutionMode` (`none` to prevent schema changes) [20, 21].
-    *   Specified the **load path** pointing to the file landing location [21].
-    *   Understood that DLT automatically manages Autoloader's **checkpoint location** at the streaming table's location, so it doesn't need to be explicitly configured [21].
+    *   Added new code to the DLT notebook to **read data from files** using Autoloader.
+    *   Defined a **Streaming Table** (`orders_autoloader_bronze`) using `@dlt.table` and `spark.readStream.format("cloudFiles")`.
+    *   Configured Autoloader options: `cloudFiles.schemaHints` (specifying expected schema), `cloudFiles.schemaLocation` (location for schema inference files), `cloudFiles.format` (e.g., CSV) and `cloudFiles.schemaEvolutionMode` (`none` to prevent schema changes).
+    *   Specified the **load path** pointing to the file landing location.
+    *   Understood that DLT automatically manages Autoloader's **checkpoint location** at the streaming table's location, so it doesn't need to be explicitly configured.
     *   **Insight:** DLT seamlessly integrates with Autoloader for efficient, scalable ingestion of files from cloud storage. Autoloader's schema inference and evolution handling (when enabled) simplify file loading.
 
-    *(Insert Screenshot: DLT Code for Autoloader Streaming Table)*
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/AutoloaderForIngestingIncrementaLoad.jpg" width="950" height="350">
 
 *   **Implement Append Flow for Unioning:**
-    *   Understood the need to **union data from multiple streaming sources** (Delta table and Autoloader) while maintaining incremental processing [22]. A standard `union()` would reprocess all data every time [22].
-    *   Used the **Append Flow** feature (`@dlt.append_flow`) to incrementally append data from multiple streaming sources into a single target streaming table [22].
-    *   Created a **blank Streaming Table** (`orders_union_bronze`) using `dlt.create_streaming_table()` to serve as the target for the append flow [22].
-    *   Defined separate functions using `@dlt.append_flow` to read incrementally from the Delta source (`live.orders_bronze`) and the Autoloader source (`live.orders_autoloader_bronze`) and append the data to the `orders_union_bronze` table [22, 23].
-    *   Modified the downstream join view to now read from the `orders_union_bronze` table (`live.orders_union_bronze`) [23].
-    *   **Insight:** Append Flow is a powerful DLT feature for combining data from multiple streaming sources incrementally into a single dataset, preserving the efficiency of streaming pipelines [22].
+    *   Understood the need to **union data from multiple streaming sources** (Delta table and Autoloader) while maintaining incremental processing. A standard `union()` would reprocess all data every time.
+    *   Used the **Append Flow** feature (`@dlt.append_flow`) to incrementally append data from multiple streaming sources into a single target streaming table.
+    *   Created a **blank Streaming Table** (`orders_union_bronze`) using `dlt.create_streaming_table()` to serve as the target for the append flow.
+    *   Defined separate functions using `@dlt.append_flow` to read incrementally from the Delta source (`live.orders_bronze`) and the Autoloader source (`live.orders_autoloader_bronze`) and append the data to the `orders_union_bronze` table.
+    *   Modified the downstream join view to now read from the `orders_union_bronze` table (`live.orders_union_bronze`).
+    *   **Insight:** Append Flow is a powerful DLT feature for combining data from multiple streaming sources incrementally into a single dataset, preserving the efficiency of streaming pipelines.
 
-    *(Insert Screenshot: Creating Target Streaming Table for Union)*
-    *(Insert Screenshot: DLT Code for Append Flow from Delta Source)*
-    *(Insert Screenshot: DLT Code for Append Flow from Autoloader Source)*
-    *(Insert Screenshot: Modifying Join View to Read from Union Table)*
+ <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/AutoloaderForIngestingIncrementaLoad.jpg" width="950" height="350">
 
 *   **Test Incremental File Ingestion:**
-    *   Uploaded a test file to the Autoloader landing location [23].
-    *   Ran the DLT pipeline [24].
-    *   Observed that the Autoloader streaming table and the Union table initially processed data from both sources (full load for the new Union table) [24].
-    *   Uploaded another file to the landing location [24].
-    *   Reran the DLT pipeline [24, 25].
-    *   Observed that the Autoloader streaming table only read the new records from the second file, and the Union streaming table only processed the incremental records coming from the Autoloader source, confirming incremental processing end-to-end [25].
-    *   **Insight:** The combination of Autoloader and Append Flow within DLT provides a robust pattern for ingesting and combining incremental data from files and other streaming sources [25].
+    *   Uploaded a test file to the Autoloader landing location.
+    *   Ran the DLT pipeline.
+    *   Observed that the Autoloader streaming table and the Union table initially processed data from both sources (full load for the new Union table).
+    *   Uploaded another file to the landing location.
+    *   Reran the DLT pipeline.
+    *   Observed that the Autoloader streaming table only read the new records from the second file, and the Union streaming table only processed the incremental records coming from the Autoloader source, confirming incremental processing end-to-end.
+    *   **Insight:** The combination of Autoloader and Append Flow within DLT provides a robust pattern for ingesting and combining incremental data from files and other streaming sources.
 
-    *(Insert Screenshot: Uploading File to Landing Zone)*
-    *(Insert Screenshot: Pipeline Run showing Incremental Read from Autoloader and Union)*
+ <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/IncrementalAutoloaderFile-1RunGraph(4newrecords).jpg" width="950" height="450">
+ <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/IncrementalAutoloaderFileRunGraph.jpg" width="950" height="450">
+ <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/AutoloaderTableWithIncrementalDataQuery.jpg" width="950" height="350">
 
 *   **Pass Parameters into DLT Pipelines:**
-    *   Accessed the pipeline **Settings** in the UI [25].
-    *   Added a **Configuration** parameter (e.g., `custom.order_status`) with a value (e.g., `O,F`) [25].
-    *   **Insight:** Pipeline configurations provide a clean way to pass external parameters or settings into the DLT code, enabling dynamic behavior without hardcoding values [25].
+    *   Accessed the pipeline **Settings** in the UI.
+    *   Added a **Configuration** parameter (e.g., `custom.order_status`) with a value (e.g., `O,F`).
+    *   **Insight:** Pipeline configurations provide a clean way to pass external parameters or settings into the DLT code, enabling dynamic behavior without hardcoding values.
 
     *(Insert Screenshot: Adding Configuration in Pipeline Settings)*
 
 *   **Create Dynamic Tables based on Parameters:**
-    *   Read the configuration parameter within the DLT code using `spark.conf.get()` [25, 26].
-    *   Split the parameter value (comma-separated list of order statuses) [26].
-    *   Used a **Python loop** to iterate through the values [26].
-    *   Within the loop, used the `@dlt.table` decorator and **Python f-strings** to **dynamically create multiple gold tables** based on each status value (e.g., `orders_agg_o_gold`, `orders_agg_f_gold`) [26].
-    *   Added a `where` filter condition to each dynamically created table to select data matching the current status in the loop [26].
-    *   Validated the code [26].
-    *   Reran the DLT pipeline [27].
-    *   Observed the dynamically created tables appearing in the pipeline graph and in the catalog [27].
-    *   **Insight:** DLT allows you to build dynamic pipelines where the datasets created can be determined programmatically based on input parameters. This is incredibly powerful for building reusable data pipelines for different segments or configurations [26, 27].
+    *   Read the configuration parameter within the DLT code using `spark.conf.get()`.
+    *   Split the parameter value (comma-separated list of order statuses).
+    *   Used a **Python loop** to iterate through the values.
+    *   Within the loop, used the `@dlt.table` decorator and **Python f-strings** to **dynamically create multiple gold tables** based on each status value (e.g., `orders_agg_o_gold`, `orders_agg_f_gold`).
+    *   Added a `where` filter condition to each dynamically created table to select data matching the current status in the loop.
+    *   Validated the code.
+    *   Reran the DLT pipeline.
+    *   Observed the dynamically created tables appearing in the pipeline graph and in the catalog.
+    *   **Insight:** DLT allows you to build dynamic pipelines where the datasets created can be determined programmatically based on input parameters. This is incredibly powerful for building reusable data pipelines for different segments or configurations.
 
     *(Insert Screenshot: Reading Configuration in DLT Code)*
     *(Insert Screenshot: DLT Code for Dynamic Table Creation Loop)*
