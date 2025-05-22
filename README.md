@@ -47,7 +47,7 @@ Multiple pipelines developed to demonstrate below functions
 - Enforces data governance and security with **Unity Catalog**
 - Delivers a **star schema** modeled in **Delta tables** for efficient analytics and BI use
 
-**DLT**
+[**DLT**](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/README.md)
 
 Project with steps for a data processing pipeline using Delta Live Tables (DLT) showcasing -
 - **Incremental Loading**:
