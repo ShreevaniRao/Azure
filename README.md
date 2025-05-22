@@ -39,7 +39,7 @@ Multiple pipelines developed to demonstrate below functions
 ---
 ## 4. [**Azure Databricks**](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/Readme.md)
 
- **ETL**
+ [**ETL**](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/ETL/Readme.md)
 - Scalable enterprise data platform built with **Azure Databricks** and **Azure Data Factory**
 - Automated, end-to-end ETL for car sales data, incrementally loading from **GitHub API** and **Azure SQL Database** into **ADLS Gen2** using parameterized ADF pipelines
 - Data processed through the **Medallion architecture** (Bronze, Silver, Gold layers) orchestrated by **Databricks Workflows**
