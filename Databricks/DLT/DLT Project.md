@@ -65,7 +65,7 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
     *   Terminated the DLT cluster after successful development runs to manage costs.
     *   **Insight:** DLT automatically manages the creation and storage of specified tables and materialized views based on the defined code. Views are temporary constructs used only during the pipeline run.
 
-       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryTheGold%26VerifyOtherDataAssets.jpg" width="700" height="550">
+       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryTheGold%26VerifyOtherDataAssets.jpg" width="900" height="550">
 
 
 ###   2: DLT Internals & Incremental Load
@@ -223,7 +223,7 @@ The Change Data Capture (CDC) capabilities in DLT using the `apply_changes` API 
     *   **Created an SCD Type 2 table** (`customer_scd2_bronze`) using `dlt.create_streaming_table()`.
     *   Implemented the SCD Type 2 logic using `@dlt.apply_changes`. Specified the `target`, `source`, `keys`, and `stored_as_scd_type=2`. Used `except_column_list` to prevent `SourceAction` and `SourceInsertDate` from being included in the final SCD2 table columns. The `sequence_by` column (`SourceInsertDate`) is used by DLT to manage the `start_at` and `end_at` columns that track history.
     *   **Insight:** The `apply_changes` API is the cornerstone for CDC in DLT. It provides a declarative way to define how changes from a source stream should be applied to a target table to maintain SCD types, handling complex logic internally.
-    *   
+ 
                | Requirement                   | Why It’s Needed                       |
                | ----------------------------- | ------------------------------------- |
                | Target is streaming           | `apply_changes` writes incrementally  |
@@ -231,66 +231,64 @@ The Change Data Capture (CDC) capabilities in DLT using the `apply_changes` API 
                | `sequence_by` is provided     | To resolve latest version of a key    |
                | `keys` are defined            | To match records (like primary key)   |
                | (Optional) `_dlt_change_type` | To handle deletes/truncates if needed |
-
-     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DLTSCD1Apply_Changes.jpg" width="650" height="450">
-     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/InsertTestCommentsCDCDataForCustomer.jpg" width="550" height="200
-     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/SCD1%26SCD2TablesForCDC.jpg" width="900" height="450">
+        
+     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DLTSCD1Apply_Changes.jpg" width="750" height="450">
+     
+     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/SCD1%26SCD2TablesForCDC.jpg" width="900" height="400">
      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DLTSCD2Apply_Changes.jpg" width="900" height="350">
-     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/1RecordUpsertedForCDCChangeinSCD1.jpg" width="900" height="450">
+   
 
 *   **Update Downstream Pipeline:**
-    *   Modified the join view to read from the newly created `customer_scd2_bronze` table (`live.customer_scd2_bronze`) instead of the original `customer_bronze` [33].
-    *   Added a **filter condition** (`end_at is null`) when reading the SCD Type 2 table for joining, to ensure only the currently active records are included in downstream processing [33].
-    *   **Insight:** When using SCD Type 2 tables in downstream pipelines, it's typically necessary to filter for the active record to avoid duplicating data or incorrect aggregations [33].
+    *   Modified the join view to read from the newly created `customer_scd2_bronze` table (`live.customer_scd2_bronze`) instead of the original `customer_bronze`.
+    *   Added a **filter condition** (`end_at is null`) when reading the SCD Type 2 table for joining, to ensure only the currently active records are included in downstream processing.
+    *   **Insight:** When using SCD Type 2 tables in downstream pipelines, it's typically necessary to filter for the active record to avoid duplicating data or incorrect aggregations.
 
-    *(Insert Screenshot: Updating Join View to Read from SCD2)*
-    *(Insert Screenshot: Adding Filter for Active Records)*
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/UpdateDownstreamViewToUseSCD2Table.jpg" width="900" height="300">
 
 *   **Configure Pipeline for CDC:**
-    *   Updated the pipeline's **Product Edition** in Settings to **Pro** (or Advanced, which includes Pro features), as CDC capabilities are available in the Pro edition and higher [33].
-    *   **Insight:** Specific DLT features like CDC are tier-dependent. Selecting the appropriate product edition is necessary to enable these features [33].
-
-    *(Insert Screenshot: Pipeline Settings - Product Edition set to Pro)*
+    *   Updated the pipeline's **Product Edition** in Settings to **Pro** (or Advanced, which includes Pro features), as CDC capabilities are available in the Pro edition and higher.
+    *   **Insight:** Specific DLT features like CDC are tier-dependent. Selecting the appropriate product edition is necessary to enable these features.
 
 *   **Test Initial Load and Incremental CDC:**
-    *   Ran the DLT pipeline for the initial load [33]. Observed the SCD Type 1 and Type 2 tables created and populated [33]. Examined the SCD2 table columns (`start_at`, `end_at`) and confirmed `end_at` was null for initial records [29].
-    *   Inserted a new record with a change for an existing customer key into the source `customer_raw` table, setting `SourceAction='I'` and current timestamp [29].
-    *   Reran the pipeline (or used the "Refresh Table" feature on the SCD tables for quicker testing) [29, 34].
-    *   Observed that the SCD Type 1 table was updated with the latest record for the modified key [34].
-    *   Observed that the SCD Type 2 table inserted the new record with `start_at` as the current timestamp and `end_at` as null, while updating the previous record for the same key by populating its `end_at` with the new record's `start_at` [34]. This demonstrated automatic history tracking [34].
+    *   Ran the DLT pipeline for the initial load. Observed the SCD Type 1 and Type 2 tables created and populated. Examined the SCD2 table columns (`start_at`, `end_at`) and confirmed `end_at` was null for initial records.
+    *   Inserted a new record with a change for an existing customer key into the source `customer_raw` table, setting `SourceAction='I'` and current timestamp.
+    *   Reran the pipeline (or used the "Refresh Table" feature on the SCD tables for quicker testing).
+    *   Observed that the SCD Type 1 table was updated with the latest record for the modified key.
+    *   Observed that the SCD Type 2 table inserted the new record with `start_at` as the current timestamp and `end_at` as null, while updating the previous record for the same key by populating its `end_at` with the new record's `start_at`. This demonstrated automatic history tracking.
 
-    *(Insert Screenshot: Querying SCD1 Table - Initial Load)*
-    *(Insert Screenshot: Querying SCD2 Table - Initial Load)*
-    *(Insert Screenshot: Inserting New/Changed Record into Raw Source)*
-    *(Insert Screenshot: SCD1 Table after Incremental Update)*
-    *(Insert Screenshot: SCD2 Table after Incremental Update showing History)*
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/InsertTestCommentsCDCDataForCustomer.jpg" width="1000" height="250">
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/1RecordUpsertedForCDCChangeinSCD1.jpg" width="900" height="450">
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueriesForCDCForSCDTables.jpg" width="900" height="650">
 
 *   **Test Backloading with SCD Type 2:**
-    *   Inserted a record with a change for an existing customer key into the source `customer_raw` table, setting `SourceAction='I'` but providing a **timestamp from the past** (out of order) [34].
-    *   Reran the pipeline, specifically refreshing only the SCD tables [34].
-    *   Confirmed that the SCD Type 1 table was **unaffected** (as it only keeps the latest record) [35].
-    *   Observed that the SCD Type 2 table correctly inserted the historical record in the middle of the existing history, automatically adjusting the `end_at` and `start_at` timestamps of the surrounding records to maintain accurate history [35].
-    *   **Insight:** This demonstrates one of DLT's significant advantages: it handles out-of-order data ingestion for SCD Type 2 tables gracefully using the `sequence_by` column, a task that is notoriously complex in traditional ETL [35].
+    *   Inserted a record with a change for an existing customer key into the source `customer_raw` table, setting `SourceAction='I'` but providing a **timestamp from the past** (out of order).
+    *   Reran the pipeline, specifically refreshing only the SCD tables.
+    *   Confirmed that the SCD Type 1 table was **unaffected** (as it only keeps the latest record).
+    *   Observed that the SCD Type 2 table correctly inserted the historical record in the middle of the existing history, automatically adjusting the `end_at` and `start_at` timestamps of the surrounding records to maintain accurate history.
+    *   **Insight:** This demonstrates one of DLT's significant advantages: it handles out-of-order data ingestion for SCD Type 2 tables gracefully using the `sequence_by` column, a task that is notoriously complex in traditional ETL.
 
-    *(Insert Screenshot: Inserting Historical (Backdated) Record into Raw Source)*
-    *(Insert Screenshot: Refreshing Only SCD Tables in Pipeline UI)*
-    *(Insert Screenshot: SCD2 Table showing Correctly Backloaded History)*
-
+    </br>
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/InsertRecordForBackloadingForSCD2.jpg" width="900" height="250">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/SelectRefreshSCDTablesforBackLoadingData.jpg" width="900" height="650">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueriesAfterBackLoadingDataFOrSCDTables.jpg" width="900" height="650">
+    
 *   **Test Delete and Truncate Actions:**
-    *   Inserted a record for an existing customer key into the source `customer_raw` table, setting `SourceAction='D'` [35, 36].
-    *   Reran the pipeline, refreshing only the SCD tables [36].
-    *   Observed that the record for that key was **deleted** from the SCD Type 1 table (as `apply_as_deletes` was configured) [36].
-    *   Observed that the SCD Type 2 table was **unaffected** (as `apply_as_deletes` was *not* configured for SCD2 to maintain history) [36].
-    *   Inserted a record (key doesn't matter) into the source `customer_raw` table, setting `SourceAction='T'` [37].
-    *   Reran the pipeline, refreshing only the SCD tables [37].
-    *   Observed that the SCD Type 1 table was entirely **truncated** (as `apply_as_truncates` was configured) [37].
-    *   Observed that the SCD Type 2 table was **unaffected** (as `apply_as_truncates` was *not* configured for SCD2) [37].
-    *   **Insight:** The `apply_changes` API allows granular control over how delete and truncate actions in the source affect the target SCD tables, enabling different behaviors depending on whether you need to delete records (SCD1) or preserve history (SCD2) [36, 37].
+    *   Inserted a record for an existing customer key into the source `customer_raw` table, setting `SourceAction='D'`.
+    *   Reran the pipeline, refreshing only the SCD tables.
+    *   Observed that the record for that key was **deleted** from the SCD Type 1 table (as `apply_as_deletes` was configured).
+    *   Observed that the SCD Type 2 table was **unaffected** (as `apply_as_deletes` was *not* configured for SCD2 to maintain history).
+    *   Inserted a record (key doesn't matter) into the source `customer_raw` table, setting `SourceAction='T'`.
+    *   Reran the pipeline, refreshing only the SCD tables.
+    *   Observed that the SCD Type 1 table was entirely **truncated** (as `apply_as_truncates` was configured).
+    *   Observed that the SCD Type 2 table was **unaffected** (as `apply_as_truncates` was *not* configured for SCD2).
+    *   **Insight:** The `apply_changes` API allows granular control over how delete and truncate actions in the source affect the target SCD tables, enabling different behaviors depending on whether you need to delete records (SCD1) or preserve history (SCD2).<img src="
 
-    *(Insert Screenshot: Inserting Delete Action Record)*
-    *(Insert Screenshot: SCD1 Table after Delete Action)*
-    *(Insert Screenshot: Inserting Truncate Action Record)*
-    *(Insert Screenshot: SCD1 Table after Truncate Action)*
+</b>
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/InsertRecordToDeleteCustomerForSCD1.jpg" width="900" height="250">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphDeleteDataForSCDTables.jpg" width="900" height="350">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueriesAfterDeletingDataFOrSCDTables.jpg" width="900" height="550">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/InsertNewRowFOrTruncatingDatainSCDTablesjpg.jpg" width="900" height="350">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphTruncateDataForSCDTables.jpg" width="900" height="500">
 
 ###   5: DLT Data Quality & Expectations
 
