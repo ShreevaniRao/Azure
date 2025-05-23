@@ -150,7 +150,7 @@ This section shows how to integrate external file ingestion using Autoloader int
 
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/AutoloaderForIngestingIncrementaLoad.jpg" width="950" height="350">
 
-*   **Implement Append Flow for Unioning:**
+*   **Implement [Append Flow](https://docs.databricks.com/aws/en/dlt/flow-examples#example-use-append-flow-processing-instead-of-union) for Unioning:**
     *   Understood the need to **union data from multiple streaming sources** (Delta table and Autoloader) while maintaining incremental processing. A standard `union()` would reprocess all data every time.
     *   Used the **Append Flow** feature (`@dlt.append_flow`) to incrementally append data from multiple streaming sources into a single target streaming table.
     *   Created a **blank Streaming Table** (`orders_union_bronze`) using `dlt.create_streaming_table()` to serve as the target for the append flow.
@@ -158,7 +158,7 @@ This section shows how to integrate external file ingestion using Autoloader int
     *   Modified the downstream join view to now read from the `orders_union_bronze` table (`live.orders_union_bronze`).
     *   **Insight:** Append Flow is a powerful DLT feature for combining data from multiple streaming sources incrementally into a single dataset, preserving the efficiency of streaming pipelines.
 
-    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/AutoloaderForIngestingIncrementaLoad.jpg" width="950" height="350">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/AutoloaderForIngestingIncrementaLoad.jpg" width="950" height="450">
 
 *   **Test Incremental File Ingestion:**
     *   Uploaded a test file to the Autoloader landing location.
@@ -195,9 +195,9 @@ This section shows how to integrate external file ingestion using Autoloader int
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ReadConfigFromPipelineSettings.jpg" width="550" height="105">
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DynamicTablesUsingConfigurationSettingForOrderStatus.jpg" width="950" height="550">
 
-###   4: Change Data Capture (CDC) - SCD2 & SCD1
+###   4: [Change Data Capture (CDC) - SCD2 & SCD1](https://docs.databricks.com/aws/en/dlt/what-is-change-data-capture)
 
-The Change Data Capture (CDC) capabilities in DLT using the `apply_changes` API to build Slowly Changing Dimension (SCD) Type 1 and Type 2 tables.
+The Change Data Capture (CDC) capabilities in DLT using the [**`Apply_Changes`**](https://docs.databricks.com/aws/en/dlt/cdc) API to build Slowly Changing Dimension (SCD) Type 1 and Type 2 tables.
 
 **Steps:**
 
@@ -292,47 +292,41 @@ The Change Data Capture (CDC) capabilities in DLT using the `apply_changes` API 
 
 ###   5: DLT Data Quality & Expectations
 
-This   focuses on managing data quality within DLT pipelines using **Expectations**, defining rules and actions for handling invalid data.
+The focus on managing data quality within DLT pipelines using [**Expectations**](https://docs.databricks.com/aws/en/dlt/expectations), defining rules and actions for handling invalid data.
 
 **Steps:**
 
 *   **Understand Data Quality with Expectations:**
-    *   Learned that DLT uses **Expectations** to define and enforce data quality rules [38].
-    *   Expectations are optional clauses applied to DLT datasets (Tables or Views) [38, 39].
-    *   Introduced the three types of actions when an expectation fails: **Warning** (default, logs failures but processes data), **Drop** (discards failing records), and **Fail** (stops the pipeline) [38].
+    *   Learned that DLT uses **Expectations** to define and enforce data quality rules.
+    *   Expectations are optional clauses applied to DLT datasets (Tables or Views).
+    *   Introduced the three types of actions when an expectation fails: **Warning** (default, logs failures but processes data), **Drop** (discards failing records), and **Fail** (stops the pipeline).
 
 *   **Define Data Quality Rules:**
-    *   Defined data quality rules using **Python dictionaries**, mapping a unique rule name to a Boolean expression (e.g., column is not null, column value is within a list, column value is greater than zero) [38, 40].
-    *   Created dictionaries for rules related to orders (`order_rules`) and customers (`customer_rules`) [38, 40].
-    *   **Insight:** Defining rules separately in a dictionary makes the code cleaner and rules reusable across multiple expectations [38, 40].
-
-    *(Insert Screenshot: Defining Data Quality Rules in Python Dictionary)*
+    *   Defined data quality rules using **Python dictionaries**, mapping a unique rule name to a Boolean expression (e.g., column is not null, column value is within a list, column value is greater than zero).
+    *   Created dictionaries for rules related to orders (`order_rules`) and customers (`customer_rules`).
+    *   **Insight:** Defining rules separately in a dictionary makes the code cleaner and rules reusable across multiple expectations.
 
 *   **Apply Expectations to DLT Datasets:**
-    *   Applied expectations to the DLT code using the `@dlt.expect` (for a single rule) or `@dlt.expect_all` (for multiple rules from a dictionary) decorator above the function defining the dataset [40, 41].
-    *   Applied rules to both a Streaming Table (`orders_bronze`) and a Streaming View (`customer_bronze_view`) [39].
-    *   **Insight:** Expectations can be applied at different stages of the pipeline (raw ingestion, intermediate transformations), allowing flexibility in enforcing data quality where needed [39].
-
-    *(Insert Screenshot: Applying Expectations to a DLT Table)*
-    *(Insert Screenshot: Applying Expectations to a DLT View)*
+    *   Applied expectations to the DLT code using the `@dlt.expect` (for a single rule) or `@dlt.expect_all` (for multiple rules from a dictionary) decorator above the function defining the dataset.
+    *   Applied rules to both a Streaming Table (`orders_bronze`) and a Streaming View (`customer_bronze_view`).
+    *   **Insight:** Expectations can be applied at different stages of the pipeline (raw ingestion, intermediate transformations), allowing flexibility in enforcing data quality where needed.
 
 *   **Configure Pipeline for Data Quality:**
-    *   Updated the pipeline's **Product Edition** in Settings to **Advanced**, as data quality features like Expectations are available in the Advanced edition [39].
-    *   **Insight:** Enabling the Advanced product edition unlocks the full suite of DLT data quality features [39].
+    *   Updated the pipeline's **Product Edition** in Settings to **Advanced**, as data quality features like Expectations are available in the Advanced edition.
+    *   **Insight:** Enabling the Advanced product edition unlocks the full suite of DLT data quality features.
 
-    *(Insert Screenshot: Pipeline Settings - Product Edition set to Advanced)*
-
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/SetupExpectDataQulaityRules%26ApplyToOrders%26CustomerData.jpg" width="900" height="650">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ChangePipelineSettingToAdvancedFOrExpectTesting.jpg" width="900" height="650">
 *   **Test Warning Mode:**
-    *   Inserted records into the source tables that violated the defined data quality rules (e.g., invalid order status, negative order price, null market segment) [41].
-    *   Ensured the expectation action was set to **Warning** (default behavior when no action keyword is specified) [41].
-    *   Ran the DLT pipeline [39]. Handled potential failures during initialization due to incorrect rule expressions by checking the Event Log [39].
-    *   After the pipeline completed, checked the **Data Quality tab** for the datasets with expectations applied [42]. Observed metrics showing the number of records that failed each rule [42].
-    *   Confirmed the **Action** displayed as "allow" and verified that the violating records were **not dropped** but were processed downstream [42].
-    *   **Insight:** Warning mode is useful for monitoring data quality issues without interrupting the pipeline. It provides visibility into rule violations via the UI metrics [42].
+    *   Inserted records into the source tables that violated the defined data quality rules (e.g., invalid order status, negative order price, null market segment).
+    *   Ensured the expectation action was set to **Warning** (default behavior when no action keyword is specified).
+    *   Ran the DLT pipeline. Handled potential failures during initialization due to incorrect rule expressions by checking the Event Log.
+    *   After the pipeline completed, checked the **Data Quality tab** for the datasets with expectations applied. Observed metrics showing the number of records that failed each rule.
+    *   Confirmed the **Action** displayed as "allow" and verified that the violating records were **not dropped** but were processed downstream.
+    *   **Insight:** Warning mode is useful for monitoring data quality issues without interrupting the pipeline. It provides visibility into rule violations via the UI metrics.
 
-    *(Insert Screenshot: Inserting Data Violating Rules)*
-    *(Insert Screenshot: Data Quality Tab showing Failed Records in Warning Mode)*
-    *(Insert Screenshot: Verifying Violating Records Passed Downstream)*
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/InsertExpectDataQulaityRules%26ApplyToOrders%26CustomerData.jpg" width="900" height="650">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QualityCheckGrapghForOrder_rawTable.jpg" width="950" height="450">
 
 *   **Test Fail Mode:**
     *   Modified the expectation decorator to specify the **`or fail`** action keyword (e.g., `@dlt.expect_all(...) or fail`) [42].
