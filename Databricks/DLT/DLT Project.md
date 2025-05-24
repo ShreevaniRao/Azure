@@ -351,7 +351,7 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
       
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ExpectQualityForOrder-Drop.jpg" width="950" height="350">
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphForOrderRawQualityCheck-Drop.jpg" width="900" height="450">
-    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryCheckFOrOrderRawTable-Drop.jpg" width="900" height="350">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryCheckFOrOrderRawTable-Drop.jpg" width="900" height="350">
    
 *   **Apply Multiple Expectations:**
     *   Demonstrated applying **multiple `@dlt.expect_all` decorators** with different sets of rules and different actions (e.g., one set with `or warning`, another with `or drop`) to a single dataset (e.g., the join view).
@@ -360,7 +360,9 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
     *   Observed in the Data Quality tab how DLT tracks failures and actions for each distinct set of expectations applied to the dataset.
     *   **Insight:** You can apply multiple layers of data quality checks with varying severity (warning, drop, fail) to the same dataset within DLT.
 
-    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QualityCheckForViewWithMultipleRules.jpg" width="950" height="350">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QualityCheckForViewWithMultipleRules.jpg" width="950" height="350">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphForViewQualityCheck-Drop%26Warn.jpg" width=950" height="350">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryForViewQualityCheck.jpg" width="750" height="350">
 
 *   **Monitor DLT Pipelines using SQL:**
     *   Learned that DLT provides a system function `event_log('<pipeline_id>')` to query the pipeline's event log directly using SQL [45, 46].
