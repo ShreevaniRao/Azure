@@ -3,11 +3,11 @@
 This project follows the progression shown in the below provided steps, to build the DLT pipeline, along with insights gained at each stage.
 
 ## Quick Links
-1. [Introduction to Delta Live Tables (DLT)](#introduction-to-delta-live-tables-dlt)
-2. [DLT Internals & Incremental Load](#dlt-internals--incremental-load)
-3. [DLT Append Flow & Autoloader](#dlt-append-flow--autoloader)
-4. [Change Data Capture (CDC) - SCD2 & SCD1](#change-data-capture-cdc---scd2--scd1)
-5. [DLT Data Quality & Expectations](#dlt-data-quality--expectations)
+1. [Introduction to Delta Live Tables (DLT)](#ntroduction-to-delta-live-tables-dlt)
+2. [DLT Internals & Incremental Load](#2-dlt-internals--incremental-load)
+3. [DLT Append Flow & Autoloader](#3-dlt-append-flow--autoloader)
+4. [Change Data Capture (CDC) - SCD2 & SCD1](#4-change-data-capture-cdc---scd2--scd1)
+5. [DLT Data Quality & Expectations](5-dlt-data-quality--expectations)
 
    
 ### Introduction to Delta Live Tables (DLT)
