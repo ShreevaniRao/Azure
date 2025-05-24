@@ -365,13 +365,12 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryForViewQualityCheck.jpg" width="750" height="350">
 
 *   **Monitor DLT Pipelines using SQL:**
-    *   Learned that DLT provides a system function `event_log('<pipeline_id>')` to query the pipeline's event log directly using SQL [45, 46].
-    *   Executed SQL queries against the `event_log` function to retrieve raw log data [46].
-    *   Used provided example queries to create SQL views (e.g., `event_log_raw`, `latest_updates`) based on the event log for easier querying [46].
-    *   Queried the event log views to specifically retrieve data quality metrics (passing/failing records, expectation type) across the pipeline [46].
-    *   Noted that these SQL queries can be used to build dashboards for monitoring pipeline health and data quality over time [47].
-    *   **Insight:** The `event_log` provides a powerful interface for observing and monitoring DLT pipeline execution and data quality results programmatically, enabling integration with monitoring tools or creating custom dashboards [45-47].
+    *   Learned that DLT provides a system function `event_log('<pipeline_id>')` to query the pipeline's event log directly using SQL.
+    *   Executed SQL queries against the `event_log` function to retrieve raw log data.
+    *   Used provided example queries to create SQL views (e.g., `event_log_raw`, `latest_updates`) based on the event log for easier querying.
+    *   Queried the event log views to specifically retrieve data quality metrics (passing/failing records, expectation type) across the pipeline.
+    *   Noted that these SQL queries can be used to build dashboards for monitoring pipeline health and data quality over time.
+    *   **Insight:** The `event_log` provides a powerful interface for observing and monitoring DLT pipeline execution and data quality results programmatically, enabling integration with monitoring tools or creating custom dashboards.
 
-    *(Insert Screenshot: Querying Event Log using SQL function)*
-    *(Insert Screenshot: Querying Data Quality Metrics from Event Log View)*
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DBDatQualityPipelineMonitoringQuery.jpg" width="700" height="550">
 
