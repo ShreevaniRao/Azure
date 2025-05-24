@@ -4,7 +4,7 @@ This project follows the progression shown in the below provided steps, to build
 
 ### Introduction to Delta Live Tables (DLT)
 
-This DLT pipeline as a declarative framework in Databricks designed to simplify ETL pipelines by handling orchestration, cluster management, data quality, and error handling. It requires the **Premium plan** on Databricks.
+This DLT pipeline as a declarative framework in Databricks designed to simplify ETL pipelines by handling orchestration, cluster management, data quality, and error handling. It requires the **Premium plan** of Databricks.
 
 **Steps:**
 
@@ -327,42 +327,40 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
 
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/InsertExpectDataQulaityRules%26ApplyToOrders%26CustomerData.jpg" width="900" height="650">
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QualityCheckGrapghForOrder_rawTable.jpg" width="950" height="450">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphForCustomerRawQualityCheck.jpg"  width="950" height="450">
 
 *   **Test Fail Mode:**
-    *   Modified the expectation decorator to specify the **`or fail`** action keyword (e.g., `@dlt.expect_all(...) or fail`) [42].
-    *   Inserted records violating the rules again [42].
-    *   Ran the DLT pipeline [43].
-    *   Observed that the pipeline **failed** at the step where the expectation was defined and violated [43].
-    *   Examined the Event Log, which explicitly stated the failure was due to an expectation check and often showed the violating record [43].
-    *   **Insight:** Fail mode is critical for enforcing strict data quality requirements. If incoming data doesn't meet defined standards, the pipeline stops, preventing bad data from propagating downstream [43].
-
-    *(Insert Screenshot: DLT Code with 'or fail' Action)*
-    *(Insert Screenshot: Pipeline Failed due to Expectation)*
-    *(Insert Screenshot: Event Log showing Expectation Failure Detail)*
+    *   Modified the expectation decorator to specify the **`or fail`** action keyword (e.g., `@dlt.expect_all(...) or fail`).
+    *   Inserted records violating the rules again.
+    *   Ran the DLT pipeline.
+    *   Observed that the pipeline **failed** at the step where the expectation was defined and violated.
+    *   Examined the Event Log, which explicitly stated the failure was due to an expectation check and often showed the violating record.
+    *   **Insight:** Fail mode is critical for enforcing strict data quality requirements. If incoming data doesn't meet defined standards, the pipeline stops, preventing bad data from propagating downstream.
+      
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ExpectQualityForOrders-Fail.jpg" width="950" height="350">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QualityCheckGrapghForOrder_rawTable-Fail.jpg" width="900" height="750">
 
 *   **Test Drop Mode:**
-    *   Modified the expectation decorator to specify the **`or drop`** action keyword (e.g., `@dlt.expect_all(...) or drop`) [43].
-    *   Inserted records violating the rules again [43].
-    *   Ran the DLT pipeline [43].
-    *   Observed that the pipeline **completed successfully** [43].
-    *   Checked the Data Quality tab, observed the **Action** displayed as "drop" and confirmed the number of records dropped [43].
-    *   Verified that the violating records were **not included** in the downstream tables [43].
-    *   **Insight:** Drop mode allows the pipeline to continue running while automatically discarding records that fail data quality checks. This is useful when some data loss is acceptable to maintain the quality of the overall dataset [43].
-
-    *(Insert Screenshot: DLT Code with 'or drop' Action)*
-    *(Insert Screenshot: Pipeline Completed in Drop Mode)*
-    *(Insert Screenshot: Data Quality Tab showing Dropped Records)*
-    *(Insert Screenshot: Verifying Violating Records were Dropped Downstream)*
-
+    *   Modified the expectation decorator to specify the **`or drop`** action keyword (e.g., `@dlt.expect_all(...) or drop`).
+    *   Inserted records violating the rules again.
+    *   Ran the DLT pipeline.
+    *   Observed that the pipeline **completed successfully**.
+    *   Checked the Data Quality tab, observed the **Action** displayed as "drop" and confirmed the number of records dropped.
+    *   Verified that the violating records were **not included** in the downstream tables.
+    *   **Insight:** Drop mode allows the pipeline to continue running while automatically discarding records that fail data quality checks. This is useful when some data loss is acceptable to maintain the quality of the overall dataset.
+      
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ExpectQualityForOrder-Drop.jpg" width="950" height="350">
+   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphForOrderRawQualityCheck-Drop.jpg" width="900" height="450">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryCheckFOrOrderRawTable-Drop.jpg" width="900" height="350">
+   
 *   **Apply Multiple Expectations:**
-    *   Demonstrated applying **multiple `@dlt.expect_all` decorators** with different sets of rules and different actions (e.g., one set with `or warning`, another with `or drop`) to a single dataset (e.g., the join view) [44].
-    *   Inserted data violating rules from both sets [44].
-    *   Ran the pipeline [45].
-    *   Observed in the Data Quality tab how DLT tracks failures and actions for each distinct set of expectations applied to the dataset [45].
-    *   **Insight:** You can apply multiple layers of data quality checks with varying severity (warning, drop, fail) to the same dataset within DLT [45].
+    *   Demonstrated applying **multiple `@dlt.expect_all` decorators** with different sets of rules and different actions (e.g., one set with `or warning`, another with `or drop`) to a single dataset (e.g., the join view).
+    *   Inserted data violating rules from both sets.
+    *   Ran the pipeline.
+    *   Observed in the Data Quality tab how DLT tracks failures and actions for each distinct set of expectations applied to the dataset.
+    *   **Insight:** You can apply multiple layers of data quality checks with varying severity (warning, drop, fail) to the same dataset within DLT.
 
-    *(Insert Screenshot: Applying Multiple Expectations to a Single Dataset)*
-    *(Insert Screenshot: Data Quality Tab showing Metrics for Multiple Expectations)*
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QualityCheckForViewWithMultipleRules.jpg" width="950" height="350">
 
 *   **Monitor DLT Pipelines using SQL:**
     *   Learned that DLT provides a system function `event_log('<pipeline_id>')` to query the pipeline's event log directly using SQL [45, 46].
