@@ -1,7 +1,16 @@
 ## Pipeline Construction Steps
 
 This project follows the progression shown in the below provided steps, to build the DLT pipeline, along with insights gained at each stage.
+## Quick Links
 
+1. [Project Setup and Prerequisites](#introduction-to-delta-live-tables-dlt)
+2. [Understanding Delta Live Tables Data Sets](#understanding-delta-live-tables-data-sets)
+3. [Creating the DLT Pipeline](#creating-the-dlt-pipeline)
+4. [Building the Data Pipeline (Logical Flow)](#building-the-data-pipeline-logical-flow)
+5. [Key DLT Features Explored](#key-dlt-features-explored)
+6. [DLT Internals and Observability](#dlt-internals-and-observability)
+
+   
 ### Introduction to Delta Live Tables (DLT)
 
 This DLT pipeline as a declarative framework in Databricks designed to simplify ETL pipelines by handling orchestration, cluster management, data quality, and error handling. It requires the **Premium plan** of Databricks.
