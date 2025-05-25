@@ -20,8 +20,8 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
     *   Used a [setup]() notebook to **create a new catalog & schema** -> `etl` under the `dlt-catalog` catalog for the DLT run.
     *   **Deep cloned sample data** (e.g., `orders` and `customer` from `samples.tpch`) into raw tables (e.g., `etl.bronze.orders_raw`, `etl.bronze.customer_raw`) to use as source data.
     *   **Insight:** Setting up a dedicated schema and cloning data provides a clean, repeatable starting point for the pipeline development. Using `deep clone` creates independent copies of the source data.
-</br>
-       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DLTInitialSetup%26Queries.jpg" width="900" height="450">
+      </br>
+          <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DLTInitialSetup%26Queries.jpg" width="900" height="450">
 
 *   **Understand DLT Dataset Types:**
     *   Learned about the three main types of datasets in DLT: **Streaming Tables**, **Materialized Views**, and **Views** .
@@ -32,12 +32,13 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
     *   **Insight:** Choosing the right dataset type is crucial for defining how data is processed and stored. Streaming tables are key for efficiency with ever-growing data.
 
 *   **[DLT]() Code to create the DLT Datasets:**
+
     *   DLT code can be written in **Python or SQL** and requires a special **job compute** type, not the standard all-purpose compute.
     *   Imported the necessary **`dlt` Python module**.
     *   **Created a Streaming Table** (`orders_bronze`) for the `orders_raw` source using the `@dlt.table` decorator and `spark.readStream.table()` to read the Delta table as a streaming source. Added optional table properties like `quality` and a comment.
     *   **Created a Materialized View** (`customer_bronze`) for the `customer_raw` source using the `@dlt.table` decorator and `spark.read.table()` to read the Delta table as a batch source. Used the `name` parameter to explicitly set the table name.
     *   **Insight:** The `@dlt.table` and `@dlt.view` decorators, along with the `dlt` module, are the core building blocks for defining datasets and transformations in DLT. The key difference between streaming tables and materialized views often lies in how their source is read (`readStream` vs `read`).
-
+      </br>
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/CreateInitialStreamingTable%26MatView.jpg" width="700" height="450">
 
 *   **Define Intermediate and Final Transformations:**
@@ -45,14 +46,14 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
     *   **Created a Silver Materialized View** (`order_customer_view`) by reading the `customer_bronze_view` and adding a new column (`insert_date`) with the current timestamp. Changed the `quality` property to `silver`.
     *   **Created a Gold Materialized View** (`orders_aggregated_gold`) by reading the `joined_silver` table, performing aggregations (e.g., `count(order_key)`) grouped by `market_segment`, and adding an `insert_date` column. Set the `quality` property to `gold.
     *   **Insight:** Views are useful for breaking down complex transformations into logical steps without persisting intermediate results. Reading datasets within the same pipeline using `LIVE` is essential for chaining transformations. Aggregations typically produce materialized views.
-
+      </br>
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/CreateViewAndSilver%26GoldAssets.jpg" width="700" height="450">
 
 *   **Create and Configure the DLT Pipeline:**
     *   Created a new DLT pipeline via the Databricks UI (New -> DLT pipelines or ETL pipelines).
     *   Configured pipeline settings: **Name**, **Product Edition** (starting with Core), **Pipeline Mode** (Triggered or Continuous - started with Triggered) , selected the notebook path, specified **Unity Catalog** settings (Catalog and Schema), and configured compute (number of workers, driver type).
     *   **Insight:** The product edition dictates available features (Core: basic ETL; Pro: CDC; Advanced: Data Quality). Triggered mode is suitable for scheduled batch runs, while Continuous is for low-latency streaming. Choose the pipeline mode based on the latency and cost requirements for your pipeline. Triggered pipelines update once and then shut down the cluster until the next manual or scheduled update. Continuous pipelines keep an always running cluster that ingests new data as it arrives. This property can be changed as your requirements evolve. Integrating with Unity Catalog ensures data governance
-
+      </br>
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/InitialCorePipelineSettings.jpg" width="700" height="450">
 
 *   **Run and Debug the Pipeline:**
@@ -62,7 +63,7 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
     *   Identified and fixed errors by examining the **Event Log** (e.g., unimported functions like `count`, incorrect column names).
     *   Reran the pipeline after correcting code.
     *   **Insight:** Development mode is invaluable during the initial build and debugging phase. The Event Log provides detailed information about pipeline execution and failures, making troubleshooting efficient.
-
+      </br>
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DebugPipelineRunWithErrors.jpg" width="700" height="450">
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/CorrectedPipelineErrorWithGoodGraph.jpg" width="700" height="450">
 
@@ -93,7 +94,7 @@ This dives deeper into DLT's internal workings, focusing on how it handles incre
     *   Observed that the `orders_bronze` streaming table **only read the newly inserted incremental records** (e.g., 10k records) during the run, demonstrating efficient incremental processing.
     *   Confirmed the final aggregated gold table reflected the new data, with increased counts.
     *   **Insight:** Streaming tables in DLT are designed for incremental processing. When their source is updated, they only process the new changes on subsequent runs, which is crucial for performance and cost-effectiveness with large datasets.
-       
+       </br>
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/IncrementalDataLoadedGraph.jpg" width="750" height="550">
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GoldViewInitialRecordsCounts.jpg" width="350" height="150">
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GoldViewAfterIncrementRecordsCounts.jpg" width="350" height="150">
@@ -105,7 +106,7 @@ This dives deeper into DLT's internal workings, focusing on how it handles incre
     *   Reran the DLT pipeline.
     *   Verified that the final gold table now contained the renamed and newly added columns.
     *   **Insight:** DLT's declarative nature simplifies schema changes. You just update the desired schema/transformation in the code, and DLT handles the underlying table updates and schema evolution automatically.
-
+      </br>
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphForAddingNewColumn%26RenameColInGoldLayer.jpg" width="750" height="550">
 
 *   **Rename Tables:**
@@ -114,7 +115,7 @@ This dives deeper into DLT's internal workings, focusing on how it handles incre
     *   Reran the DLT pipeline.
     *   Verified in the Databricks Catalog that the old table was removed, and a new table with the updated name was created.
     *   **Insight:** Just like schema changes, renaming tables is handled automatically by DLT when the code is updated. DLT takes care of removing the old dataset and creating the new one, managing the transition seamlessly from the user's perspective.
-
+      </br>
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/EaseOfChangeinSilverTableName.jpg" width="750" height="550">
 
 *   **Explore DLT Internals:**
@@ -123,7 +124,7 @@ This dives deeper into DLT's internal workings, focusing on how it handles incre
     *   Examined the details of a streaming table (e.g., `orders_bronze`) and found the **table ID** which points to the exact storage location.
     *   Explored the storage location in the Azure portal and identified a **`_dlt_metadata` folder** containing **checkpoint data** for the streaming table.
     *   **Insight:** DLT uses an internal catalog to manage the physical storage of its datasets. Streaming tables leverage checkpointing, stored alongside the data, to efficiently track and process only the incremental changes.
-
+      </br>
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DLTPipelineInternals.jpg" width="750" height="550">
 
 *   **Visualize Data Lineage:**
@@ -145,7 +146,7 @@ This section shows how to integrate external file ingestion using Autoloader int
     *   Used the setup notebook to **create a managed volume** (e.g., `autoloader`) under the DLT schema.
     *   Created folders within the volume for landing files (`files`) and for Autoloader's schema inference location (`autoloader_schemas`).
     *   **Insight:** Using managed volumes within Unity Catalog provides a governed location for landing external files for ingestion, integrating file-based sources into the governed Lakehouse environment.
-
+      </br>
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/IncrementalLoadingUisngAutoloader.jpg" width="650" height="350">
 
 *   **Read Data using Autoloader in DLT:**
@@ -155,7 +156,7 @@ This section shows how to integrate external file ingestion using Autoloader int
     *   Specified the **load path** pointing to the file landing location.
     *   Understood that DLT automatically manages Autoloader's **checkpoint location** at the streaming table's location, so it doesn't need to be explicitly configured.
     *   **Insight:** DLT seamlessly integrates with Autoloader for efficient, scalable ingestion of files from cloud storage. Autoloader's schema inference and evolution handling (when enabled) simplify file loading.
-
+      </br>
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/AutoloaderForIngestingIncrementaLoad.jpg" width="950" height="350">
 
 *   **Implement [Append Flow](https://docs.databricks.com/aws/en/dlt/flow-examples#example-use-append-flow-processing-instead-of-union) for Unioning:**
