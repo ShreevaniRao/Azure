@@ -33,7 +33,7 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
     *   Understood that DLT pipelines are powered by **Delta Lake**, inheriting its **ACID** capabilities.
     *   **Insight:** Choosing the right dataset type is crucial for defining how data is processed and stored. Streaming tables are key for efficiency with ever-growing data.
 
-*   **[DLT]() Code to create the DLT Datasets:**
+*   **[DLT](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/Notebooks/dlt.py) Code to create the DLT Datasets:**
 
     *   DLT code can be written in **Python or SQL** and requires a special **job compute** type, not the standard all-purpose compute.
     *   Imported the necessary **`dlt` Python module**.
