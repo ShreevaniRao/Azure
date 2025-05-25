@@ -1,6 +1,6 @@
 ## Pipeline Construction Steps
 
-This project follows the progression shown in the below provided steps, to build the DLT pipeline & insights learnt along each stage.
+This project follows the progression shown in the below provided steps, to build the DLT pipeline with these quick link features & insights learnt along each stage.
 
 ## Quick Links
 1. [Introduction to Delta Live Tables (DLT)](#introduction-to-delta-live-tables-dlt)
