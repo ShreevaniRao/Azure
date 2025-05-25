@@ -3,7 +3,7 @@
 This project follows the progression shown in the below provided steps, to build the DLT pipeline with these quick link features & insights learnt along each stage.
 
 ## Quick Links
-   #### Notebooks - [Setup Notebook](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/Notebooks/dlt%20setup.py) & [DLT Pipeline Notebook](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/Notebooks/dlt.py)
+   #### Notebooks - [Setup ](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/Notebooks/dlt%20setup.py) & [DLT Pipeline Notebook](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/Notebooks/dlt.py)
  
 1. [Introduction to Delta Live Tables (DLT)](#introduction-to-delta-live-tables-dlt)
 2. [DLT Internals & Incremental Load](#2-dlt-internals--incremental-load)
