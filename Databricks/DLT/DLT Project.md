@@ -166,7 +166,7 @@ This section shows how to integrate external file ingestion using Autoloader int
     *   Defined separate functions using `@dlt.append_flow` to read incrementally from the Delta source (`live.orders_bronze`) and the Autoloader source (`live.orders_autoloader_bronze`) and append the data to the `orders_union_bronze` table.
     *   Modified the downstream join view to now read from the `orders_union_bronze` table (`live.orders_union_bronze`).
     *   **Insight:** Append Flow is a powerful DLT feature for combining data from multiple streaming sources incrementally into a single dataset, preserving the efficiency of streaming pipelines.
-
+      </br>
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/AutoloaderForIngestingIncrementaLoad.jpg" width="950" height="450">
 
 *   **Test Incremental File Ingestion:**
@@ -177,7 +177,7 @@ This section shows how to integrate external file ingestion using Autoloader int
     *   Reran the DLT pipeline.
     *   Observed that the Autoloader streaming table only read the new records from the second file, and the Union streaming table only processed the incremental records coming from the Autoloader source, confirming incremental processing end-to-end.
     *   **Insight:** The combination of Autoloader and Append Flow within DLT provides a robust pattern for ingesting and combining incremental data from files and other streaming sources.
-
+      </br>
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/IncrementalAutoloaderFile-1RunGraph(4newrecords).jpg" width="950" height="450">
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/IncrementalAutoloaderFileRunGraph.jpg" width="950" height="450">
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/AutoloaderTableWithIncrementalDataQuery.jpg" width="950" height="350">
@@ -187,7 +187,7 @@ This section shows how to integrate external file ingestion using Autoloader int
     *   Accessed the pipeline **Settings** in the UI.
     *   Added a **Configuration** parameter (e.g., `custom.order_status`) with a value (e.g., `O,F`).
     *   **Insight:** Pipeline configurations provide a clean way to pass external parameters or settings into the DLT code, enabling dynamic behavior without hardcoding values.
-
+    </br>
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ConfigurationSettingsInPipelineForOrderStatus.jpg" width="950" height="550">
 
 *   **Create Dynamic Tables based on Parameters:**
@@ -200,9 +200,9 @@ This section shows how to integrate external file ingestion using Autoloader int
     *   Reran the DLT pipeline.
     *   Observed the dynamically created tables appearing in the pipeline graph and in the catalog.
     *   **Insight:** DLT allows you to build dynamic pipelines where the datasets created can be determined programmatically based on input parameters. This is incredibly powerful for building reusable data pipelines for different segments or configurations.
-
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ReadConfigFromPipelineSettings.jpg" width="550" height="105">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DynamicTablesUsingConfigurationSettingForOrderStatus.jpg" width="950" height="550">
+      </br>
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ReadConfigFromPipelineSettings.jpg" width="550" height="105">
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DynamicTablesUsingConfigurationSettingForOrderStatus.jpg" width="950" height="550">
 
 ###   4: [Change Data Capture (CDC) - SCD2 & SCD1](https://docs.databricks.com/aws/en/dlt/what-is-change-data-capture)
 
@@ -220,7 +220,7 @@ The Change Data Capture (CDC) capabilities in DLT using the [**`Apply_Changes`**
     *   Used the setup notebook to **add two new columns** to the source `customer_raw` table: `SourceAction` (indicating the action: Insert 'I', Delete 'D', Truncate 'T') and `SourceInsertDate` (timestamp of the action).
     *   Updated existing records in the source table with default values (e.g., `SourceAction='I'`, `SourceInsertDate = current_timestamp - 3 days`).
     *   **Insight:** Adding action and timestamp columns to the source is a common pattern for facilitating CDC, providing the necessary metadata for the target system (DLT) to process changes correctly.
-
+   </br>
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/CDCSetupfortheRawCustomerTable.jpg" width="950" height="550">
    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/RawCustomerDataWithNewColumnsForCDC.jpg" width="900" height="450">
 
@@ -251,7 +251,7 @@ The Change Data Capture (CDC) capabilities in DLT using the [**`Apply_Changes`**
     *   Modified the join view to read from the newly created `customer_scd2_bronze` table (`live.customer_scd2_bronze`) instead of the original `customer_bronze`.
     *   Added a **filter condition** (`end_at is null`) when reading the SCD Type 2 table for joining, to ensure only the currently active records are included in downstream processing.
     *   **Insight:** When using SCD Type 2 tables in downstream pipelines, it's typically necessary to filter for the active record to avoid duplicating data or incorrect aggregations.
-
+      </br>
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/UpdateDownstreamViewToUseSCD2Table.jpg" width="900" height="300">
 
 *   **Configure Pipeline for CDC:**
@@ -264,7 +264,7 @@ The Change Data Capture (CDC) capabilities in DLT using the [**`Apply_Changes`**
     *   Reran the pipeline (or used the "Refresh Table" feature on the SCD tables for quicker testing).
     *   Observed that the SCD Type 1 table was updated with the latest record for the modified key.
     *   Observed that the SCD Type 2 table inserted the new record with `start_at` as the current timestamp and `end_at` as null, while updating the previous record for the same key by populating its `end_at` with the new record's `start_at`. This demonstrated automatic history tracking.
-
+      </br>
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/InsertTestCommentsCDCDataForCustomer.jpg" width="1000" height="250">
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/1RecordUpsertedForCDCChangeinSCD1.jpg" width="900" height="450">
       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueriesForCDCForSCDTables.jpg" width="900" height="650">
@@ -290,9 +290,9 @@ The Change Data Capture (CDC) capabilities in DLT using the [**`Apply_Changes`**
     *   Reran the pipeline, refreshing only the SCD tables.
     *   Observed that the SCD Type 1 table was entirely **truncated** (as `apply_as_truncates` was configured).
     *   Observed that the SCD Type 2 table was **unaffected** (as `apply_as_truncates` was *not* configured for SCD2).
-    *   **Insight:** The `apply_changes` API allows granular control over how delete and truncate actions in the source affect the target SCD tables, enabling different behaviors depending on whether you need to delete records (SCD1) or preserve history (SCD2).<img src="
+    *   **Insight:** The `apply_changes` API allows granular control over how delete and truncate actions in the source affect the target SCD tables, enabling different behaviors depending on whether you need to delete records (SCD1) or preserve history (SCD2).
 
-</b>
+      </br>
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/InsertRecordToDeleteCustomerForSCD1.jpg" width="900" height="250">
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphDeleteDataForSCDTables.jpg" width="900" height="350">
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueriesAfterDeletingDataFOrSCDTables.jpg" width="900" height="550">
@@ -323,7 +323,7 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
 *   **Configure Pipeline for Data Quality:**
     *   Updated the pipeline's **Product Edition** in Settings to **Advanced**, as data quality features like Expectations are available in the Advanced edition.
     *   **Insight:** Enabling the Advanced product edition unlocks the full suite of DLT data quality features.
-
+    </br>
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/SetupExpectDataQulaityRules%26ApplyToOrders%26CustomerData.jpg" width="900" height="650">
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ChangePipelineSettingToAdvancedFOrExpectTesting.jpg" width="900" height="650">
 *   **Test Warning Mode:**
@@ -333,7 +333,7 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
     *   After the pipeline completed, checked the **Data Quality tab** for the datasets with expectations applied. Observed metrics showing the number of records that failed each rule.
     *   Confirmed the **Action** displayed as "allow" and verified that the violating records were **not dropped** but were processed downstream.
     *   **Insight:** Warning mode is useful for monitoring data quality issues without interrupting the pipeline. It provides visibility into rule violations via the UI metrics.
-
+    </br>
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/InsertExpectDataQulaityRules%26ApplyToOrders%26CustomerData.jpg" width="900" height="650">
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QualityCheckGrapghForOrder_rawTable.jpg" width="950" height="450">
     <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphForCustomerRawQualityCheck.jpg"  width="950" height="450">
@@ -345,10 +345,10 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
     *   Observed that the pipeline **failed** at the step where the expectation was defined and violated.
     *   Examined the Event Log, which explicitly stated the failure was due to an expectation check and often showed the violating record.
     *   **Insight:** Fail mode is critical for enforcing strict data quality requirements. If incoming data doesn't meet defined standards, the pipeline stops, preventing bad data from propagating downstream.
-      
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ExpectQualityForOrders-Fail.jpg" width="950" height="350">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QualityCheckGrapghForOrder_rawTable-Fail.jpg" width="900" height="750">
-
+      </br>
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ExpectQualityForOrders-Fail.jpg" width="950" height="350">
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QualityCheckGrapghForOrder_rawTable-Fail.jpg" width="900" height="750">
+   
 *   **Test Drop Mode:**
     *   Modified the expectation decorator to specify the **`or drop`** action keyword (e.g., `@dlt.expect_all(...) or drop`).
     *   Inserted records violating the rules again.
@@ -357,10 +357,10 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
     *   Checked the Data Quality tab, observed the **Action** displayed as "drop" and confirmed the number of records dropped.
     *   Verified that the violating records were **not included** in the downstream tables.
     *   **Insight:** Drop mode allows the pipeline to continue running while automatically discarding records that fail data quality checks. This is useful when some data loss is acceptable to maintain the quality of the overall dataset.
-      
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ExpectQualityForOrder-Drop.jpg" width="950" height="350">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphForOrderRawQualityCheck-Drop.jpg" width="900" height="450">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryCheckFOrOrderRawTable-Drop.jpg" width="900" height="350">
+      </br>
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/ExpectQualityForOrder-Drop.jpg" width="950" height="350">
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphForOrderRawQualityCheck-Drop.jpg" width="900" height="450">
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryCheckFOrOrderRawTable-Drop.jpg" width="900" height="350">
    
 *   **Apply Multiple Expectations:**
     *   Demonstrated applying **multiple `@dlt.expect_all` decorators** with different sets of rules and different actions (e.g., one set with `or warning`, another with `or drop`) to a single dataset (e.g., the join view).
@@ -368,10 +368,10 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
     *   Ran the pipeline.
     *   Observed in the Data Quality tab how DLT tracks failures and actions for each distinct set of expectations applied to the dataset.
     *   **Insight:** You can apply multiple layers of data quality checks with varying severity (warning, drop, fail) to the same dataset within DLT.
-
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QualityCheckForViewWithMultipleRules.jpg" width="950" height="350">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphForViewQualityCheck-Drop%26Warn.jpg" width=950" height="350">
-   <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryForViewQualityCheck.jpg" width="750" height="350">
+      </br>
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QualityCheckForViewWithMultipleRules.jpg" width="950" height="350">
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/GraphForViewQualityCheck-Drop%26Warn.jpg" width=950" height="350">
+      <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryForViewQualityCheck.jpg" width="750" height="350">
 
 *   **Monitor DLT Pipelines using SQL:**
     *   Learned that DLT provides a system function `event_log('<pipeline_id>')` to query the pipeline's event log directly using SQL.
@@ -380,6 +380,6 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
     *   Queried the event log views to specifically retrieve data quality metrics (passing/failing records, expectation type) across the pipeline.
     *   Noted that these SQL queries can be used to build dashboards for monitoring pipeline health and data quality over time.
     *   **Insight:** The `event_log` provides a powerful interface for observing and monitoring DLT pipeline execution and data quality results programmatically, enabling integration with monitoring tools or creating custom dashboards.
-
-    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DBDatQualityPipelineMonitoringQuery.jpg" width="900" height="750">
+      </br>
+       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DBDatQualityPipelineMonitoringQuery.jpg" width="900" height="750">
 
