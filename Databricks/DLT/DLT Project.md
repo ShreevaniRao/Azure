@@ -386,4 +386,4 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
        <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DBDatQualityPipelineMonitoringQuery.jpg" width="900" height="750">
 
 ###  6. Outro 
-This document has detailed the construction of a Delta Live Tables (DLT) pipeline in Databricks, demonstrating capabilities such as incremental data processing via Autoloader and the append flow, Change Data Capture (SCD type 1 & 2) using the apply_changes API, data quality enforcement with expectations, and dynamic table generation.
+Though construction of a Delta Live Tables (DLT) pipeline in Databricks, demonstrates rich and powerful capabilities such as incremental data processing via Autoloader and the append flow, Change Data Capture (SCD type 1 & 2) using the apply_changes API, data quality enforcement with expectations, and dynamic table generation, but also has few limitations as mentioned in the documentation [**link**](https://learn.microsoft.com/en-us/azure/databricks/dlt/limitations).
