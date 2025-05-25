@@ -25,7 +25,7 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
       </br>
           <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DLTInitialSetup%26Queries.jpg" width="900" height="450">
 
-*   **Understand DLT Dataset Types:**
+*   [**Understand DLT Dataset Types:(When to use what)**](https://docs.databricks.com/aws/en/dlt/transform)
     *   Learned about the three main types of datasets in DLT: **Streaming Tables**, **Materialized Views**, and **Views** .
     *   **Streaming Tables** are used for streaming sources and processing incremental data, allowing data to be appended.
     *   **Materialized Views** are generally used for transformations, aggregations, or computations.
