@@ -1,6 +1,6 @@
- # 🚀 Delta Live Tables (DLT) Pipeline Overview
+ # 🚀 [Delta Live Tables (DLT)](https://docs.databricks.com/aws/en/dlt) Pipeline Overview
 
-This repository outlines the steps for a data processing pipeline using **Delta Live Tables (DLT)**, a [declarative framework](https://docs.databricks.com/gcp/en/data-engineering/procedural-vs-declarative) built by Databricks for reliable ETL processing.  
+This repository outlines the steps for a data processing pipeline using **[Delta Live Tables (DLT)](https://docs.databricks.com/aws/en/dlt)**, a [declarative framework](https://docs.databricks.com/gcp/en/data-engineering/procedural-vs-declarative) built by Databricks for reliable ETL processing.  
 DLT simplifies pipeline development by handling orchestration automation, cluster management, data quality, and error handling automatically, enabling developers to focus on transformations.
 
 ---
