@@ -3,6 +3,7 @@
 This repository outlines the steps for a data processing pipeline using **[Delta Live Tables (DLT)](https://docs.databricks.com/aws/en/dlt)**, a [declarative framework](https://docs.databricks.com/gcp/en/data-engineering/procedural-vs-declarative) built by Databricks for reliable ETL processing.  
 DLT simplifies pipeline development by handling orchestration automation, cluster management, data quality, and error handling automatically, enabling developers to focus on transformations.
 
+### <u>[Go To -> DLT Pipeline Details](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/DLT%20Project.md)</u>
 ---
 
 ## Table of Contents
@@ -64,7 +65,7 @@ The DLT pipeline was created using the Databricks UI:
 - Provided a pipeline name (e.g., `dlt_01`).
 - Selected a Product Edition (Core, Pro, Advanced) depending on the DLT feature in use.
 - Chose a Pipeline Mode (Triggered or Continuous).
-- Specified the path to the [**DLT notebook(source code)**](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/Notebooks/dlt.py) containing transformation code.
+- Specified the path to the [**DLT pipeline notebook(source code)**](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/Notebooks/dlt.py) containing transformation code.
 - Defined the target schema (e.g., `dlt-catalog.etl`).
 - Configured compute settings (number of workers, worker type).
 - Added optional configurations for dynamic pipeline parameters.
