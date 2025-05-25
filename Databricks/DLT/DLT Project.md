@@ -19,7 +19,7 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
 **Steps:**
 
 *   **Set up the Environment:**
-    *   Used a [setup]() notebook to **create a new catalog & schema** -> `etl` under the `dlt-catalog` catalog for the DLT run.
+    *   Used a [setup](https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/Notebooks/dlt%20setup.py) notebook to **create a new catalog & schema** -> `etl` under the `dlt-catalog` catalog for the DLT run.
     *   **Deep cloned sample data** (e.g., `orders` and `customer` from `samples.tpch`) into raw tables (e.g., `etl.bronze.orders_raw`, `etl.bronze.customer_raw`) to use as source data.
     *   **Insight:** Setting up a dedicated schema and cloning data provides a clean, repeatable starting point for the pipeline development. Using `deep clone` creates independent copies of the source data.
       </br>
