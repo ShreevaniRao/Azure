@@ -10,7 +10,7 @@ This project follows the progression shown in the below provided steps, to build
 3. [DLT Append Flow & Autoloader](#3-dlt-append-flow--autoloader)
 4. [Change Data Capture (CDC) - SCD2 & SCD1](#4-change-data-capture-cdc---scd2--scd1)
 5. [DLT Data Quality & Expectations](#5-dlt-data-quality--expectations)
-
+6. [Outro](#6-outro)
    
 ### Introduction to Delta Live Tables (DLT)
 
@@ -385,3 +385,5 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
       </br>
        <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DBDatQualityPipelineMonitoringQuery.jpg" width="900" height="750">
 
+###  6. Outro 
+This document has detailed the construction of a Delta Live Tables (DLT) pipeline in Databricks, demonstrating capabilities such as incremental data processing via Autoloader and the append flow, Change Data Capture (SCD type 1 & 2) using the apply_changes API, data quality enforcement with expectations, and dynamic table generation.
