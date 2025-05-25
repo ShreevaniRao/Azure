@@ -14,6 +14,7 @@ DLT simplifies pipeline development by handling orchestration automation, cluste
 4. [Building the Data Pipeline (Logical Flow)](#building-the-data-pipeline-logical-flow)
 5. [Key DLT Features Explored](#key-dlt-features-explored)
 6. [DLT Internals and Observability](#dlt-internals-and-observability)
+7. [DLT Limitations](https://learn.microsoft.com/en-us/azure/databricks/dlt/limitations)
 
 ---
 
