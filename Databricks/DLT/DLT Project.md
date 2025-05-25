@@ -380,5 +380,5 @@ The focus on managing data quality within DLT pipelines using [**Expectations**]
     *   Noted that these SQL queries can be used to build dashboards for monitoring pipeline health and data quality over time.
     *   **Insight:** The `event_log` provides a powerful interface for observing and monitoring DLT pipeline execution and data quality results programmatically, enabling integration with monitoring tools or creating custom dashboards.
 
-    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DBDatQualityPipelineMonitoringQuery.jpg" width="700" height="550">
+    <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/DBDatQualityPipelineMonitoringQuery.jpg" width="900" height="750">
 
