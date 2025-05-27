@@ -76,7 +76,7 @@ This DLT pipeline as a declarative framework in Databricks designed to simplify 
     *   Terminated the DLT cluster after successful development runs to manage costs.
     *   **Insight:** DLT automatically manages the creation and storage of specified tables and materialized views based on the defined code. Views are temporary constructs used only during the pipeline run.
 
-       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryTheGold%26VerifyOtherDataAssets.jpg" width="900" height="550">
+       <img src="https://github.com/ShreevaniRao/Azure/blob/main/Databricks/DLT/Assets/QueryTheGold%26VerifyOtherDataAssets.jpg" width="900" height="750">
 
 
 ###   2: DLT Internals & Incremental Load
